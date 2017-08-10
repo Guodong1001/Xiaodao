@@ -14,12 +14,6 @@ import com.bwie.xiaodao.R;
  */
 public class FujinFragment extends Fragment {
 
-
-    public FujinFragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
