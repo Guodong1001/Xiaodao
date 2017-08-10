@@ -24,6 +24,23 @@ public class NetUtil {
 
     private INet mINet;
 
+    private static volatile NetUtil instance = null;
+
+    private NetUtil() {
+
+    }
+
+    public static NetUtil getInstance() {
+        if (instance == null) {
+            synchronized (NetUtil.class) {
+                if (instance == null) {
+                    instance = new NetUtil();
+                }
+            }
+        }
+        return instance;
+    }
+
 
     private Handler hanlder = new Handler() {
         @Override
@@ -43,7 +60,7 @@ public class NetUtil {
      * @param url
      * @param iNet
      */
-    public <T>void getDataFromServer(String url, final INet iNet, final Class<T> tClass) {
+    public <T> void getDataFromServer(String url, final INet iNet, final Class<T> tClass) {
         mINet = iNet;
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
