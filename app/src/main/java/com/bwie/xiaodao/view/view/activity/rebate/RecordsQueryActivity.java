@@ -1,7 +1,6 @@
 package com.bwie.xiaodao.view.view.activity.rebate;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -122,10 +121,4 @@ public class RecordsQueryActivity extends BaseActivity {
         finish();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }
