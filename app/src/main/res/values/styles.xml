@@ -19,4 +19,17 @@
 
     </style>
 
+
+    <!--首页中radiobutton的Style-->
+    <style name="Home.Radiobutton" parent="Control">
+        <item name="android:layout_width">@dimen/px0</item>
+        <item name="android:layout_height">@dimen/px90</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/selector_rb_class</item>
+        <item name="android:button">@null</item>
+        <!--<item name="android:paddingTop">@dimen/px42</item>
+        <item name="android:paddingBottom">@dimen/px20</item>-->
+        <item name="android:textSize">@dimen/px_t28</item>
+    </style>
+
 </resources>

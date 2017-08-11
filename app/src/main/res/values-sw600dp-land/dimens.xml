@@ -1,3 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8"?><resources>    <dimen name="px30">28.05dp</dimen>
+    <dimen name="px450">420.75dp</dimen>
+    <dimen name="px89">83.215dp</dimen>
+    <dimen name="px106">99.11dp</dimen>
+    <dimen name="px38">35.53dp</dimen>
+    <dimen name="px366">342.21000000000004dp</dimen>
+    <dimen name="px42">39.27dp</dimen>
+    <dimen name="px57">53.295dp</dimen>
+    <dimen name="px40">37.400000000000006dp</dimen>
+    <dimen name="px60">56.1dp</dimen>
+    <dimen name="px10">9.350000000000001dp</dimen>
+    <dimen name="px20">18.700000000000003dp</dimen>
+    <dimen name="px334">312.29dp</dimen>
+    <dimen name="px43">40.205000000000005dp</dimen>
+    <dimen name="px9">8.415000000000001dp</dimen>
+    <dimen name="px24">22.44dp</dimen>
+    <dimen name="px374">349.69dp</dimen>
+    <dimen name="px50">46.75dp</dimen>
+    <dimen name="px2">1.87dp</dimen>
+    <dimen name="px182">170.17000000000002dp</dimen>
+    <dimen name="px150">140.25dp</dimen>
+    <dimen name="px438">409.53000000000003dp</dimen>
+    <dimen name="px88">82.28dp</dimen>
+    <dimen name="px90">84.15dp</dimen>
+    <dimen name="px224">209.44dp</dimen>
+    <dimen name="px218">203.83dp</dimen>
+    <dimen name="px14">13.09dp</dimen>
+    <dimen name="px15">14.025dp</dimen>
+    <dimen name="px83">77.605dp</dimen>
+    <dimen name="px28">26.18dp</dimen>
+    <dimen name="px200">187.0dp</dimen>
+    <dimen name="px176">164.56dp</dimen>
+    <dimen name="px134">125.29dp</dimen>
+    <dimen name="px34">31.790000000000003dp</dimen>
+    <dimen name="px0">0.0dp</dimen>
+    <dimen name="px16">14.96dp</dimen>
+    <dimen name="px18">16.830000000000002dp</dimen>
+    <dimen name="px_t28">26.18sp</dimen>
+    <dimen name="px_t24">22.44sp</dimen>
+    <dimen name="px_t36">33.660000000000004sp</dimen>
+    <dimen name="px_t22">20.57sp</dimen>
+    <dimen name="px_t23">21.505000000000003sp</dimen>
 </resources>

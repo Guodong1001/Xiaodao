@@ -5,19 +5,19 @@
               android:orientation="vertical">
 
     <ImageView
-        android:layout_width="41.5dp"
-        android:layout_height="41.5dp"
+        android:layout_width="@dimen/px83"
+        android:layout_height="@dimen/px83"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="14dp"/>
+        android:layout_marginTop="@dimen/px28"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/px10"
         android:text="美食"
         android:textColor="#666666"
-        android:textSize="11.5sp"/>
+        android:textSize="@dimen/px_t23"/>
 
 
 </LinearLayout>
