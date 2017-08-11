@@ -10,7 +10,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="195dp"
+            android:layout_height="@dimen/px390"
             android:background="#435C94">
 
             <ImageView
@@ -24,12 +24,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginStart="@dimen/px30"
+                android:layout_marginTop="@dimen/px80"
                 android:alpha="0.7"
                 android:text="累计返利金额（元）"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"/>
+                android:textSize="@dimen/px_t28"/>
 
             <TextView
                 android:id="@+id/fanli_txt_money"
@@ -37,10 +37,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/textView"
                 android:layout_below="@+id/textView"
-                android:layout_marginTop="22dp"
+                android:layout_marginTop="@dimen/px44"
                 android:text="2199.00"
                 android:textColor="#FFFFFF"
-                android:textSize="40sp"/>
+                android:textSize="@dimen/px_t80"/>
 
             <TextView
                 android:id="@+id/textView3"
@@ -48,22 +48,22 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignStart="@+id/fanli_txt_money"
-                android:layout_marginBottom="34dp"
+                android:layout_marginBottom="@dimen/px68"
                 android:alpha="0.7"
                 android:text="待返期数（笔）"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"/>
+                android:textSize="@dimen/px_t28"/>
 
             <TextView
                 android:id="@+id/fanli_txt_stroke_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/textView3"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="@dimen/px60"
                 android:layout_toEndOf="@+id/textView3"
                 android:text="5"
                 android:textColor="#FFFFFF"
-                android:textSize="18sp"/>
+                android:textSize="@dimen/px_t36"/>
 
             <TextView
                 android:id="@+id/fanli_txt_query"
@@ -71,17 +71,17 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/fanli_txt_stroke_count"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="@dimen/px30"
                 android:text="记录查询"
                 android:textColor="#FFFFFF"
-                android:textSize="14sp"/>
+                android:textSize="@dimen/px_t28"/>
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginBottom="10dp"
+            android:layout_height="@dimen/px88"
+            android:layout_marginBottom="@dimen/px20"
             android:background="#FFFFFF"
             android:gravity="center_vertical">
 
@@ -89,11 +89,11 @@
                 android:id="@+id/fanli_txt_weixin_bind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="15dp"
+                android:layout_marginEnd="@dimen/px10"
+                android:layout_marginStart="@dimen/px30"
                 android:text="请绑定"
                 android:textColor="#666666"
-                android:textSize="12sp"/>
+                android:textSize="@dimen/px_t24"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -102,17 +102,17 @@
                 android:gravity="center_vertical"
                 android:text="微信"
                 android:textColor="#666666"
-                android:textSize="12sp"/>
+                android:textSize="@dimen/px_t24"/>
 
             <TextView
                 android:id="@+id/fanli_txt_alipay_bind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="27dp"
+                android:layout_marginEnd="@dimen/px10"
+                android:layout_marginStart="@dimen/px34"
                 android:text="请绑定"
                 android:textColor="#666666"
-                android:textSize="12sp"/>
+                android:textSize="@dimen/px_t24"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,7 +121,7 @@
                 android:gravity="center_vertical"
                 android:text="支付宝"
                 android:textColor="#666666"
-                android:textSize="12sp"/>
+                android:textSize="@dimen/px_t24"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -133,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="15dp"
+                    android:layout_marginEnd="@dimen/px30"
                     android:src="@drawable/gengduo"/>
             </RelativeLayout>
 
@@ -142,64 +142,64 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginEnd="@dimen/px30"
+            android:layout_marginStart="@dimen/px30"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/fanli_txt_plan_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="17dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginBottom="@dimen/px34"
+                android:layout_marginTop="@dimen/px30"
                 android:text="返利计划（共9档）"
                 android:textColor="#666666"
-                android:textSize="14sp"/>
+                android:textSize="@dimen/px_t28"/>
 
             <com.bwie.xiaodao.view.view.custom.MyListView
                 android:id="@+id/fanli_lv_details"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:dividerHeight="15dp">
+                android:dividerHeight="@dimen/px30">
             </com.bwie.xiaodao.view.view.custom.MyListView>
 
             <TextView
                 android:id="@+id/fanli_txt_show_more"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
+                android:layout_height="@dimen/px50"
                 android:gravity="center"
                 android:text="显示更多"
                 android:textColor="#435c94"
-                android:textSize="11sp"/>
+                android:textSize="@dimen/px_t22"/>
         </LinearLayout>
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_marginTop="10dp">
+            android:layout_height="@dimen/px130"
+            android:layout_marginTop="@dimen/px20">
 
             <ImageView
                 android:id="@+id/fanli_img_calendar"
-                android:layout_width="33dp"
-                android:layout_height="33dp"
+                android:layout_width="@dimen/px66"
+                android:layout_height="@dimen/px66"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="35dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="16.5dp"
+                android:layout_marginEnd="@dimen/px70"
+                android:layout_marginStart="@dimen/px30"
+                android:layout_marginTop="@dimen/px33"
                 app:srcCompat="@mipmap/ic_launcher_round"/>
 
             <TextView
                 android:id="@+id/fanli_txt_rebate_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginBottom="@dimen/px10"
+                android:layout_marginTop="@dimen/px38"
                 android:layout_toEndOf="@+id/fanli_img_calendar"
                 android:text="近7天有2笔返利"
                 android:textColor="#666666"
-                android:textSize="12sp"/>
+                android:textSize="@dimen/px_t24"/>
 
             <TextView
                 android:id="@+id/fanli_txt_date"
@@ -209,7 +209,7 @@
                 android:layout_below="@+id/fanli_txt_rebate_7"
                 android:text="5月25日（明天）"
                 android:textColor="#999999"
-                android:textSize="12sp"/>
+                android:textSize="@dimen/px_t24"/>
 
             <TextView
                 android:id="@+id/rebate"
@@ -219,7 +219,7 @@
                 android:layout_toEndOf="@+id/fanli_txt_date"
                 android:text="返利"
                 android:textColor="#999999"
-                android:textSize="12sp"/>
+                android:textSize="@dimen/px_t24"/>
 
             <TextView
                 android:id="@+id/fanli_txt_money_amounts"
@@ -229,7 +229,7 @@
                 android:layout_toEndOf="@+id/rebate"
                 android:text=" 230 "
                 android:textColor="#666666"
-                android:textSize="14sp"
+                android:textSize="@dimen/px_t28"
                 />
 
 
@@ -240,7 +240,7 @@
                 android:layout_toEndOf="@+id/fanli_txt_money_amounts"
                 android:text="元"
                 android:textColor="#999999"
-                android:textSize="12sp"/>
+                android:textSize="@dimen/px_t24"/>
 
             <ImageView
                 android:id="@+id/fanli_img_goto_calendar"
@@ -248,10 +248,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="@dimen/px30"
                 app:srcCompat="@drawable/gengduo"/>
         </RelativeLayout>
     </LinearLayout>
-
 
 </ScrollView>
