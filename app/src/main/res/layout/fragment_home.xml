@@ -1,21 +1,178 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
+        android:layout_height="wrap_content"
+        android:background="#F2F4F5"
+        android:orientation="vertical">
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
+            android:layout_height="225dp"
+            android:background="#E8E8E8">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44.5dp"
+                android:layout_marginLeft="14.5dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="53dp"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/beijingyuanjiao"
+                    android:drawableRight="@drawable/xiala"
+                    android:text="北京"
+                    android:textSize="14sp"/>
+
+                <EditText
+                    android:layout_width="183dp"
+                    android:layout_height="21dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="28.5dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/sousuo"
+                    android:hint="麻辣小龙虾"
+                    android:paddingLeft="53dp"
+                    android:textSize="12sp"
+                    />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/beijingyuan"
+                    android:padding="5dp"
+                    android:src="@drawable/xiaoxi"
+                    />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/beijingyuan"
+                    android:padding="5dp"
+                    android:src="@drawable/saoyisaoo"
+                    />
+            </LinearLayout>
+
+            <com.youth.banner.Banner
+                android:id="@+id/shouye_banner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </com.youth.banner.Banner>
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="167dp"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff">
+
+            <android.support.v4.view.ViewPager
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="21.5dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="4.5dp">
+            </android.support.v4.view.ViewPager>
+
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_gravity="bottom|center_horizontal"
+                android:orientation="horizontal">
 
-        </RelativeLayout>
+                <RadioButton
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:background="@drawable/selector_rb_dot"
+                    android:button="@null"
+                    android:checked="true"/>
 
+                <RadioButton
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/selector_rb_dot"
+                    android:button="@null"/>
+
+            </RadioGroup>
+
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="183dp"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff"
+            >
+            <LinearLayout
+                android:layout_width="187dp"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="1"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="25dp"
+                    android:textSize="18sp"
+                    android:text="旺铺推荐"
+                    android:lineSpacingExtra="10dp"
+                    android:textColor="#333333"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="219dp"
+            android:layout_marginTop="10dp"
+            android:background="#ffffff"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="附 近 旺 铺"/>
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_gravity="right"
+                    android:padding="10dp"
+                    android:src="@drawable/fujindingwei"
+                    />
+            </FrameLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp">
+
+            </HorizontalScrollView>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
