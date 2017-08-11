@@ -14,22 +14,22 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setMyContentView());
-        initView();
         initData();
+        initView();
         initDataFromServer();
         addFragment();
         createEvent();
     }
-    abstract int setMyContentView();
+    public abstract int setMyContentView();
 
-    abstract void initDataFromServer();
+    public abstract void initDataFromServer();
 
-    abstract void initData();
+    public abstract void initData();
 
 
-    abstract void initView();
+    public abstract void initView();
 
-    abstract void createEvent();
+    public abstract void createEvent();
 
     public void addFragment(){
 

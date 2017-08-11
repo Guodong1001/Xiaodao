@@ -21,7 +21,7 @@
             android:id="@+id/radio_home"
             style="@style/Layout.RadioButton"
             android:checked="true"
-            android:drawableTop="@drawable/rb_shouye"
+            android:drawableTop="@drawable/selector_rb_shouye"
             android:gravity="center"
             android:tag="0"
             android:text="首页"
@@ -31,7 +31,7 @@
         <RadioButton
             android:id="@+id/radio_fujin"
             style="@style/Layout.RadioButton"
-            android:drawableTop="@drawable/rb_fujin"
+            android:drawableTop="@drawable/selector_rb_fujin"
             android:gravity="center"
             android:tag="1"
             android:text="附近"
@@ -40,7 +40,7 @@
         <RadioButton
             android:id="@+id/radio_fanli"
             style="@style/Layout.RadioButton"
-            android:drawableTop="@drawable/rb_fanli"
+            android:drawableTop="@drawable/selector_rb_fanli"
             android:gravity="center"
             android:tag="2"
             android:text="返利"
@@ -49,7 +49,7 @@
         <RadioButton
             android:id="@+id/radio_wode"
             style="@style/Layout.RadioButton"
-            android:drawableTop="@drawable/rb_wode"
+            android:drawableTop="@drawable/selector_rb_wode"
             android:gravity="center"
             android:tag="3"
             android:text="我的"

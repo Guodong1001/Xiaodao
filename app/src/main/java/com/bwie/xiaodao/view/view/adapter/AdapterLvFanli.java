@@ -26,11 +26,9 @@ public class AdapterLvFanli extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if (mList.size() > 2)
-        {
+        if (mList.size() > 2) {
             return itemCount;
-        }else
-        {
+        }else {
             return mList.size();
         }
     }

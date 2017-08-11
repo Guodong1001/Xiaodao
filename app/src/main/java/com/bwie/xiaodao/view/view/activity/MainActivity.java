@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
      * @return
      */
     @Override
-    int setMyContentView() {
+    public int setMyContentView() {
         return R.layout.activity_main;
     }
 
@@ -36,14 +36,14 @@ public class MainActivity extends BaseActivity {
      * 从网络获取数据
      */
     @Override
-    void initDataFromServer() {
+    public void initDataFromServer() {
     }
 
     /**
      * 初始化数据
      */
     @Override
-    void initData() {
+    public void initData() {
 
     }
 
@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity {
      * 初始化控件的方法
      */
     @Override
-    void initView() {
+    public void initView() {
         mRadioGroup = (RadioGroup) findViewById(R.id.connect_group);
         //RadioButton的点击事件   切换fragment
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity {
      * 点击事件
      */
     @Override
-    void createEvent() {
+    public void createEvent() {
 
     }
 

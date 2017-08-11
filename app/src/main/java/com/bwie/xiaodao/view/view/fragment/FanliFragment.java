@@ -1,6 +1,7 @@
 package com.bwie.xiaodao.view.view.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.view.activity.rebate.RecordsQueryActivity;
 import com.bwie.xiaodao.view.view.adapter.AdapterLvFanli;
 import com.bwie.xiaodao.view.view.custom.MyListView;
 
@@ -101,14 +103,21 @@ public class FanliFragment extends Fragment {
         unbinder.unbind();
     }
 
-    @OnClick(R.id.fanli_txt_show_more)
-    public void onViewClicked() {
-        if (mAdapterLvFanli.getCount() == 2) {
-            mAdapterLvFanli.addItemNum(mList.size());
-            mAdapterLvFanli.notifyDataSetChanged();
-        } else {
-            mAdapterLvFanli.addItemNum(2);
-            mAdapterLvFanli.notifyDataSetChanged();
+    @OnClick({R.id.fanli_txt_query, R.id.fanli_txt_show_more})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.fanli_txt_query:
+                startActivity(new Intent(getActivity(), RecordsQueryActivity.class));
+                break;
+            case R.id.fanli_txt_show_more:
+                if (mAdapterLvFanli.getCount() == 2) {
+                    mAdapterLvFanli.addItemNum(mList.size());
+                    mAdapterLvFanli.notifyDataSetChanged();
+                } else {
+                    mAdapterLvFanli.addItemNum(2);
+                    mAdapterLvFanli.notifyDataSetChanged();
+                }
+                break;
         }
     }
 }
