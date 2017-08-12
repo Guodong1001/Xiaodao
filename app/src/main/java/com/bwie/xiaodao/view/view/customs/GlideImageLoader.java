@@ -1,13 +1,10 @@
 package com.bwie.xiaodao.view.view.customs;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.youth.banner.loader.ImageLoader;
-
-import jp.wasabeef.glide.transformations.ColorFilterTransformation;
 
 /**
  * 类描述：
@@ -28,7 +25,6 @@ public class GlideImageLoader extends ImageLoader{
         //Glide 加载图片简单用法
         Glide.with(context)
                 .load(path)
-                .bitmapTransform(new ColorFilterTransformation(context, Color.argb(80, 255, 0, 0)))
                 .into(imageView);
     }
 

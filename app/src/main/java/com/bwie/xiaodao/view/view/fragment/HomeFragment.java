@@ -33,6 +33,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static com.youth.banner.BannerConfig.CIRCLE_INDICATOR;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -146,7 +148,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initview() {
-        mHomeBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);
+        mHomeBanner.setBannerStyle(CIRCLE_INDICATOR);
         mHomeBanner.setImageLoader(new GlideImageLoader());
         mHomeBanner.setImages(mBannerList);
         mHomeBanner.isAutoPlay(true);
