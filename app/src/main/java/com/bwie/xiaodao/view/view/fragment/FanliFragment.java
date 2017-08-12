@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.view.activity.rebate.CalendarActivity;
+import com.bwie.xiaodao.view.view.activity.rebate.IllustrateActivity;
 import com.bwie.xiaodao.view.view.activity.rebate.RecordsQueryActivity;
 import com.bwie.xiaodao.view.view.adapter.AdapterLvFanli;
 import com.bwie.xiaodao.view.view.custom.MyListView;
@@ -64,7 +65,7 @@ public class FanliFragment extends Fragment {
     @BindView(R.id.fanli_txt_show_more)
     TextView mFanliTxtShowMore;
     private View view;
-    private List<String> mList;
+    private static List<String> mList;
     private AdapterLvFanli mAdapterLvFanli;
 
     public FanliFragment() {
@@ -102,7 +103,9 @@ public class FanliFragment extends Fragment {
         mFanliLvDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent = new Intent(getActivity(), IllustrateActivity.class);
+                intent.putExtra("index",position);
+                startActivity(intent);
             }
         });
     }
@@ -132,7 +135,9 @@ public class FanliFragment extends Fragment {
                 break;
         }
     }
-
+    public static List<String> getData(){
+        return mList;
+    }
     @OnClick(R.id.fanli_goto_calendar)
     public void onViewClicked() {
         startActivity(new Intent(getActivity(), CalendarActivity.class));

@@ -142,8 +142,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/px30"
-            android:layout_marginStart="@dimen/px30"
+            android:background="#FFFFFF"
+            android:paddingEnd="@dimen/px30"
+            android:paddingStart="@dimen/px30"
             android:orientation="vertical">
 
             <TextView
@@ -177,6 +178,7 @@
         <RelativeLayout
             android:id="@+id/fanli_goto_calendar"
             android:layout_width="match_parent"
+            android:background="#FFFFFF"
             android:layout_height="@dimen/px130"
             android:layout_marginTop="@dimen/px20">
 

@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".view.view.activity.rebate.CalendarActivity">
         </activity>
+        <activity android:name=".view.view.activity.rebate.IllustrateActivity">
+        </activity>
     </application>
 
 </manifest>
