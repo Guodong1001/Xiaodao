@@ -20,6 +20,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         addFragment();
         createEvent();
     }
+    //李冯壮
     abstract int setMyContentView();
 
     abstract void initDataFromServer();
