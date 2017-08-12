@@ -19,6 +19,17 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".view.view.activity.mine.LoginPwdPageActivity" />
+        <activity android:name=".view.view.activity.mine.RegisiterPageActivity" />
+        <activity android:name=".view.view.activity.mine.ForgotPwdPageActivity" />
+        <activity android:name=".view.view.activity.mine.CollectPaymentPageActivity" />
+        <activity android:name=".view.view.activity.mine.CardPackagePageActivity" />
+        <activity android:name=".view.view.activity.mine.MyBalancePageActivity"></activity>
+        <activity android:name=".view.view.activity.mine.AboutWePageActivity"/>
+        <activity android:name=".view.view.activity.mine.RecordConsumptionActivity"/>
+        <activity android:name=".view.view.activity.mine.MessagePageActivity"/>
+        <activity android:name=".view.view.activity.mine.SecuritySettingPageActivity"/>
+        <activity android:name=".view.view.activity.mine.BalanceDetailsPageActivity"/>
     </application>
 
 </manifest>
