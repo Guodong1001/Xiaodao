@@ -26,6 +26,7 @@
     <dimen name="px50">25dp</dimen>
     <dimen name="px170">85dp</dimen>
     <dimen name="px130">65dp</dimen>
+    <dimen name="px150">75dp</dimen>
     <dimen name="px1">0.5dp</dimen>
     <dimen name="px66">33dp</dimen>
     <dimen name="px38">19dp</dimen>

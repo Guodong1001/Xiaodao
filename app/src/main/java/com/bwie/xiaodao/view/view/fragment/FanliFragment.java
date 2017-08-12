@@ -8,10 +8,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.view.activity.rebate.CalendarActivity;
 import com.bwie.xiaodao.view.view.activity.rebate.RecordsQueryActivity;
 import com.bwie.xiaodao.view.view.adapter.AdapterLvFanli;
 import com.bwie.xiaodao.view.view.custom.MyListView;
@@ -59,6 +61,8 @@ public class FanliFragment extends Fragment {
     @BindView(R.id.fanli_img_goto_calendar)
     ImageView mFanliImgGotoCalendar;
     Unbinder unbinder;
+    @BindView(R.id.fanli_txt_show_more)
+    TextView mFanliTxtShowMore;
     private View view;
     private List<String> mList;
     private AdapterLvFanli mAdapterLvFanli;
@@ -95,6 +99,12 @@ public class FanliFragment extends Fragment {
         mFanliTxtPlanCount.setText("返利计划（共" + mList.size() + "档）");
         mAdapterLvFanli = new AdapterLvFanli(getContext(), mList);
         mFanliLvDetails.setAdapter(mAdapterLvFanli);
+        mFanliLvDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
 
     @Override
@@ -111,13 +121,20 @@ public class FanliFragment extends Fragment {
                 break;
             case R.id.fanli_txt_show_more:
                 if (mAdapterLvFanli.getCount() == 2) {
+                    mFanliTxtShowMore.setText("收起更多");
                     mAdapterLvFanli.addItemNum(mList.size());
                     mAdapterLvFanli.notifyDataSetChanged();
                 } else {
+                    mFanliTxtShowMore.setText("显示更多");
                     mAdapterLvFanli.addItemNum(2);
                     mAdapterLvFanli.notifyDataSetChanged();
                 }
                 break;
         }
+    }
+
+    @OnClick(R.id.fanli_goto_calendar)
+    public void onViewClicked() {
+        startActivity(new Intent(getActivity(), CalendarActivity.class));
     }
 }

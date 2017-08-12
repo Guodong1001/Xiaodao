@@ -5,13 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 /**
  * Created by 雨夜 on 2017/8/11.
  */
 
-public class QueryRvAdapter<T> extends RecyclerView.Adapter<QueryRvAdapter.ViewHolder> {
+public class QueryRvAdapter extends RecyclerView.Adapter<QueryRvAdapter.ViewHolder> {
     private Context mContext;
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

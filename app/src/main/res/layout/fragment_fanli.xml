@@ -175,6 +175,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/fanli_goto_calendar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px130"
             android:layout_marginTop="@dimen/px20">
