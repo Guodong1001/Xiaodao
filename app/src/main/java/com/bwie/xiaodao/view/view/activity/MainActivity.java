@@ -22,7 +22,6 @@ public class MainActivity extends BaseActivity {
     private Fragment[] fragments = new Fragment[4];
     //记录用户首次点击返回键的时间
     private long firstTime = 0;
-
     /**
      * 添加布局
      * @return
@@ -72,8 +71,6 @@ public class MainActivity extends BaseActivity {
     public void createEvent() {
 
     }
-
-
     /**
      * 添加fragment
      */

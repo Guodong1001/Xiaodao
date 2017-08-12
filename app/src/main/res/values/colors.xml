@@ -3,9 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorRed">#c20000</color>
+    <color name="colorBlack">#333333</color>
     <color name="hui">#70706e</color>
     <color name="black">#ff0000</color>
     <color name="yellow">#ff00ff</color>
-    <color name="colorRed">#c20000</color>
-    <color name="colorBlack">#333333</color>
 </resources>

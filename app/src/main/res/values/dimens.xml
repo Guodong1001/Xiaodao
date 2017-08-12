@@ -68,3 +68,26 @@
 
 
 </resources>
+
+    <dimen name="px260">130dp</dimen>
+    <dimen name="px140">70dp</dimen>
+    <dimen name="px20">10dp</dimen>
+    <dimen name="px_t26dp">13dp</dimen>
+    <dimen name="px124">62dp</dimen>
+    <dimen name="px_t22">11dp</dimen>
+    <dimen name="px88">44dp</dimen>
+    <dimen name="px30">15dp</dimen>
+    <dimen name="px48">24dp</dimen>
+    <dimen name="px218">109dp</dimen>
+    <dimen name="px228">114dp</dimen>
+    <dimen name="px28">14dp</dimen>
+    <dimen name="px14">7dp</dimen>
+    <dimen name="px_t28">14dp</dimen>
+    <dimen name="px34">17dp</dimen>
+    <dimen name="px150">75dp</dimen>
+    <dimen name="px176">88dp</dimen>
+    <dimen name="px134">77dp</dimen>
+    <dimen name="px200">100dp</dimen>
+    <dimen name="px_t24">12dp</dimen>
+
+</resources>
