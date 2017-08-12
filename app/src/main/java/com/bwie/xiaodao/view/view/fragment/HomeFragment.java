@@ -1,7 +1,10 @@
 package com.bwie.xiaodao.view.view.fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
@@ -18,12 +21,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.view.customs.GlideImageLoader;
 import com.youth.banner.Banner;
+import com.youth.banner.BannerConfig;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static com.youth.banner.BannerConfig.CIRCLE_INDICATOR;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -108,6 +118,8 @@ public class HomeFragment extends Fragment {
     RecyclerView mHomeRv;
     Unbinder unbinder;
     private View view;
+    //banner的list集合
+    private List<String> mBannerList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -116,6 +128,33 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initBannerImg();
+        initview();
+        event();
+    }
+
+    private void initBannerImg() {
+        mBannerList = new ArrayList<>();
+        mBannerList.add("http://img1.yulin520.com/news/BPKZUX0MNFR0OT0WLCOD.png#598_450");
+        mBannerList.add("http://img1.yulin520.com/news/SPPW8T9QHFR0OM3HID0X.jpg#1280_960");
+        mBannerList.add("http://img1.yulin520.com/news/RPZ58LLNXFR0OKFGFHGK.jpg#616_695");
+        mBannerList.add("http://img1.yulin520.com/news/SO9EZSX0QC90ONZY8SVZ.jpg#619_650");
+        mBannerList.add("http://img1.yulin520.com/news/VQA5D2ZGFFR0O5E1JWUK.jpg#488_597");
+    }
+
+    private void initview() {
+        mHomeBanner.setBannerStyle(CIRCLE_INDICATOR);
+        mHomeBanner.setImageLoader(new GlideImageLoader());
+        mHomeBanner.setImages(mBannerList);
+        mHomeBanner.isAutoPlay(true);
+        mHomeBanner.setDelayTime(3000);
+        mHomeBanner.setIndicatorGravity(BannerConfig.CENTER);
+        mHomeBanner.start();
     }
 
     @Override
@@ -144,5 +183,26 @@ public class HomeFragment extends Fragment {
             case R.id.home_rg:
                 break;
         }
+    }
+
+    public void event(){
+        //分类展示的radiobutton点击切换效果
+        mHomeRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+//                RadioButton rb = (RadioButton) group.findViewById(checkedId);
+//                int i = Integer.parseInt(rb.getTag().toString());
+                for (int j = 0; j < group.getChildCount(); j++) {
+                    //找到radiogroup里的子控件
+                    RadioButton rb = (RadioButton) mHomeRg.getChildAt(j);
+                    //给这个子控件的文字设置背景颜色    黑色  （没有选择的时候）
+                    rb.setTextColor(Color.BLACK);
+                    //如果当前radiobutton是选中状态就把文字颜色设置成红色的
+                    if (rb.isChecked()) {
+                        rb.setTextColor(Color.RED);
+                    }
+                }
+            }
+        });
     }
 }

@@ -2,6 +2,7 @@
 <resources>
     <dimen name="px30">15dp</dimen>
     <dimen name="px450">225dp</dimen>
+    <dimen name="px500">250dp</dimen>
     <dimen name="px89">44.5dp</dimen>
     <dimen name="px106">53dp</dimen>
     <dimen name="px38">19dp</dimen>

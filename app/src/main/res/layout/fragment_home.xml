@@ -1,62 +1,12 @@
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F2F4F5"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/px89"
-        android:background="#E8E8E8"
-        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/home_city"
-            android:layout_width="@dimen/px106"
-            android:layout_height="@dimen/px38"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/beijingyuanjiao"
-            android:drawableRight="@drawable/xiala"
-            android:layout_marginLeft="@dimen/px30"
-            android:text="北京"
-            android:textSize="@dimen/px_t28"/>
-
-        <EditText
-            android:id="@+id/home_sousuo"
-            android:layout_width="@dimen/px0"
-            android:layout_height="@dimen/px50"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/px57"
-            android:layout_marginRight="@dimen/px40"
-            android:layout_weight="1"
-            android:background="@drawable/sousuojisousokuang"
-            android:hint="麻辣小龙虾"
-            android:paddingLeft="53dp"
-            android:textSize="12sp"
-            />
-
-        <ImageView
-            android:id="@+id/home_message"
-            android:layout_width="@dimen/px60"
-            android:layout_height="@dimen/px60"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/beijingyuan"
-            android:padding="@dimen/px10"
-            android:src="@drawable/xiaoxi"
-            />
-
-        <ImageView
-            android:id="@+id/home_richscan"
-            android:layout_width="@dimen/px60"
-            android:layout_height="@dimen/px60"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/px20"
-            android:background="@drawable/beijingyuan"
-            android:padding="@dimen/px10"
-            android:src="@drawable/saoyisaoo"
-            />
-    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -64,23 +14,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F2F4F5"
         android:orientation="vertical">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/px450"
-            android:background="#E8E8E8">
 
             <com.youth.banner.Banner
                 android:id="@+id/home_banner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="300dp">
             </com.youth.banner.Banner>
 
-
-
-        </FrameLayout>
 
 
         <FrameLayout
@@ -470,4 +411,55 @@
 
     </LinearLayout>
     </ScrollView>
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px89"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/home_city"
+            android:layout_width="@dimen/px106"
+            android:layout_height="@dimen/px38"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/beijingyuanjiao"
+            android:drawableRight="@drawable/xiala"
+            android:layout_marginLeft="@dimen/px30"
+            android:text="北京"
+            android:textSize="@dimen/px_t28"/>
+
+        <EditText
+            android:id="@+id/home_sousuo"
+            android:layout_width="@dimen/px0"
+            android:layout_height="@dimen/px50"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/px57"
+            android:layout_marginRight="@dimen/px40"
+            android:layout_weight="1"
+            android:background="@drawable/sousuojisousokuang"
+            android:hint="麻辣小龙虾"
+            android:paddingLeft="53dp"
+            android:textSize="12sp"
+            />
+
+        <ImageView
+            android:id="@+id/home_message"
+            android:layout_width="@dimen/px60"
+            android:layout_height="@dimen/px60"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/beijingyuan"
+            android:padding="@dimen/px10"
+            android:src="@drawable/xiaoxi"
+            />
+
+        <ImageView
+            android:id="@+id/home_richscan"
+            android:layout_width="@dimen/px60"
+            android:layout_height="@dimen/px60"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/px20"
+            android:background="@drawable/beijingyuan"
+            android:padding="@dimen/px10"
+            android:src="@drawable/saoyisaoo"
+            />
+    </LinearLayout>
+</FrameLayout>

@@ -59,7 +59,7 @@ public class MainActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 RadioButton rb = (RadioButton) group.findViewById(checkedId);
                 int i = Integer.parseInt(rb.getTag().toString());
-                //判断如果点击的按钮下标为3时  再判断是否添加过当前fragment
+
                 hideFragment(i);
             }
         });
