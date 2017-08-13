@@ -8,4 +8,7 @@
     <color name="hui">#70706e</color>
     <color name="black">#ff0000</color>
     <color name="yellow">#ff00ff</color>
+
+    <color name="colorBgNormal">#FAFAFA</color>
+
 </resources>

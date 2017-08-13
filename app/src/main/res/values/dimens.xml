@@ -67,4 +67,36 @@
     <dimen name="px_t23">11.5sp</dimen>
     <dimen name="px_t24">12dp</dimen>
 
+    <dimen name="px28">14dp</dimen>
+    <dimen name="px_t28">14sp</dimen>
+    <dimen name="px_t80">40sp</dimen>
+    <dimen name="px_t36">18sp</dimen>
+    <dimen name="px_t24">12sp</dimen>
+    <dimen name="px_t22">11sp</dimen>
+
+    <dimen name="px30">15dp</dimen>
+    <dimen name="px80">40dp</dimen>
+    <dimen name="px44">22dp</dimen>
+    <dimen name="px86">43dp</dimen>
+    <dimen name="px60">30dp</dimen>
+    <dimen name="px68">34dp</dimen>
+    <dimen name="px36">18dp</dimen>
+    <dimen name="px390">195dp</dimen>
+    <dimen name="px10">5dp</dimen>
+    <dimen name="px20">10dp</dimen>
+    <dimen name="px54">27dp</dimen>
+    <dimen name="px88">44dp</dimen>
+    <dimen name="px89">44.5dp</dimen>
+    <dimen name="px34">17dp</dimen>
+    <dimen name="px90">45dp</dimen>
+    <dimen name="px40">20dp</dimen>
+    <dimen name="px50">25dp</dimen>
+    <dimen name="px170">85dp</dimen>
+    <dimen name="px130">65dp</dimen>
+    <dimen name="px150">75dp</dimen>
+    <dimen name="px1">0.5dp</dimen>
+    <dimen name="px66">33dp</dimen>
+    <dimen name="px38">19dp</dimen>
+    <dimen name="px70">35dp</dimen>
+    <dimen name="px33">16.5dp</dimen>
 </resources>

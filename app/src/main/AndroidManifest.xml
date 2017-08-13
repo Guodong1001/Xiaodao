@@ -54,6 +54,12 @@
         <activity android:name=".view.view.activity.mine.MessagePageActivity"/>
         <activity android:name=".view.view.activity.mine.SecuritySettingPageActivity"/>
         <activity android:name=".view.view.activity.mine.BalanceDetailsPageActivity"/>
+        <activity android:name=".view.view.activity.rebate.RecordsQueryActivity">
+        </activity>
+        <activity android:name=".view.view.activity.rebate.CalendarActivity">
+        </activity>
+        <activity android:name=".view.view.activity.rebate.IllustrateActivity">
+        </activity>
     </application>
 
 </manifest>
