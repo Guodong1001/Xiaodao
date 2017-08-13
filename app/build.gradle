@@ -10,7 +10,8 @@ android {
         release {
             keyAlias 'key0'
             keyPassword '123456'
-            storeFile file('F:/baidumapxiaodao.jks')
+            storeFile file('/baidumapxiaodao.jks')
+            storeFile file('/baidumapxiaodao.jks')
             storePassword '123456'
         }
     }
