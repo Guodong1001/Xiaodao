@@ -3,10 +3,7 @@ package com.bwie.xiaodao.view.Application;
 import android.app.Application;
 import android.support.compat.BuildConfig;
 
-<<<<<<< HEAD
-=======
 import org.xutils.x;
->>>>>>> 1ef4c9fca7fa88312544e71914a89949b954a276
 
 /**
  * 类描述：
