@@ -25,6 +25,7 @@
         android:layout_marginTop="@dimen/px60"
         android:background="#ffffff"
         android:drawableRight="@drawable/shouji"
+        android:inputType="number"
         android:hint="请输入新的手机号"
         android:textColorHint="#999999"
         android:paddingLeft="@dimen/px30"
@@ -45,6 +46,8 @@
             android:layout_weight="3"
             android:background="#ffffff"
             android:hint="请输入验证码"
+            android:inputType="number"
+            android:digits="1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
             android:textColorHint="#999999"
             android:paddingLeft="@dimen/px30" />
 

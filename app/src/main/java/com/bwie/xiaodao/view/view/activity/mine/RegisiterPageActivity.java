@@ -7,6 +7,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.view.activity.BaseActivity;
@@ -51,7 +52,6 @@ public class RegisiterPageActivity extends BaseActivity implements View.OnClickL
 
         //跳转过来将标题改为目前页面名字
         title.setText(getIntent().getStringExtra("title"));
-
         //判断CheckBox状态如果是选中状态可以点击提交按钮，如果不是就不能点击提交按钮
         isAgree.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -86,6 +86,7 @@ public class RegisiterPageActivity extends BaseActivity implements View.OnClickL
                     @Override
                     public void onFinish() {
                         getCode.setEnabled(true);
+                        getCode.setText("获取验证码");
                     }
                 }.start();
                 break;
