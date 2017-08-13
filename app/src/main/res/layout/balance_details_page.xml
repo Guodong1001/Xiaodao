@@ -18,6 +18,7 @@
         android:orientation="horizontal">
 
         <RadioButton
+            android:id="@+id/balance_all"
             android:layout_width="@dimen/px160"
             android:layout_height="@dimen/px70"
             android:layout_weight="1"
