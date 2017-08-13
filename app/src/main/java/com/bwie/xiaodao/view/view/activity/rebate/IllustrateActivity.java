@@ -1,6 +1,7 @@
 package com.bwie.xiaodao.view.view.activity.rebate;
 
 import android.content.Intent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ public class IllustrateActivity extends BaseActivity {
     @BindView(R.id.fanli_lv_item_txt_level)
     TextView mFanliLvItemTxtLevel;
     private List<String> mList;
-
+    private Intent mIntent;
 
 
     @Override
@@ -38,16 +39,17 @@ public class IllustrateActivity extends BaseActivity {
     @Override
     public void initData() {
         ButterKnife.bind(this);
-        Intent intent = getIntent();
-        int index = intent.getIntExtra("index", 0);
+        mIntent = getIntent();
         mList = FanliFragment.getData();
-        mHeaderTxtTitle.setText("返利计划说明");
-        mFanliLvItemTxtLevel.setText(mList.get(index));
+
     }
 
     @Override
     public void initView() {
-
+        mHeaderTxtTitle.setText("返利计划说明");
+        int index = mIntent.getIntExtra("index", 0);
+        mFanliLvItemImgDetails.setVisibility(View.INVISIBLE);
+        mFanliLvItemTxtLevel.setText(mList.get(index));
     }
 
     @Override
