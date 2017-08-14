@@ -29,7 +29,6 @@ public class NetUtil {
     private NetUtil() {
 
     }
-
     public static NetUtil getInstance() {
         if (instance == null) {
             synchronized (NetUtil.class) {
@@ -40,8 +39,6 @@ public class NetUtil {
         }
         return instance;
     }
-
-
     private Handler hanlder = new Handler() {
         @Override
         public void handleMessage(Message msg) {
