@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.utlis.NetUtil;
 import com.bwie.xiaodao.view.view.fragment.FanliFragment;
 import com.bwie.xiaodao.view.view.fragment.FujinFragment;
 import com.bwie.xiaodao.view.view.fragment.HomeFragment;
