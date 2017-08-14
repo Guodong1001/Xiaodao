@@ -22,7 +22,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
  * 创建人：yekh
  * 创建时间：17.8.13 19:47
  */
-public class HomeIconsAdapter extends RecyclerView.Adapter<HomeIconsAdapter.ViewHolder> {
+public class HomeIconsAdapter extends RecyclerView.Adapter<HomeIconsAdapter.ViewHolder>{
     private Context mContext;
     private List<HomeIconsBean.ObjectBean.ListBean> mIconsList;
 
@@ -40,7 +40,6 @@ public class HomeIconsAdapter extends RecyclerView.Adapter<HomeIconsAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
         Glide.with(mContext)
                 .load(mIconsList.get(position).getPicture())
                 .bitmapTransform(new CropCircleTransformation(mContext))
@@ -52,6 +51,7 @@ public class HomeIconsAdapter extends RecyclerView.Adapter<HomeIconsAdapter.View
     public int getItemCount() {
         return mIconsList.size();
     }
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.icon_image)

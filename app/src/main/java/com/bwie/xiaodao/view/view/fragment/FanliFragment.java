@@ -104,7 +104,7 @@ public class FanliFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), IllustrateActivity.class);
-                intent.putExtra("index",position);
+                intent.putExtra("index", position);
                 startActivity(intent);
             }
         });
@@ -135,9 +135,11 @@ public class FanliFragment extends Fragment {
                 break;
         }
     }
-    public static List<String> getData(){
+
+    public static List<String> getData() {
         return mList;
     }
+
     @OnClick(R.id.fanli_goto_calendar)
     public void onViewClicked() {
         startActivity(new Intent(getActivity(), CalendarActivity.class));

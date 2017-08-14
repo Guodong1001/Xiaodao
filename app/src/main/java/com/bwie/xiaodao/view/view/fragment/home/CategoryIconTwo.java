@@ -3,6 +3,7 @@ package com.bwie.xiaodao.view.view.fragment.home;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.bwie.xiaodao.view.utlis.ConstantUtil;
 import com.bwie.xiaodao.view.utlis.NetUtil;
 import com.bwie.xiaodao.view.utlis.inet.INet;
 import com.bwie.xiaodao.view.view.adapter.HomeIconsAdapter;
+import com.bwie.xiaodao.view.view.custom.ItemClickSupport;
 import com.bwie.xiaodao.view.view.customs.GridSpacingItemDecoration;
 
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * 类描述：分类图标之一
+ * 类描述：分类图标之二
  * 创建人：xwh
  * 创建时间：17.8.12 11:18
  */
@@ -54,16 +56,37 @@ public class CategoryIconTwo extends Fragment implements INet<HomeIconsBean> {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 5, GridLayoutManager.VERTICAL, false);
-        mRecyclerView.setLayoutManager(manager);
-        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(5, getResources().getDimensionPixelSize(R.dimen.padding_middle), true));
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setNestedScrollingEnabled(false);;
-        mAdapter = new HomeIconsAdapter(getActivity(), mIconsList);
-        mRecyclerView.setAdapter(mAdapter);
+        //初始化配置
+        initView(manager);
+        //获取网络数据
+        initData();
+        initOtherAction();
+    }
+
+    private void initOtherAction() {
+        //recyclerview条目点击及长按事件
+        ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Snackbar.make(v, "click position of " + position, Snackbar.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void initData() {
         Map<String, Object> map = new HashMap<>();
         map.put("pageSize", 10);
         map.put("pageNum ", 2);
         NetUtil.getInstance().postDataFromServer(ConstantUtil.LINK_MOBILE_HOME_ICONS, map, this, HomeIconsBean.class);
+    }
+
+    private void initView(GridLayoutManager manager) {
+        mRecyclerView.setLayoutManager(manager);
+        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(5, getResources().getDimensionPixelSize(R.dimen.padding_middle), true));
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setNestedScrollingEnabled(false);
+        mAdapter = new HomeIconsAdapter(getActivity(), mIconsList);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override

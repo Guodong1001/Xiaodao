@@ -3,6 +3,7 @@ package com.bwie.xiaodao.view.view.fragment.home;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.bwie.xiaodao.view.utlis.ConstantUtil;
 import com.bwie.xiaodao.view.utlis.NetUtil;
 import com.bwie.xiaodao.view.utlis.inet.INet;
 import com.bwie.xiaodao.view.view.adapter.HomeIconsAdapter;
+import com.bwie.xiaodao.view.view.custom.ItemClickSupport;
 import com.bwie.xiaodao.view.view.customs.GridSpacingItemDecoration;
 
 import java.util.ArrayList;
@@ -53,23 +55,53 @@ public class CategoryIconOne extends Fragment implements INet<HomeIconsBean> {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //初始化recyclerview
+        initView();
+        //获取数据
+        initData();
+        initOtherAction();
+    }
+
+    private void initOtherAction() {
+        //recyclerview条目点击及长按事件
+        ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                Snackbar.make(v, "click position of " + position, Snackbar.LENGTH_LONG).show();
+            }
+        });
+        ItemClickSupport.addTo(mRecyclerView).setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
+                Snackbar.make(v, "click position of " + position, Snackbar.LENGTH_LONG).show();
+                //false——长按后单击  true——长按无单击
+                return true;
+            }
+        });
+    }
+
+    private void initData() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("pageSize", 10);
+        map.put("pageNum ", 1);
+        NetUtil.getInstance().postDataFromServer(ConstantUtil.LINK_MOBILE_HOME_ICONS, map, this, HomeIconsBean.class);
+    }
+
+    private void initView() {
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 5, GridLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(5, getResources().getDimensionPixelSize(R.dimen.padding_middle), true));
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setNestedScrollingEnabled(false);;
+        mRecyclerView.setNestedScrollingEnabled(false);
+        ;
         mAdapter = new HomeIconsAdapter(getActivity(), mIconsList);
         mRecyclerView.setAdapter(mAdapter);
-        Map<String, Object> map = new HashMap<>();
-        map.put("pageSize", 10);
-        map.put("pageNum ", 1);
-       NetUtil.getInstance().postDataFromServer(ConstantUtil.LINK_MOBILE_HOME_ICONS, map, this, HomeIconsBean.class);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e(TAG, "o:-------------- " +"-----------------");
+        Log.e(TAG, "o:-------------- " + "-----------------");
         unbinder.unbind();
     }
 
