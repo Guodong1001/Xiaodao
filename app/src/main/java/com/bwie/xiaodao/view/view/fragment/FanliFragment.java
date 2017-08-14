@@ -13,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.bean.CountCashBack;
+import com.bwie.xiaodao.view.utlis.NetUtil;
+import com.bwie.xiaodao.view.utlis.UrlUtil;
+import com.bwie.xiaodao.view.utlis.inet.INet;
 import com.bwie.xiaodao.view.view.activity.rebate.CalendarActivity;
 import com.bwie.xiaodao.view.view.activity.rebate.IllustrateActivity;
 import com.bwie.xiaodao.view.view.activity.rebate.RecordsQueryActivity;
@@ -20,7 +24,9 @@ import com.bwie.xiaodao.view.view.adapter.AdapterLvFanli;
 import com.bwie.xiaodao.view.view.custom.MyListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +36,8 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FanliFragment extends Fragment {
+public class FanliFragment extends Fragment implements INet<CountCashBack> {
+    private static final String TAG = "FanliFragment";
 
 
     @BindView(R.id.fanli_img_title)
@@ -86,7 +93,15 @@ public class FanliFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initData();
+        loadData();
         initView();
+    }
+
+    private void loadData() {
+        Map<String,Object> map = new HashMap<>();
+//        map.put("status",1);
+//        map.put("token","2dbae1f3fda438301a33e1d0cfd97a34");
+        NetUtil.getInstance().postDataFromServer(UrlUtil.baseURL,map,this, CountCashBack.class,"");
     }
 
     private void initData() {
@@ -141,5 +156,21 @@ public class FanliFragment extends Fragment {
     @OnClick(R.id.fanli_goto_calendar)
     public void onViewClicked() {
         startActivity(new Intent(getActivity(), CalendarActivity.class));
+    }
+
+    @Override
+    public void onSuccess(final CountCashBack countCashBack) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mFanliTxtMoney.setText(countCashBack.getObject().getCountReally()+".00");
+                mFanliTxtStrokeCount.setText(countCashBack.getObject().getWaitCashback()+"");
+            }
+        });
+    }
+
+    @Override
+    public void onError(String error) {
+
     }
 }
