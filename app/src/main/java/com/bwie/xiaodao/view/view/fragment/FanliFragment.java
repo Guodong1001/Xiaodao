@@ -166,7 +166,8 @@ public class FanliFragment extends Fragment implements INet {
                 @Override
                 public void run() {
                     NetUtil.getInstance().postDataFromServer(UrlUtil.REBATE_PROGRAM_URL,new HashMap<>(),FanliFragment.this, CashbackPlan.class, BaseApplication.getInstence().getToken(),2);
-                    mFanliTxtMoney.setText(countCashBack.getObject().getCountReally()+".00");
+                    double countReally = countCashBack.getObject().getCountReally();
+                    mFanliTxtMoney.setText(countReally+"");
                     mFanliTxtStrokeCount.setText(countCashBack.getObject().getWaitCashback()+"");
                 }
             });
