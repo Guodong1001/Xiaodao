@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.Application.BaseApplication;
 import com.bwie.xiaodao.view.bean.CountCashBack;
 import com.bwie.xiaodao.view.utlis.NetUtil;
 import com.bwie.xiaodao.view.utlis.UrlUtil;
@@ -101,7 +102,7 @@ public class FanliFragment extends Fragment implements INet<CountCashBack> {
         Map<String,Object> map = new HashMap<>();
 //        map.put("status",1);
 //        map.put("token","2dbae1f3fda438301a33e1d0cfd97a34");
-        NetUtil.getInstance().postDataFromServer(UrlUtil.baseURL,map,this, CountCashBack.class,"");
+        NetUtil.getInstance().postDataFromServer(UrlUtil.baseURL,map,this, CountCashBack.class, BaseApplication.getInstence().getToken());
     }
 
     private void initData() {
