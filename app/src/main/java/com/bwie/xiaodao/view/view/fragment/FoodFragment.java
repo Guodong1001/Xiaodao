@@ -46,11 +46,12 @@ public class FoodFragment extends android.support.v4.app.Fragment {
         Food food2 = new Food(R.drawable.f, "小可爱西点（安贞门店）", 50, 25 + "%", "安贞距您<300>米", true, "每满100元减20元");
         Food food3 = new Food(R.drawable.d, "味多美（安贞华联店）", 31, 20 + "%", false, "安贞距您<200>米");
         Food food4 = new Food(R.drawable.e, "巴贝拉意式餐厅（天通苑）", 66, 15 + "%", "安贞距您<1000>米", true, "每满100元减8元");
+        Food food5 = new Food(R.drawable.j, "百乐门", 40, 15 + "%", false, "安贞距您<100>米");
         arrlist.add(food1);
         arrlist.add(food2);
         arrlist.add(food3);
         arrlist.add(food4);
-
+        arrlist.add(food5);
     }
 
 }
