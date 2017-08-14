@@ -61,9 +61,16 @@ public class IllustrateActivity extends BaseActivity {
         int index = mIntent.getIntExtra("index", 0);
         mFanliLvItemImgDetails.setVisibility(View.INVISIBLE);
         CashbackPlan.ObjectBean bean = mList.get(index);
+        double percent = (bean.getIntegral()/(bean.getConsumeUpper()-bean.getConsumeLower()))*100;
         SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
         String time = format.format(bean.getCashbackSpecificDate());
-        mFanliLvItemTxtLevel.setText("" + index);
+        if (percent<80){
+            mFanliLvItemTxtLevel.setText("有便宜不占，和咸鱼有什么区别？");
+        }else if (percent>=80&&percent<=99){
+            mFanliLvItemTxtLevel.setText("行百里者半九十，再花一点就返利。");
+        }else if (percent>=100){
+            mFanliLvItemTxtLevel.setText("继续消费可得多份返利，上不封顶。");
+        }
         mFanliLvItemDate.setText(time + "兑换");
         mFanliLvItemTitle.setText(bean.getRecordCoding());
         Glide.with(this).load(bean.getIntegralStyle()).into(mFanliLvItemImgLevelIcon);

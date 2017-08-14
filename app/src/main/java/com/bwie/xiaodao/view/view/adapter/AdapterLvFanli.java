@@ -61,9 +61,18 @@ public class AdapterLvFanli extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         CashbackPlan.ObjectBean bean = mList.get(position);
+        double percent = (bean.getIntegral()/(bean.getConsumeUpper()-bean.getConsumeLower()))*100;
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
         String time = format.format(bean.getCashbackSpecificDate());
-        holder.mFanliLvItemTxtLevel.setText(""+position);
+        if (percent<80){
+            holder.mFanliLvItemTxtLevel.setText("有便宜不占，和咸鱼有什么区别？");
+        }else if (percent>=80&&percent<=99){
+            holder.mFanliLvItemTxtLevel.setText("行百里者半九十，再花一点就返利。");
+        }else if (percent>=100){
+            holder.mFanliLvItemTxtLevel.setText("继续消费可得多份返利，上不封顶。");
+        }
+
         holder.mFanliLvItemDate.setText(time+"兑换");
         holder.mFanliLvItemTitle.setText(bean.getRecordCoding());
         Glide.with(mContext).load(bean.getIntegralStyle()).into(holder.mFanliLvItemImgLevelIcon);
