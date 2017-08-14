@@ -23,10 +23,10 @@ import okhttp3.Response;
  * 创建人：guodongdong
  * 创建时间：2017/8/10
  */
-public class NetUtil {
+public class NetUtil<T> {
 
     private INet mINet;
-
+    private static volatile NetUtil instance = null;
 
     private Handler hanlder = new Handler() {
         @Override
@@ -40,6 +40,23 @@ public class NetUtil {
         }
     };
 
+
+    private NetUtil() {
+
+    }
+
+    //单例
+    public static NetUtil getInstance() {
+        if (instance == null) {
+            synchronized (NetUtil.class) {
+                if (instance == null) {
+                    instance = new NetUtil();
+                }
+            }
+        }
+        return instance;
+    }
+
     /**
      * 网络请求GET方法
      *
@@ -48,6 +65,7 @@ public class NetUtil {
      */
     public <T>void getDataFromServer(String url, final INet iNet, final Class<T> tClass) {
         mINet = iNet;
+
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
@@ -77,7 +95,7 @@ public class NetUtil {
         });
     }
 
-    public <T> void postDataFromServer(String url, Map<String, Object> map, final INet iNet, final Class<T> tClass) {
+    public <T> void postDataFromServer(String url, Map<String, Object> map, final INet iNet, final Class<T> tClass,String header) {
         mINet = iNet;
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
@@ -89,6 +107,7 @@ public class NetUtil {
         }
         RequestBody body = builder.build();
         final Request request = new Request.Builder()
+                .addHeader("token",header)
                 .url(url)
                 .post(body)
                 .build();
@@ -103,7 +122,6 @@ public class NetUtil {
             public void onResponse(Call call, Response response) throws IOException {
 
                 String result = response.body().string();
-
                 Gson gson = new Gson();
                 T t = gson.fromJson(result, tClass);
                 Message msg = hanlder.obtainMessage();
