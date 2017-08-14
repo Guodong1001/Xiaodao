@@ -1,6 +1,7 @@
 package com.bwie.xiaodao.view.view.fragment;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.model.bean.HomeGoodsShowBean;
+import com.bwie.xiaodao.view.view.activity.home.CityActivity;
 import com.bwie.xiaodao.view.view.customs.GlideImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -86,12 +88,6 @@ public class HomeFragment extends Fragment {
     RelativeLayout mHomeMoment;
     @BindView(R.id.home_nearby_img)
     ImageView mHomeNearbyImg;
-    @BindView(R.id.home_nearby_winport_imageView1)
-    ImageView mHomeNearbyWinportImageView1;
-    @BindView(R.id.home_nearby_winport_title1)
-    TextView mHomeNearbyWinportTitle1;
-    @BindView(R.id.home_nearby_winport_address1)
-    TextView mHomeNearbyWinportAddress1;
     @BindView(R.id.home_rb_cate)
     RadioButton mHomeRbCate;
     @BindView(R.id.home_rb_recreation)
@@ -111,6 +107,7 @@ public class HomeFragment extends Fragment {
 
     private HomeClassShowFragments mShowFragments[] = new HomeClassShowFragments[5];
     private FragmentManager fm;
+    private static final int REQUEST_CODE = 200;
     //分类展示的list
     private List<HomeGoodsShowBean> mShowBeanList;
 
@@ -184,6 +181,7 @@ public class HomeFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.home_city:
+                switchCity();
                 break;
             case R.id.home_sousuo:
                 break;
@@ -200,6 +198,11 @@ public class HomeFragment extends Fragment {
             case R.id.home_rg:
                 break;
         }
+    }
+
+    private void switchCity() {
+        Intent intent = new Intent(getContext(), CityActivity.class);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
     public void event() {
@@ -255,4 +258,14 @@ public class HomeFragment extends Fragment {
         ft.commit();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && data != null) {
+            if(resultCode == 100){
+                String city = data.getStringExtra("city");
+                mHomeCity.setText(city);
+            }
+        }
+    }
 }

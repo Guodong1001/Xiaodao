@@ -316,7 +316,7 @@
 
         <Button
             android:id="@+id/home_city"
-            android:layout_width="@dimen/px106"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/px38"
             android:layout_gravity="center_vertical"
             android:background="@drawable/beijingyuanjiao"
