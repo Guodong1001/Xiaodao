@@ -6,12 +6,13 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.youth.banner.loader.ImageLoader;
 
+
 /**
  * 类描述：
  * 创建人：guodongdong
  * 创建时间：2017/8/12
  */
-public class GlideImageLoader extends ImageLoader{
+public class GlideImageLoader extends ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
         /**

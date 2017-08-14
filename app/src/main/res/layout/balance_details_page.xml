@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/header_wode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px130"
+        android:layout_marginLeft="@dimen/px30"
+        android:layout_marginRight="@dimen/px30"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/balance_all"
+            android:layout_width="@dimen/px160"
+            android:layout_height="@dimen/px70"
+            android:layout_weight="1"
+            android:background="@drawable/balance_radio_group"
+            android:button="@null"
+            android:gravity="center"
+            android:checked="true"
+            android:text="全部"
+            android:textColor="@drawable/balance_radio_text" />
+
+        <RadioButton
+            android:layout_width="@dimen/px160"
+            android:layout_height="@dimen/px70"
+            android:layout_weight="1"
+            android:background="@drawable/balance_radio_group"
+            android:button="@null"
+            android:gravity="center"
+            android:text="返利"
+            android:textColor="@drawable/balance_radio_text" />
+
+        <RadioButton
+            android:layout_width="@dimen/px160"
+            android:layout_height="@dimen/px70"
+            android:layout_weight="1"
+            android:background="@drawable/balance_radio_group"
+            android:button="@null"
+            android:gravity="center"
+            android:text="转出"
+            android:textColor="@drawable/balance_radio_text" />
+
+        <RadioButton
+            android:layout_width="@dimen/px160"
+            android:layout_height="@dimen/px70"
+            android:layout_weight="1"
+            android:background="@drawable/balance_radio_group"
+            android:button="@null"
+            android:gravity="center"
+            android:text="转入"
+            android:textColor="@drawable/balance_radio_text" />
+    </RadioGroup>
+    <TextView
+        android:gravity="center"
+        android:paddingLeft="@dimen/px30"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/px60"
+        android:text="本月"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_balance_details_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/header_wode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/px60"
+        android:layout_marginRight="@dimen/px60"
+        android:layout_marginTop="@dimen/px180"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px120"
+            android:background="#cccccc">
+
+            <ImageView
+                android:layout_width="@dimen/px46"
+                android:layout_height="@dimen/px46"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/px20"
+                android:src="@drawable/qiandan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/px20"
+                android:text="二维码收款"
+                android:textColor="#333333"
+                android:textSize="@dimen/px_t28" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/px56"
+                android:text="无需加好友，扫二维码向我付款"
+                android:textSize="@dimen/px_t28" />
+
+            <ImageView
+                android:id="@+id/collection_QR_code"
+                android:layout_width="@dimen/px446"
+                android:layout_height="@dimen/px446"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/px88"
+                android:src="@mipmap/ic_launcher" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/collection_bill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="收款账单"
+        android:textColor="#333333"
+        android:textSize="@dimen/px_t28" />
+</LinearLayout>
