@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,8 @@ import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.model.bean.HomeGoodsShowBean;
 import com.bwie.xiaodao.view.view.activity.home.CityActivity;
 import com.bwie.xiaodao.view.view.customs.GlideImageLoader;
+import com.bwie.xiaodao.view.view.fragment.home.CategoryIconOne;
+import com.bwie.xiaodao.view.view.fragment.home.CategoryIconTwo;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
@@ -55,11 +58,11 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.home_richscan)
     ImageView mHomeRichscan;
     @BindView(R.id.home_class_rb1)
-    RadioButton mHomeClassRb1;
+    RadioButton mHomeIconRb1;
     @BindView(R.id.home_class_rb2)
-    RadioButton mHomeClassRb2;
+    RadioButton mHomeIconRb2;
     @BindView(R.id.home_class_rg)
-    RadioGroup mHomeClassRg;
+    RadioGroup mHomeIconRg;
     @BindView(R.id.home_class_viewpager)
     ViewPager mHomeClassViewpager;
     @BindView(R.id.home_class_framelayout)
@@ -104,6 +107,11 @@ public class HomeFragment extends Fragment {
     private View view;
     //banner的list集合
     private List<String> mBannerList;
+    /**
+     * 设置选项卡的总数
+     */
+    private static final int TAB_COUNT = 2;
+    private final int[] array = new int[]{R.id.home_class_rb1, R.id.home_class_rb2};
 
     private HomeClassShowFragments mShowFragments[] = new HomeClassShowFragments[5];
     private FragmentManager fm;
@@ -169,6 +177,27 @@ public class HomeFragment extends Fragment {
         mHomeBanner.setDelayTime(3000);
         mHomeBanner.setIndicatorGravity(BannerConfig.CENTER);
         mHomeBanner.start();
+        //设置分类图标的viewpager的适配器
+        mHomeClassViewpager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                //直接创建fragment对象并返回
+                switch (position) {
+                    case 0:
+                        return new CategoryIconOne();
+                    case 1:
+                        return new CategoryIconTwo();
+                }
+                return null;
+            }
+
+            @Override
+            public int getCount() {
+                return TAB_COUNT;
+            }
+        });
+//        //默认设置当前页是第一页
+//        mHomeClassViewpager.setCurrentItem(0);
     }
 
     @Override
@@ -206,6 +235,40 @@ public class HomeFragment extends Fragment {
     }
 
     public void event() {
+    public void event() {
+        //设置radioGroup的状态改变监听
+        mHomeIconRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                //设置了ViewPager的当前item就会触发ViewPager的SimpleOnPageChangeListener监听
+                switch (checkedId) {
+                    case R.id.home_class_rb1:
+                        mHomeClassViewpager.setCurrentItem(0);
+                        break;
+                    case R.id.home_class_rb2:
+                        mHomeClassViewpager.setCurrentItem(1);
+                        break;
+                }
+            }
+        });
+        //切换分类图标时RadioButton的点击效果
+        mHomeClassViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                //改变radioButton的状态
+                change(array[position]);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         //分类展示的radiobutton点击切换效果
         mHomeRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -267,5 +330,22 @@ public class HomeFragment extends Fragment {
                 mHomeCity.setText(city);
             }
         }
+    }
+
+    private void change(int checkedId) {
+        //改变背景颜色
+        mHomeIconRb1.setBackgroundResource(R.drawable.solid_circle_normal);
+        mHomeIconRb2.setBackgroundResource(R.drawable.solid_circle_normal);
+        switch (checkedId) {
+            case R.id.home_class_rb1:
+                mHomeIconRb1.setBackgroundResource(R.drawable.solid_circle_pressed);
+                mHomeIconRb1.setChecked(true);
+                break;
+            case R.id.home_class_rb2:
+                mHomeIconRb2.setBackgroundResource(R.drawable.solid_circle_pressed);
+                mHomeIconRb2.setChecked(true);
+                break;
+        }
+
     }
 }
