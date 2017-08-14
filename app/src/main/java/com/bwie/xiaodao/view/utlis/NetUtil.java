@@ -2,9 +2,11 @@ package com.bwie.xiaodao.view.utlis;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.bwie.xiaodao.view.utlis.inet.INet;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
 import java.util.Map;
@@ -25,6 +27,7 @@ import okhttp3.Response;
  */
 public class NetUtil {
 
+    private static final String TAG = "TAG";
     private INet mINet;
 
     private static volatile NetUtil instance = null;
@@ -111,18 +114,26 @@ public class NetUtil {
                 .build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
+
+            private T t;
+
             @Override
             public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "onFailure: "+e.getMessage().toString() );
                 mINet.onError(e.getMessage());
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                String result = response.body().string();
-
-                Gson gson = new Gson();
-                T t = gson.fromJson(result, tClass);
+            public void onResponse(Call call, Response response) {
+                String result = null;
+                try {
+                    result = response.body().string();
+                    Log.e(TAG, "onResponse: " + result.toString());
+                    Gson gson = new Gson();
+                    t = gson.fromJson(result, tClass);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Message msg = hanlder.obtainMessage();
                 msg.what = 0;
                 msg.obj = t;

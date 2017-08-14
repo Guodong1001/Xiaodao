@@ -47,7 +47,7 @@ public class MinePresenter {
         }
         return isValid;
     }
-    public static void toastShow(Context context,String text){
+    public void toastShow(Context context,String text){
         Toast.makeText(context,text,Toast.LENGTH_LONG).show();
     }
 }
