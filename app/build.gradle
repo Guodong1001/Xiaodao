@@ -53,5 +53,5 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.2'
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
     compile 'com.github.Othershe:CalendarView:1.0.1'
-    compile 'com.github.bumptech.glide:glide:4.0.0'
+//    compile 'com.github.bumptech.glide:glide:4.0.0'
 }

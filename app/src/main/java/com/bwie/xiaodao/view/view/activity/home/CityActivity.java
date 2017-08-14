@@ -58,7 +58,7 @@ public class CityActivity extends AppCompatActivity implements INet<CityBean> {
 
     private void initDataFromServer() {
         //获取到的城市
-        NetUtil.getInstance().postDataFromServer(UrlUtil.CITY_URL, null, this, CityBean.class);
+        NetUtil.getInstance().postDataFromServer(UrlUtil.CITY_URL, null, this, CityBean.class,"",0);
     }
 
     private void initViews() {
@@ -199,7 +199,7 @@ public class CityActivity extends AppCompatActivity implements INet<CityBean> {
 
 
     @Override
-    public void onSuccess(CityBean cityBean) {
+    public void onSuccess(CityBean cityBean,int tag) {
         cityList = new ArrayList<>();
         mSourceDateList = new ArrayList<>();
         cityList.addAll(cityBean.getObject());

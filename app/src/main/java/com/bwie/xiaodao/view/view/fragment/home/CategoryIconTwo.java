@@ -97,7 +97,7 @@ public class CategoryIconTwo extends Fragment implements INet<HomeIconsBean> {
 
 
     @Override
-    public void onSuccess(final HomeIconsBean homeIconsBean) {
+    public void onSuccess(final HomeIconsBean homeIconsBean,int tag) {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {

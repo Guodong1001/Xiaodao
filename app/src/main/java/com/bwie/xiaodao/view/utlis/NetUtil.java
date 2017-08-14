@@ -106,9 +106,12 @@ public class NetUtil<T> {
                 .readTimeout(20, TimeUnit.SECONDS)
                 .build();
         FormBody.Builder builder = new FormBody.Builder();
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            builder.add(entry.getKey(), entry.getValue().toString());
-            Log.i("Map", "postDataFromServer: " + entry.getKey() + entry.getValue().toString());
+        if(map!=null){
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                builder.add(entry.getKey(), entry.getValue().toString());
+                Log.i("Map", "postDataFromServer: " + entry.getKey() + entry.getValue().toString());
+            }
+
         }
 
         RequestBody body = builder.build();
@@ -153,10 +156,13 @@ public class NetUtil<T> {
                 .readTimeout(20, TimeUnit.SECONDS)
                 .build();
         FormBody.Builder builder = new FormBody.Builder();
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            builder.add(entry.getKey(), entry.getValue().toString());
-            Log.i("Map", "postDataFromServer: " + entry.getKey() + entry.getValue().toString());
+        if(map!=null){
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                builder.add(entry.getKey(), entry.getValue().toString());
+                Log.i("Map", "postDataFromServer: " + entry.getKey() + entry.getValue().toString());
+            }
         }
+
         RequestBody body = builder.build();
         final Request request = new Request.Builder()
                 .url(url)
@@ -177,7 +183,7 @@ public class NetUtil<T> {
                 Log.i("TAG", "onResponse: " + result);
                 Gson gson = new Gson();
                 T t = gson.fromJson(result, tClass);
-                iNet.onSuccess(t);
+                iNet.onSuccess(t,0);
 //                Message msg = hanlder.obtainMessage();
 //                msg.what = 0;
 //                msg.obj = t;
@@ -187,4 +193,3 @@ public class NetUtil<T> {
     }
 }
 
-}

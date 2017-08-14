@@ -235,7 +235,6 @@ public class HomeFragment extends Fragment {
     }
 
     public void event() {
-    public void event() {
         //设置radioGroup的状态改变监听
         mHomeIconRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
