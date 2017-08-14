@@ -3,6 +3,7 @@ package com.bwie.xiaodao.view.view.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 /**
  * 类描述：
@@ -14,25 +15,28 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(setMyContentView());
-        initView();
         initData();
+        initView();
         initDataFromServer();
         addFragment();
         createEvent();
     }
-    abstract int setMyContentView();
+    public abstract int setMyContentView();
 
-    abstract void initDataFromServer();
+    public abstract void initDataFromServer();
 
-    abstract void initData();
+    public abstract void initData();
 
 
-    abstract void initView();
+    public abstract void initView();
 
-    abstract void createEvent();
+    public abstract void createEvent();
 
     public void addFragment(){
 
+    }
+    public void back(View v){
+        finish();
     }
 
 }

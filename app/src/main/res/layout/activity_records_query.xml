@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px89">
+
+        <include
+            android:id="@+id/query_header"
+            layout="@layout/header_fanli"/>
+    </LinearLayout>
+
+
+    <RadioGroup
+        android:id="@+id/query_rgb"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px88"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/query_rb_record"
+            style="@style/Layout.RadioButton"
+            android:background="@drawable/selector_rb_query"
+            android:checked="true"
+            android:gravity="center"
+            android:tag="0"
+            android:text="积分记录"
+            android:textColor="#C20000"
+            android:textSize="@dimen/px_t28"/>
+
+        <RadioButton
+            android:id="@+id/query_rb_rebated"
+            style="@style/Layout.RadioButton"
+            android:background="@drawable/selector_rb_query"
+            android:gravity="center"
+            android:tag="1"
+            android:text="已返利"
+            android:textSize="@dimen/px_t28"/>
+
+        <RadioButton
+            android:id="@+id/query_rb_for_rebate"
+            style="@style/Layout.RadioButton"
+            android:background="@drawable/selector_rb_query"
+            android:gravity="center"
+            android:tag="2"
+            android:text="待返利"
+            android:textSize="@dimen/px_t28"/>
+
+    </RadioGroup>
+    <TextView
+        android:id="@+id/record_txt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px60"
+        android:text="本月"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/px_t28"
+        android:paddingLeft="@dimen/px30"
+        android:background="#F2F4F5"
+        android:textColor="#666666"/>
+
+    <FrameLayout
+        android:id="@+id/query_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

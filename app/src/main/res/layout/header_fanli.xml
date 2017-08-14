@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/px88">
+    <ImageView
+        android:id="@+id/header_img_goback"
+        android:layout_width="@dimen/px88"
+        android:layout_height="@dimen/px88"
+        android:scaleType="center"
+        android:src="@drawable/goback"/>
+    <TextView
+        android:id="@+id/header_txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px88"
+        android:gravity="center"
+        android:textSize="@dimen/px_t36"
+        android:textColor="#333333"
+        android:text="记录查询"/>
+
+</LinearLayout>
