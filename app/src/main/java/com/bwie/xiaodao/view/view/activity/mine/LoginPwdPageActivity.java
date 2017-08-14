@@ -152,7 +152,7 @@ public class LoginPwdPageActivity extends BaseActivity implements View.OnClickLi
             case R.id.login :
                 map.put("merchant","0");
                 //请求数据
-                NetUtil.getInstance().postDataFromServer("http://123.57.33.185:8088/user/login",map,this,LoginPasswordBean.class);
+                NetUtil.getInstance().postDataFromServer("http://123.57.33.185:8088/user/login",map,this,LoginPasswordBean.class,null);
 
                 break;
         }
