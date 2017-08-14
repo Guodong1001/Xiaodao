@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="2000dp"
     android:orientation="vertical"
     android:background="#ffffff"
     tools:context=".view.view.fragment.FujinFragment">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="2000dp"
         android:background="#ffffff"
         android:fitsSystemWindows="true"
         >
@@ -263,11 +263,11 @@
                     android:layout_weight="1"
                     />
             </RadioGroup>
-
             <FrameLayout
                 android:id="@+id/fujin_frame"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></FrameLayout>
+                android:layout_height="match_parent">
+            </FrameLayout>
         </LinearLayout>
     </android.support.design.widget.AppBarLayout>
 </android.support.design.widget.CoordinatorLayout>
