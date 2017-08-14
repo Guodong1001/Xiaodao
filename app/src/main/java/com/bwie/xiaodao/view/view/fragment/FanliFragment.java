@@ -176,6 +176,12 @@ public class FanliFragment extends Fragment implements INet {
                 @Override
                 public void run() {
                     mList.addAll(cashbackPlan.getObject());
+                    mFanliTxtPlanCount.setText("返利计划（共" + mList.size() + "档）");
+                    if (mList.size()<=2){
+                        mFanliTxtShowMore.setClickable(false);
+                    }else{
+                        mFanliTxtShowMore.setClickable(true);
+                    }
                     mAdapterLvFanli.notifyDataSetChanged();
                 }
             });

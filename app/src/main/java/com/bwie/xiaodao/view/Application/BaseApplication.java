@@ -16,7 +16,17 @@ import org.xutils.x;
 public class BaseApplication extends Application {
     private static BaseApplication mApplication;
     private String token;
+    private boolean isLogin;
     private SharedPreferences mSp;
+
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public void setLogin(boolean login) {
+        isLogin = login;
+        mSp.edit().putBoolean("isLogin",login).commit();
+    }
 
     public String getToken() {
         return token;
@@ -38,5 +48,6 @@ public class BaseApplication extends Application {
         x.Ext.setDebug(BuildConfig.DEBUG);
         mSp = getSharedPreferences("config", MODE_PRIVATE);
         token = mSp.getString("token","");
+        isLogin = mSp.getBoolean("isLogin",false);
     }
 }
