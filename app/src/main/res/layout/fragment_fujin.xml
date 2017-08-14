@@ -19,11 +19,20 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             >
             <!--百度地图-->
+            <com.yinglan.scrolllayout.ScrollLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px260"
+                app:isSupportExit="true"
+                app:maxOffset="260dp"
+                app:minOffset="50dp"
+                >
+
             <com.baidu.mapapi.map.MapView
                 android:id="@+id/bmapView"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/px260"
                 android:clickable="true" />
+            </com.yinglan.scrolllayout.ScrollLayout>
             <!--附近-->
             <LinearLayout
                 android:layout_width="match_parent"
