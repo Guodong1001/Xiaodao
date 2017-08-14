@@ -101,9 +101,12 @@ public class NetUtil {
                 .readTimeout(20, TimeUnit.SECONDS)
                 .build();
         FormBody.Builder builder = new FormBody.Builder();
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            builder.add(entry.getKey(), entry.getValue().toString());
+        if (map != null) {
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                builder.add(entry.getKey(), entry.getValue().toString());
+            }
         }
+
         RequestBody body = builder.build();
         final Request request = new Request.Builder()
                 .url(url)
