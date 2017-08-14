@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -30,12 +29,13 @@ public class FujinFragment extends Fragment{
     private RadioGroup mRadioGroup;
     private FragmentManager fm;
     private Fragment[] fragments = new Fragment[5];
-    //http://blog.csdn.net/ljfbest/article/details/38765641
     private View view;
     private MapView mMapView;
     private BaiduMap mBaiduMap;
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
+    // 定位相关
+    LocationClient mLocClient;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         SDKInitializer.initialize(getActivity().getApplicationContext());
@@ -44,7 +44,6 @@ public class FujinFragment extends Fragment{
         mLocationClient.registerLocationListener( myListener );
         addGPS(view);
         initLocation();
-
         //获取地图控件引用
         mMapView = (MapView)view. findViewById(R.id.bmapView);
         mRadioGroup = (RadioGroup) view.findViewById(R.id.fujin_rg);
@@ -67,12 +66,13 @@ public class FujinFragment extends Fragment{
         return view;
     }
     public void addGPS(View view){
-        Toast.makeText(getActivity(),"2",Toast.LENGTH_SHORT).show();
         mLocationClient.start();
         //mLocationClient.stop();
     }
-
     private void initLocation() {
+        // 定位初始化
+        mLocClient = new LocationClient(getActivity());
+        mLocClient.registerLocationListener(myListener);
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
         //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
@@ -111,26 +111,6 @@ public class FujinFragment extends Fragment{
         mLocationClient.setLocOption(option);
 
     }
-
-
-    //    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        mMapView.onDestroy();
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        //在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
-//        mMapView.onResume();
-//    }
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        //在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
-//        mMapView.onPause();
-//    }
     private void addFragment() {
         fragments[0] = new FoodFragment();
         fragments[1] = new XiuxianFragment();
