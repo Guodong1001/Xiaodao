@@ -48,7 +48,7 @@
         android:textColor="@android:color/black"
         android:textSize="14sp" />
 
-    <com.adan.selectcitydome.view.MyGridView
+    <com.bwie.xiaodao.view.view.customs.MyGridView
         android:id="@+id/gv_hot_city"
         android:layout_width="match_parent"
         android:layout_marginRight="4dp"
