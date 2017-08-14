@@ -66,7 +66,7 @@ public class FujinFragment extends Fragment{
         return view;
     }
     public void addGPS(View view){
-        mLocationClient.start();
+        //mLocationClient.start();
         //mLocationClient.stop();
     }
     private void initLocation() {

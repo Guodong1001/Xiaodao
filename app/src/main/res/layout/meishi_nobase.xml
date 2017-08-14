@@ -87,6 +87,7 @@
                     android:textSize="@dimen/px_t24" />
             </LinearLayout>
         </LinearLayout>
+
         <TextView
             android:id="@+id/meishi_text5"
             android:layout_width="match_parent"
@@ -97,15 +98,5 @@
             android:text="安贞距您100m"
             android:textColor="#999999" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/youhui"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="每满100减12元"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/px14"
-        android:layout_marginBottom="@dimen/px14"
-        />
 
 </LinearLayout>

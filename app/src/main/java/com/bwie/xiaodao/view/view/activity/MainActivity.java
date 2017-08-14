@@ -23,33 +23,18 @@ public class MainActivity extends BaseActivity {
     private Fragment[] fragments = new Fragment[4];
     //记录用户首次点击返回键的时间
     private long firstTime = 0;
-    /**
-     * 添加布局
-     * @return
-     */
     @Override
     public int setMyContentView() {
         return R.layout.activity_main;
     }
-
-    /**
-     * 从网络获取数据
-     */
     @Override
     public void initDataFromServer() {
     }
 
-    /**
-     * 初始化数据
-     */
     @Override
     public void initData() {
 
     }
-
-    /**
-     * 初始化控件的方法
-     */
     @Override
     public void initView() {
         mRadioGroup = (RadioGroup) findViewById(R.id.connect_group);
@@ -65,9 +50,6 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    /**
-     * 点击事件
-     */
     @Override
     public void createEvent() {
 
