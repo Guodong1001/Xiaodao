@@ -1,11 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <include
-        layout="@layout/header_wode"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/px390"
+        android:background="#435C94">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px100">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px30"
+                android:onClick="back"
+                android:src="@drawable/last"/>
+
+            <TextView
+                android:id="@+id/titles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="注册"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/px_t40"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/px30"
+                android:text="注册"
+                android:textSize="@dimen/px_t28"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="可用余额："
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/px_t36"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/px_t80"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/px70"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="冻结金额："
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/px_t28"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/px_t28"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/px88"
+            android:layout_height="@dimen/px88"
+            android:layout_marginLeft="@dimen/px653"
+            android:layout_marginTop="@dimen/px260"
+            android:scaleType="center"
+            android:src="@drawable/selector_img_show_hide"
+            />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="@dimen/px694"
+        android:layout_height="@dimen/px92"
+        android:layout_marginEnd="@dimen/px30"
+        android:layout_marginStart="@dimen/px30"
+        android:layout_marginTop="@dimen/px160"
+        android:gravity="center"
+        android:background="#C20000">
+        <Button
+            android:layout_width="@dimen/px690"
+            android:layout_height="@dimen/px88"
+            android:background="#FFFFFF"
+            android:text="提现"
+            android:layout_marginLeft="@dimen/px1"
+            android:textColor="#C20000"
+            />
+    </LinearLayout>
+
+
+
 
 </LinearLayout>
