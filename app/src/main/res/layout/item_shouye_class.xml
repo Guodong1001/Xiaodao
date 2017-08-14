@@ -3,13 +3,13 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
+    <!--android:layout_marginTop="@dimen/px28"-->
 
     <ImageView
         android:id="@+id/icon_image"
         android:layout_width="@dimen/px83"
         android:layout_height="@dimen/px83"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/px28"
         android:src="@drawable/shangcheng"/>
 
     <TextView

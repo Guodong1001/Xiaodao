@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="padding_middle">12dp</dimen>
     <dimen name="px450">225dp</dimen>
     <dimen name="px500">250dp</dimen>
     <dimen name="px106">53dp</dimen>

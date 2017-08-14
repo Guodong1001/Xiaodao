@@ -182,8 +182,8 @@ public class HomeFragment extends Fragment {
                 return TAB_COUNT;
             }
         });
-        //默认设置当前页是第一页
-        mHomeClassViewpager.setCurrentItem(0);
+//        //默认设置当前页是第一页
+//        mHomeClassViewpager.setCurrentItem(0);
     }
 
     @Override

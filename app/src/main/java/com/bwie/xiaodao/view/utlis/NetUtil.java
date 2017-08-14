@@ -2,6 +2,7 @@ package com.bwie.xiaodao.view.utlis;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.bwie.xiaodao.view.utlis.inet.INet;
 import com.google.gson.Gson;
@@ -95,7 +96,7 @@ public class NetUtil {
     }
 
     public <T> void postDataFromServer(String url, Map<String, Object> map, final INet iNet, final Class<T> tClass) {
-        mINet = iNet;
+//        mINet = iNet;
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
@@ -103,30 +104,33 @@ public class NetUtil {
         FormBody.Builder builder = new FormBody.Builder();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             builder.add(entry.getKey(), entry.getValue().toString());
+            Log.i("Map", "postDataFromServer: " + entry.getKey() + entry.getValue().toString());
         }
         RequestBody body = builder.build();
         final Request request = new Request.Builder()
                 .url(url)
                 .post(body)
                 .build();
+        Log.i("Map", "postDataFromServer: " + url);
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                mINet.onError(e.getMessage());
+                iNet.onError(e.getMessage());
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
 
                 String result = response.body().string();
-
+                Log.i("TAG", "onResponse: " + result);
                 Gson gson = new Gson();
                 T t = gson.fromJson(result, tClass);
-                Message msg = hanlder.obtainMessage();
-                msg.what = 0;
-                msg.obj = t;
-                hanlder.sendMessage(msg);
+                iNet.onSuccess(t);
+//                Message msg = hanlder.obtainMessage();
+//                msg.what = 0;
+//                msg.obj = t;
+//                hanlder.sendMessage(msg);
             }
         });
     }
