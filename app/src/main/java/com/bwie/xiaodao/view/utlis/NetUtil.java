@@ -27,6 +27,7 @@ public class NetUtil<T> {
 
     private INet mINet;
     private static volatile NetUtil instance = null;
+    private int TAG;
 
     private Handler hanlder = new Handler() {
         @Override
@@ -34,7 +35,7 @@ public class NetUtil<T> {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 0:
-                    mINet.onSuccess(msg.obj);
+                    mINet.onSuccess(msg.obj,TAG);
                     break;
             }
         }
@@ -95,8 +96,9 @@ public class NetUtil<T> {
         });
     }
 
-    public <T> void postDataFromServer(String url, Map<String, Object> map, final INet iNet, final Class<T> tClass,String header) {
+    public <T> void postDataFromServer(String url, Map<String, Object> map, final INet iNet, final Class<T> tClass,String header,int tag) {
         mINet = iNet;
+        TAG = tag;
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
