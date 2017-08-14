@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.model.bean.HomeGoodsShowBean;
 import com.bwie.xiaodao.view.view.customs.GlideImageLoader;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -90,18 +92,6 @@ public class HomeFragment extends Fragment {
     TextView mHomeNearbyWinportTitle1;
     @BindView(R.id.home_nearby_winport_address1)
     TextView mHomeNearbyWinportAddress1;
-    @BindView(R.id.home_nearby_winport_imageView2)
-    ImageView mHomeNearbyWinportImageView2;
-    @BindView(R.id.home_nearby_winport_title2)
-    TextView mHomeNearbyWinportTitle2;
-    @BindView(R.id.home_nearby_winport_address2)
-    TextView mHomeNearbyWinportAddress2;
-    @BindView(R.id.home_nearby_winport_imageView3)
-    ImageView mHomeNearbyWinportImageView3;
-    @BindView(R.id.home_nearby_winport_title3)
-    TextView mHomeNearbyWinportTitle3;
-    @BindView(R.id.home_nearby_winport_address3)
-    TextView mHomeNearbyWinportAddress3;
     @BindView(R.id.home_rb_cate)
     RadioButton mHomeRbCate;
     @BindView(R.id.home_rb_recreation)
@@ -114,12 +104,15 @@ public class HomeFragment extends Fragment {
     RadioButton mHomeRbAll;
     @BindView(R.id.home_rg)
     RadioGroup mHomeRg;
-    @BindView(R.id.home_rv)
-    RecyclerView mHomeRv;
     Unbinder unbinder;
     private View view;
     //banner的list集合
     private List<String> mBannerList;
+
+    private HomeClassShowFragments mShowFragments[] = new HomeClassShowFragments[5];
+    private FragmentManager fm;
+    //分类展示的list
+    private List<HomeGoodsShowBean> mShowBeanList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -133,12 +126,35 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        addShowBean();
+        addShowFragment();
         initBannerImg();
         initview();
         event();
     }
 
+    private void addShowBean() {
+        //给展示分类的recyclerview设置假的数据
+        mShowBeanList = new ArrayList<>();
+
+    }
+
+    private void addShowFragment() {
+        fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        for (int i = 0; i < mShowFragments.length; i++) {
+            mShowFragments[i] = new HomeClassShowFragments();
+            ft.add(R.id.home_class_show_framelayout, mShowFragments[i]);
+            if (i != 0) {
+                ft.hide(mShowFragments[i]);
+            }
+        }
+        ft.commit();
+    }
+
     private void initBannerImg() {
+
+        //首页banner图的假数据
         mBannerList = new ArrayList<>();
         mBannerList.add("http://img1.yulin520.com/news/BPKZUX0MNFR0OT0WLCOD.png#598_450");
         mBannerList.add("http://img1.yulin520.com/news/SPPW8T9QHFR0OM3HID0X.jpg#1280_960");
@@ -148,6 +164,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initview() {
+        //设置banner的参数
         mHomeBanner.setBannerStyle(CIRCLE_INDICATOR);
         mHomeBanner.setImageLoader(new GlideImageLoader());
         mHomeBanner.setImages(mBannerList);
@@ -185,11 +202,13 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    public void event(){
+    public void event() {
         //分类展示的radiobutton点击切换效果
         mHomeRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
+                int i = Integer.parseInt(radioButton.getTag().toString());
 //                RadioButton rb = (RadioButton) group.findViewById(checkedId);
 //                int i = Integer.parseInt(rb.getTag().toString());
                 for (int j = 0; j < group.getChildCount(); j++) {
@@ -202,7 +221,38 @@ public class HomeFragment extends Fragment {
                         rb.setTextColor(Color.RED);
                     }
                 }
+                hideFragment(i);
             }
         });
     }
+
+    /**
+     * 判断fragment是否添加过并且隐藏不需要显示的
+     *
+     * @param i
+     */
+    public void hideFragment(int i) {
+        FragmentTransaction ft = fm.beginTransaction();
+        //如果fragment没有添加过就添加进去
+        if (!mShowFragments[i].isAdded()) {
+            ft.add(R.id.content_frame, mShowFragments[i], "" + i);
+        }
+        for (int j = 0; j < mShowFragments.length; j++) {
+            //找到radiogroup里的子控件
+            RadioButton rb = (RadioButton) mHomeRg.getChildAt(j);
+            //给这个子控件的文字设置背景颜色    黑色  （没有选择的时候）
+            rb.setTextColor(Color.BLACK);
+            //通过循环隐藏所有的fragment
+            ft.hide(mShowFragments[j]);
+            //如果当前radiobutton是选中状态就把文字颜色设置成红色的
+            if (rb.isChecked()) {
+                rb.setTextColor(Color.RED);
+            }
+            //如果点击的为用户，那么就传值到用户的fragment
+        }
+        //显示当前点击按钮相对应的fragment
+        ft.show(mShowFragments[i]);
+        ft.commit();
+    }
+
 }
