@@ -1,6 +1,7 @@
 package com.bwie.xiaodao.view.Application;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 import android.support.compat.BuildConfig;
 
 import org.xutils.x;
@@ -13,10 +14,29 @@ import org.xutils.x;
 
 
 public class BaseApplication extends Application {
+    private static BaseApplication mApplication;
+    private String token;
+    private SharedPreferences mSp;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+        mSp.edit().putString("token",token).commit();
+    }
+    public static BaseApplication getInstence(){
+        return mApplication;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mApplication = this;
         x.Ext.init(this);
         x.Ext.setDebug(BuildConfig.DEBUG);
+        mSp = getSharedPreferences("config", MODE_PRIVATE);
+        token = mSp.getString("token","");
     }
 }
