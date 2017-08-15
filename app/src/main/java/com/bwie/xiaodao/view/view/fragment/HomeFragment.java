@@ -1,13 +1,16 @@
 package com.bwie.xiaodao.view.view.fragment;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +24,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.model.bean.HomeGoodsShowBean;
+import com.bwie.xiaodao.view.view.activity.home.CityActivity;
 import com.bwie.xiaodao.view.view.customs.GlideImageLoader;
+import com.bwie.xiaodao.view.view.fragment.home.CategoryIconOne;
+import com.bwie.xiaodao.view.view.fragment.home.CategoryIconTwo;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
@@ -51,11 +58,11 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.home_richscan)
     ImageView mHomeRichscan;
     @BindView(R.id.home_class_rb1)
-    RadioButton mHomeClassRb1;
+    RadioButton mHomeIconRb1;
     @BindView(R.id.home_class_rb2)
-    RadioButton mHomeClassRb2;
+    RadioButton mHomeIconRb2;
     @BindView(R.id.home_class_rg)
-    RadioGroup mHomeClassRg;
+    RadioGroup mHomeIconRg;
     @BindView(R.id.home_class_viewpager)
     ViewPager mHomeClassViewpager;
     @BindView(R.id.home_class_framelayout)
@@ -84,24 +91,6 @@ public class HomeFragment extends Fragment {
     RelativeLayout mHomeMoment;
     @BindView(R.id.home_nearby_img)
     ImageView mHomeNearbyImg;
-    @BindView(R.id.home_nearby_winport_imageView1)
-    ImageView mHomeNearbyWinportImageView1;
-    @BindView(R.id.home_nearby_winport_title1)
-    TextView mHomeNearbyWinportTitle1;
-    @BindView(R.id.home_nearby_winport_address1)
-    TextView mHomeNearbyWinportAddress1;
-    @BindView(R.id.home_nearby_winport_imageView2)
-    ImageView mHomeNearbyWinportImageView2;
-    @BindView(R.id.home_nearby_winport_title2)
-    TextView mHomeNearbyWinportTitle2;
-    @BindView(R.id.home_nearby_winport_address2)
-    TextView mHomeNearbyWinportAddress2;
-    @BindView(R.id.home_nearby_winport_imageView3)
-    ImageView mHomeNearbyWinportImageView3;
-    @BindView(R.id.home_nearby_winport_title3)
-    TextView mHomeNearbyWinportTitle3;
-    @BindView(R.id.home_nearby_winport_address3)
-    TextView mHomeNearbyWinportAddress3;
     @BindView(R.id.home_rb_cate)
     RadioButton mHomeRbCate;
     @BindView(R.id.home_rb_recreation)
@@ -114,12 +103,21 @@ public class HomeFragment extends Fragment {
     RadioButton mHomeRbAll;
     @BindView(R.id.home_rg)
     RadioGroup mHomeRg;
-    @BindView(R.id.home_rv)
-    RecyclerView mHomeRv;
     Unbinder unbinder;
     private View view;
     //banner的list集合
     private List<String> mBannerList;
+    /**
+     * 设置选项卡的总数
+     */
+    private static final int TAB_COUNT = 2;
+    private final int[] array = new int[]{R.id.home_class_rb1, R.id.home_class_rb2};
+
+    private HomeClassShowFragments mShowFragments[] = new HomeClassShowFragments[5];
+    private FragmentManager fm;
+    private static final int REQUEST_CODE = 200;
+    //分类展示的list
+    private List<HomeGoodsShowBean> mShowBeanList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -133,12 +131,35 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        addShowBean();
+        addShowFragment();
         initBannerImg();
         initview();
         event();
     }
 
+    private void addShowBean() {
+        //给展示分类的recyclerview设置假的数据
+        mShowBeanList = new ArrayList<>();
+
+    }
+
+    private void addShowFragment() {
+        fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        for (int i = 0; i < mShowFragments.length; i++) {
+            mShowFragments[i] = new HomeClassShowFragments();
+            ft.add(R.id.home_class_show_framelayout, mShowFragments[i]);
+            if (i != 0) {
+                ft.hide(mShowFragments[i]);
+            }
+        }
+        ft.commit();
+    }
+
     private void initBannerImg() {
+
+        //首页banner图的假数据
         mBannerList = new ArrayList<>();
         mBannerList.add("http://img1.yulin520.com/news/BPKZUX0MNFR0OT0WLCOD.png#598_450");
         mBannerList.add("http://img1.yulin520.com/news/SPPW8T9QHFR0OM3HID0X.jpg#1280_960");
@@ -148,6 +169,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initview() {
+        //设置banner的参数
         mHomeBanner.setBannerStyle(CIRCLE_INDICATOR);
         mHomeBanner.setImageLoader(new GlideImageLoader());
         mHomeBanner.setImages(mBannerList);
@@ -155,6 +177,27 @@ public class HomeFragment extends Fragment {
         mHomeBanner.setDelayTime(3000);
         mHomeBanner.setIndicatorGravity(BannerConfig.CENTER);
         mHomeBanner.start();
+        //设置分类图标的viewpager的适配器
+        mHomeClassViewpager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                //直接创建fragment对象并返回
+                switch (position) {
+                    case 0:
+                        return new CategoryIconOne();
+                    case 1:
+                        return new CategoryIconTwo();
+                }
+                return null;
+            }
+
+            @Override
+            public int getCount() {
+                return TAB_COUNT;
+            }
+        });
+//        //默认设置当前页是第一页
+//        mHomeClassViewpager.setCurrentItem(0);
     }
 
     @Override
@@ -167,6 +210,7 @@ public class HomeFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.home_city:
+                switchCity();
                 break;
             case R.id.home_sousuo:
                 break;
@@ -185,11 +229,51 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    public void event(){
+    private void switchCity() {
+        Intent intent = new Intent(getContext(), CityActivity.class);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    public void event() {
+        //设置radioGroup的状态改变监听
+        mHomeIconRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                //设置了ViewPager的当前item就会触发ViewPager的SimpleOnPageChangeListener监听
+                switch (checkedId) {
+                    case R.id.home_class_rb1:
+                        mHomeClassViewpager.setCurrentItem(0);
+                        break;
+                    case R.id.home_class_rb2:
+                        mHomeClassViewpager.setCurrentItem(1);
+                        break;
+                }
+            }
+        });
+        //切换分类图标时RadioButton的点击效果
+        mHomeClassViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                //改变radioButton的状态
+                change(array[position]);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         //分类展示的radiobutton点击切换效果
         mHomeRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
+                int i = Integer.parseInt(radioButton.getTag().toString());
 //                RadioButton rb = (RadioButton) group.findViewById(checkedId);
 //                int i = Integer.parseInt(rb.getTag().toString());
                 for (int j = 0; j < group.getChildCount(); j++) {
@@ -202,7 +286,65 @@ public class HomeFragment extends Fragment {
                         rb.setTextColor(Color.RED);
                     }
                 }
+                hideFragment(i);
             }
         });
+    }
+
+    /**
+     * 判断fragment是否添加过并且隐藏不需要显示的
+     *
+     * @param i
+     */
+    public void hideFragment(int i) {
+        FragmentTransaction ft = fm.beginTransaction();
+        //如果fragment没有添加过就添加进去
+        if (!mShowFragments[i].isAdded()) {
+            ft.add(R.id.content_frame, mShowFragments[i], "" + i);
+        }
+        for (int j = 0; j < mShowFragments.length; j++) {
+            //找到radiogroup里的子控件
+            RadioButton rb = (RadioButton) mHomeRg.getChildAt(j);
+            //给这个子控件的文字设置背景颜色    黑色  （没有选择的时候）
+            rb.setTextColor(Color.BLACK);
+            //通过循环隐藏所有的fragment
+            ft.hide(mShowFragments[j]);
+            //如果当前radiobutton是选中状态就把文字颜色设置成红色的
+            if (rb.isChecked()) {
+                rb.setTextColor(Color.RED);
+            }
+            //如果点击的为用户，那么就传值到用户的fragment
+        }
+        //显示当前点击按钮相对应的fragment
+        ft.show(mShowFragments[i]);
+        ft.commit();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && data != null) {
+            if(resultCode == 100){
+                String city = data.getStringExtra("city");
+                mHomeCity.setText(city);
+            }
+        }
+    }
+
+    private void change(int checkedId) {
+        //改变背景颜色
+        mHomeIconRb1.setBackgroundResource(R.drawable.solid_circle_normal);
+        mHomeIconRb2.setBackgroundResource(R.drawable.solid_circle_normal);
+        switch (checkedId) {
+            case R.id.home_class_rb1:
+                mHomeIconRb1.setBackgroundResource(R.drawable.solid_circle_pressed);
+                mHomeIconRb1.setChecked(true);
+                break;
+            case R.id.home_class_rb2:
+                mHomeIconRb2.setBackgroundResource(R.drawable.solid_circle_pressed);
+                mHomeIconRb2.setChecked(true);
+                break;
+        }
+
     }
 }

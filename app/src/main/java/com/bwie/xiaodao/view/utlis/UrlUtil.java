@@ -15,4 +15,11 @@ public class UrlUtil {
     public static final String REBATE_PROGRAM_URL = BASE_URL+"/user/cashback/plan";//返利计划
 
     public static final String CREDITS_LOG_URL = BASE_URL+"/user/intergral/records";//积分记录
+
+
+    public static final String CITY_URL = BASE_URL+"/findAllCityList";
+
+
+
+
 }
