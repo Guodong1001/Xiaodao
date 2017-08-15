@@ -15,9 +15,10 @@
             android:text="A2017023"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/px_t22"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="@dimen/px30"
-            />
+            android:layout_marginStart="15dp"
+            android:layout_alignBaseline="@+id/fanli_lv_item_date"
+            android:layout_alignBottom="@+id/fanli_lv_item_date"
+            android:layout_alignParentStart="true"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,6 +62,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="#333333"/>
             <TextView
+                android:id="@+id/fanli_lv_item_txt_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/now"

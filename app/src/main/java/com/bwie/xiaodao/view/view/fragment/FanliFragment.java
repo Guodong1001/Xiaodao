@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.Application.BaseApplication;
+import com.bwie.xiaodao.view.bean.CashbackPlan;
 import com.bwie.xiaodao.view.bean.CountCashBack;
 import com.bwie.xiaodao.view.utlis.NetUtil;
 import com.bwie.xiaodao.view.utlis.UrlUtil;
@@ -36,7 +38,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FanliFragment extends Fragment implements INet<CountCashBack> {
+public class FanliFragment extends Fragment implements INet {
     private static final String TAG = "FanliFragment";
 
 
@@ -72,7 +74,7 @@ public class FanliFragment extends Fragment implements INet<CountCashBack> {
     @BindView(R.id.fanli_txt_show_more)
     TextView mFanliTxtShowMore;
     private View view;
-    private static List<String> mList;
+    private static List<CashbackPlan.ObjectBean> mList;
     private AdapterLvFanli mAdapterLvFanli;
 
     public FanliFragment() {
@@ -98,17 +100,15 @@ public class FanliFragment extends Fragment implements INet<CountCashBack> {
     }
 
     private void loadData() {
-        Map<String,Object> map = new HashMap<>();
+        final Map<String,Object> map = new HashMap<>();
 //        map.put("status",1);
 //        map.put("token","2dbae1f3fda438301a33e1d0cfd97a34");
-        NetUtil.getInstance().postDataFromServer(UrlUtil.baseURL,map,this, CountCashBack.class,"");
+        NetUtil.getInstance().postDataFromServer(UrlUtil.STATISTICAL_INFORMATION_URL,map,this, CountCashBack.class, BaseApplication.getInstence().getToken(),1);
+
     }
 
     private void initData() {
         mList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            mList.add("item" + i);
-        }
     }
 
     private void initView() {
@@ -150,7 +150,7 @@ public class FanliFragment extends Fragment implements INet<CountCashBack> {
                 break;
         }
     }
-    public static List<String> getData(){
+    public static List<CashbackPlan.ObjectBean> getData(){
         return mList;
     }
     @OnClick(R.id.fanli_goto_calendar)
@@ -159,14 +159,28 @@ public class FanliFragment extends Fragment implements INet<CountCashBack> {
     }
 
     @Override
-    public void onSuccess(final CountCashBack countCashBack) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mFanliTxtMoney.setText(countCashBack.getObject().getCountReally()+".00");
-                mFanliTxtStrokeCount.setText(countCashBack.getObject().getWaitCashback()+"");
-            }
-        });
+    public void onSuccess(Object o,int tag) {
+        if (tag==1){
+            final CountCashBack countCashBack = (CountCashBack) o;
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    NetUtil.getInstance().postDataFromServer(UrlUtil.REBATE_PROGRAM_URL,new HashMap<>(),FanliFragment.this, CashbackPlan.class, BaseApplication.getInstence().getToken(),2);
+                    mFanliTxtMoney.setText(countCashBack.getObject().getCountReally()+".00");
+                    mFanliTxtStrokeCount.setText(countCashBack.getObject().getWaitCashback()+"");
+                }
+            });
+        }else if (tag == 2){
+            final CashbackPlan cashbackPlan = (CashbackPlan) o;
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mList.addAll(cashbackPlan.getObject());
+                    mAdapterLvFanli.notifyDataSetChanged();
+                }
+            });
+        }
+
     }
 
     @Override

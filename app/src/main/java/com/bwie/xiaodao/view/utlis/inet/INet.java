@@ -6,6 +6,6 @@ package com.bwie.xiaodao.view.utlis.inet;
  * 创建时间：2017/8/10
  */
 public interface INet<T> {
-    void onSuccess(T t);
+    void onSuccess(T t,int tag);
     void onError(String error);
 }

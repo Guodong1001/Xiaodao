@@ -29,6 +29,7 @@ public class NetUtil<T> {
 
     private INet mINet;
     private static volatile NetUtil instance = null;
+    private int TAG;
 
     private Handler hanlder = new Handler() {
         @Override
@@ -36,7 +37,7 @@ public class NetUtil<T> {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 0:
-                    mINet.onSuccess(msg.obj);
+                    mINet.onSuccess(msg.obj,TAG);
                     break;
             }
         }
@@ -97,22 +98,29 @@ public class NetUtil<T> {
         });
     }
 
-    public <T> void postDataFromServer(String url, Map<String, Object> map, final INet iNet, final Class<T> tClass,String header) {
+    public <T> void postDataFromServer(String url, Map<String, Object> map, final INet iNet, final Class<T> tClass,String header,int tag) {
         mINet = iNet;
+        TAG = tag;
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
                 .build();
         FormBody.Builder builder = new FormBody.Builder();
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-            builder.add(entry.getKey(), entry.getValue().toString());
+        if(map!=null){
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                builder.add(entry.getKey(), entry.getValue().toString());
+                Log.i("Map", "postDataFromServer: " + entry.getKey() + entry.getValue().toString());
+            }
+
         }
+
         RequestBody body = builder.build();
         final Request request = new Request.Builder()
                 .addHeader("token",header)
                 .url(url)
                 .post(body)
                 .build();
+        Log.i("Map", "postDataFromServer: " + url);
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
 
@@ -120,11 +128,12 @@ public class NetUtil<T> {
 
             @Override
             public void onFailure(Call call, IOException e) {
-                mINet.onError(e.getMessage());
+                iNet.onError(e.getMessage());
             }
 
             @Override
-            public void onResponse(Call call, Response response) {
+            public void onResponse(Call call, Response response) throws IOException {
+
                 String result = null;
                 try {
                     result = response.body().string();
@@ -140,4 +149,47 @@ public class NetUtil<T> {
             }
         });
     }
+    public <T> void postDataFromServer(String url, Map<String, Object> map, final INet iNet, final Class<T> tClass) {
+//        mINet = iNet;
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .build();
+        FormBody.Builder builder = new FormBody.Builder();
+        if(map!=null){
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                builder.add(entry.getKey(), entry.getValue().toString());
+                Log.i("Map", "postDataFromServer: " + entry.getKey() + entry.getValue().toString());
+            }
+        }
+
+        RequestBody body = builder.build();
+        final Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        Log.i("Map", "postDataFromServer: " + url);
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                iNet.onError(e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String result = response.body().string();
+                Log.i("TAG", "onResponse: " + result);
+                Gson gson = new Gson();
+                T t = gson.fromJson(result, tClass);
+                iNet.onSuccess(t,0);
+//                Message msg = hanlder.obtainMessage();
+//                msg.what = 0;
+//                msg.obj = t;
+//                hanlder.sendMessage(msg);
+            }
+        });
+    }
 }
+

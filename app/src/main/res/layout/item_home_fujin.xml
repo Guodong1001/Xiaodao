@@ -8,13 +8,13 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/home_nearby_winport_imageView1"
+            android:id="@+id/item_home_nearby_winport_imageView1"
             android:layout_width="@dimen/px224"
             android:layout_height="@dimen/px218"
             android:src="@mipmap/ic_launcher"/>
 
         <TextView
-            android:id="@+id/home_nearby_winport_title1"
+            android:id="@+id/item_home_nearby_winport_title1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/px14"
@@ -23,7 +23,7 @@
             android:textSize="@dimen/px_t28"/>
 
         <TextView
-            android:id="@+id/home_nearby_winport_address1"
+            android:id="@+id/item_home_nearby_winport_address1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/px15"

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F4F5"
+    android:orientation="vertical">
+    <include
+        layout="@layout/header_wode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <com.bwie.xiaodao.view.view.customs.EditTextWithDel
+        android:id="@+id/et_search"
+        android:hint="请输入城市"
+        android:paddingLeft="5dp"
+        android:textSize="15dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:paddingStart="@dimen/px80"
+        android:background="@drawable/sousuojisousokuang"
+        android:layout_height="35dp"
+        tools:ignore="RtlSymmetry"/>
+    <LinearLayout
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:text="当前位置："
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/px_t28"
+            android:textColor="#333333"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/country_lvcountry"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:divider="@null"
+            android:scrollbars="none" />
+
+        <TextView
+            android:id="@+id/dialog"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="#606060"
+            android:gravity="center"
+            android:text="A"
+            android:textColor="@android:color/white"
+            android:textSize="36sp"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <com.bwie.xiaodao.view.view.customs.SideBar
+            android:id="@+id/sidrbar"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center" />
+    </FrameLayout>
+
+
+</LinearLayout>
