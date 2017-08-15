@@ -71,6 +71,7 @@ public class RecordConsumptionActivity extends BaseActivity{
         });
     }
     //点击?号弹出提示框
+    //添加提示框有bug需要修改
     private void initPopView() {
         imageView = (ImageView)findViewById(R.id.details_tishi);
         imageView.setOnClickListener(new View.OnClickListener() {

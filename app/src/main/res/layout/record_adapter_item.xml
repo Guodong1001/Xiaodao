@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/record_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/px28"
+            android:layout_marginLeft="@dimen/px30"
+            android:layout_marginBottom="@dimen/px33"
+            android:layout_marginTop="@dimen/px77"
+            android:text="肯德基  (胜古中路)"
+            />
+        <CheckBox
+            android:id="@+id/record_tuikuan"
+            android:layout_width="@dimen/px125"
+            android:layout_height="@dimen/px68"
+            android:button="@null"
+            android:text="退款"
+            android:textSize="@dimen/px28"
+            android:background="@drawable/selector_rb_query"
+            android:gravity="center"
+            android:checked="true"
+            android:layout_centerInParent="true"
+            android:textColor="#c20000"
+         />
+        <TextView
+            android:id="@+id/record_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/px28"
+            android:text="58.00元"
+            android:layout_marginRight="@dimen/px30"
+            android:layout_alignBaseline="@+id/record_name"
+            android:layout_alignBottom="@+id/record_name"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="15dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/px22"
+            android:text="今天  12.05"
+            android:textColor="#999999"
+            android:layout_below="@+id/record_name"
+            android:layout_marginBottom="@dimen/px20"
+            android:layout_marginLeft="@dimen/px30"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
