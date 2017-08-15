@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bwie.xiaodao.view.utlis.ConstantUtil;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +30,9 @@ public class MinePresenter {
         Intent intent = new Intent(context,cls);
         if(!TextUtils.isEmpty(text)){
             intent.putExtra("title",text);
+        }
+        if(ConstantUtil.LOGINSTATUS){
+
         }
         context.startActivity(intent);
     }

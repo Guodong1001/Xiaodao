@@ -120,21 +120,14 @@ public class NetUtil<T> {
 
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.e(TAG, "onFailure: "+e.getMessage().toString() );
                 mINet.onError(e.getMessage());
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                String result = response.body().string();
-                Gson gson = new Gson();
-                T t = gson.fromJson(result, tClass);
             public void onResponse(Call call, Response response) {
                 String result = null;
                 try {
                     result = response.body().string();
-                    Log.e(TAG, "onResponse: " + result.toString());
                     Gson gson = new Gson();
                     t = gson.fromJson(result, tClass);
                 } catch (Exception e) {

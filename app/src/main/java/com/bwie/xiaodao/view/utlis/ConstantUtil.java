@@ -7,4 +7,5 @@ package com.bwie.xiaodao.view.utlis;
 public class ConstantUtil {
     //登录状态
     public static final boolean LOGINSTATUS = false;
+
 }
