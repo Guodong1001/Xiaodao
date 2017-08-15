@@ -1,9 +1,11 @@
 package com.bwie.xiaodao.view.view.activity.rebate;
 
 import android.graphics.Color;
-import android.support.annotation.IdRes;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -18,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RecordsQueryActivity extends BaseActivity {
+public class RecordsQueryActivity extends BaseActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     @BindView(R.id.query_rgb)
     RadioGroup mQueryRgb;
     @BindView(R.id.header_img_goback)
@@ -27,8 +29,13 @@ public class RecordsQueryActivity extends BaseActivity {
     TextView mHeaderTxtTitle;
     @BindView(R.id.record_txt)
     TextView mRecordTxt;
+    @BindView(R.id.query_pager)
+    ViewPager mQueryPager;
     private FragmentManager fm;
-    private QueryFragment[] fragments = new QueryFragment[3];
+    private static final int SIZE = 3;
+    private int[] rbIDs = new int[]{R.id.query_rb_record, R.id.query_rb_rebated, R.id.query_rb_for_rebate};
+    private RadioButton[] mRadioButton = new RadioButton[SIZE];
+    private QueryFragment[] fragments = new QueryFragment[SIZE];
 
     @Override
     public int setMyContentView() {
@@ -43,20 +50,27 @@ public class RecordsQueryActivity extends BaseActivity {
     @Override
     public void initData() {
         ButterKnife.bind(this);
+
     }
 
     @Override
     public void initView() {
         mHeaderTxtTitle.setText("记录查询");
-        mQueryRgb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                RadioButton rb = (RadioButton) group.findViewById(checkedId);
-                int position = Integer.parseInt(rb.getTag().toString());
-                //判断如果点击的按钮下标为3时  再判断是否添加过当前fragment
-                hideFragment(position);
+        for (int i = 0; i < fragments.length; i++) {
+            fragments[i] = new QueryFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("index", i);
+            fragments[i].setArguments(bundle);
+            mRadioButton[i] = (RadioButton) findViewById(rbIDs[i]);
+            mRadioButton[i].setOnClickListener(this);
+            if (i==0){
+                mRadioButton[i].setChecked(true);
             }
-        });
+        }
+        fm = getSupportFragmentManager();
+        MyAdapter adapter = new MyAdapter(fm);
+        mQueryPager.setAdapter(adapter);
+        mQueryPager.addOnPageChangeListener(this);
     }
 
     @Override
@@ -65,54 +79,60 @@ public class RecordsQueryActivity extends BaseActivity {
     }
 
     /**
-     * 添加fragment
-     */
-    @Override
-    public void addFragment() {
-        for (int i = 0; i < fragments.length; i++) {
-            fragments[i] = new QueryFragment();
-        }
-        fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.query_frame, fragments[0], "0");
-        ft.commit();
-    }
-
-    /**
      * 判断fragment是否添加过并且隐藏不需要显示的
      *
      * @param position
      */
-    public void hideFragment(int position) {
+    public void check(int position) {
         if (position == 0) {
             mRecordTxt.setVisibility(View.VISIBLE);
         } else {
             mRecordTxt.setVisibility(View.GONE);
         }
-        FragmentTransaction ft = fm.beginTransaction();
-//        如果fragment没有添加过就添加进去
-        if (!fragments[position].isAdded()) {
-            ft.add(R.id.query_frame, fragments[position], "" + position);
+        for (RadioButton rb:mRadioButton){
+            rb.setTextColor(Color.BLACK);
         }
-        for (int i = 0; i < 3; i++) {
-            //找到radiogroup里的子控件
-            RadioButton rb = (RadioButton) mQueryRgb.getChildAt(i);
-            if (rb.isChecked()) {
-                //如果当前radiobutton是选中状态就把文字颜色设置成红色的
-                rb.setTextColor(Color.parseColor("#C20000"));
-                int tag = Integer.parseInt(rb.getTag().toString().trim());
-                fragments[position].setTag(tag);
-                //显示当前点击按钮相对应的fragment
-                ft.show(fragments[position]);
-            } else {
-                //给这个子控件的文字设置背景颜色    黑色  （没有选择的时候）
-                rb.setTextColor(Color.BLACK);
-                //通过循环隐藏所有的fragment
-                ft.hide(fragments[i]);
-            }
+        mRadioButton[position].setTextColor(Color.parseColor("#C20000"));
+        mRadioButton[position].setChecked(true);
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        check(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        int i = Integer.parseInt(v.getTag().toString());
+        mQueryPager.setCurrentItem(i);
+    }
+
+
+    class MyAdapter extends FragmentPagerAdapter {
+
+        public MyAdapter(FragmentManager fm) {
+            super(fm);
         }
 
-        ft.commit();
+        @Override
+        public Fragment getItem(int position) {
+            return fragments[position];
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.length;
+        }
     }
 
 

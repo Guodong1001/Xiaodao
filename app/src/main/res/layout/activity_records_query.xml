@@ -62,9 +62,9 @@
         android:background="#F2F4F5"
         android:textColor="#666666"/>
 
-    <FrameLayout
-        android:id="@+id/query_frame"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/query_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
 
 </LinearLayout>
