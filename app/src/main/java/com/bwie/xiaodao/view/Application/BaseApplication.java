@@ -15,7 +15,7 @@ import org.xutils.x;
 
 public class BaseApplication extends Application {
     private static BaseApplication mApplication;
-    private String token;
+    private String token,userName,userPhone;
     private boolean isLogin;
     private SharedPreferences mSp;
 
@@ -38,6 +38,24 @@ public class BaseApplication extends Application {
     }
     public static BaseApplication getInstence(){
         return mApplication;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+        mSp.edit().putString("userName",userName).commit();
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+        mSp.edit().putString("userPhone",userPhone).commit();
     }
 
     @Override
