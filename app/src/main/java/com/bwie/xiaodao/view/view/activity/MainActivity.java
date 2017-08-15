@@ -44,7 +44,6 @@ public class MainActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 RadioButton rb = (RadioButton) group.findViewById(checkedId);
                 int i = Integer.parseInt(rb.getTag().toString());
-
                 hideFragment(i);
             }
         });

@@ -5,12 +5,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.bwie.xiaodao.view.Application.BaseApplication;
+
 /**
  * 类描述：
  * 创建人：guodongdong
  * 创建时间：2017/7/12
  */
 public abstract class BaseActivity extends AppCompatActivity {
+    private boolean isLogin;
+    private String token;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +26,24 @@ public abstract class BaseActivity extends AppCompatActivity {
         initDataFromServer();
         addFragment();
         createEvent();
+        isLogin = BaseApplication.getInstence().isLogin();
+        token = BaseApplication.getInstence().getToken();
+    }
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public void setLogin(boolean login) {
+        isLogin = login;
+        BaseApplication.getInstence().setLogin(login);
+    }
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+        BaseApplication.getInstence().setToken(token);
     }
     public abstract int setMyContentView();
 
