@@ -101,8 +101,6 @@ public class FanliFragment extends Fragment implements INet {
 
     private void loadData() {
         final Map<String,Object> map = new HashMap<>();
-//        map.put("status",1);
-//        map.put("token","2dbae1f3fda438301a33e1d0cfd97a34");
         NetUtil.getInstance().postDataFromServer(UrlUtil.STATISTICAL_INFORMATION_URL,map,this, CountCashBack.class, BaseApplication.getInstence().getToken(),1);
 
     }
@@ -112,6 +110,7 @@ public class FanliFragment extends Fragment implements INet {
     }
 
     private void initView() {
+
         mFanliTxtPlanCount.setText("返利计划（共" + mList.size() + "档）");
         mAdapterLvFanli = new AdapterLvFanli(getContext(), mList);
         mFanliLvDetails.setAdapter(mAdapterLvFanli);

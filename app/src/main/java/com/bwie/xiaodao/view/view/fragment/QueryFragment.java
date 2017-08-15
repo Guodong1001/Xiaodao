@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.Application.BaseApplication;
 import com.bwie.xiaodao.view.bean.RebateQuery;
 import com.bwie.xiaodao.view.bean.RecordQuery;
 import com.bwie.xiaodao.view.utlis.NetUtil;
@@ -71,7 +72,7 @@ public class QueryFragment extends Fragment implements INet {
             case 0:
                 mQueryTxt.setText("" + tag);
                 mByRebate = new QueryRvAdapterByRebate();
-                NetUtil.getInstance().postDataFromServer(UrlUtil.CREDITS_LOG_URL, mMap, this, RecordQuery.class, "", 1);
+                NetUtil.getInstance().postDataFromServer(UrlUtil.CREDITS_LOG_URL, mMap, this, RecordQuery.class, BaseApplication.getInstence().getToken(), 1);
                 break;
             case 1:
                 mQueryTxt.setText("" + tag);
@@ -102,7 +103,7 @@ public class QueryFragment extends Fragment implements INet {
                     @Override
                     public void run() {
 //                mRecordQuerys.addAll(recordQuery.getObject().getEntitys());
-                        NetUtil.getInstance().postDataFromServer(UrlUtil.REBATE_RECORD_QUERY_URL + "1", mMap, QueryFragment.this, RebateQuery.class, "", 2);
+                        NetUtil.getInstance().postDataFromServer(UrlUtil.REBATE_RECORD_QUERY_URL + "1", mMap, QueryFragment.this, RebateQuery.class, BaseApplication.getInstence().getToken(), 2);
                     }
                 });
                 break;
@@ -113,7 +114,7 @@ public class QueryFragment extends Fragment implements INet {
                     public void run() {
 //                        mRebatedQuerys.addAll(query.getObject());
                         mByRebate.notifyDataSetChanged();
-                        NetUtil.getInstance().postDataFromServer(UrlUtil.REBATE_RECORD_QUERY_URL + "0", mMap, QueryFragment.this, RebateQuery.class, "", 3);
+                        NetUtil.getInstance().postDataFromServer(UrlUtil.REBATE_RECORD_QUERY_URL + "0", mMap, QueryFragment.this, RebateQuery.class, BaseApplication.getInstence().getToken(), 3);
                     }
                 });
                 break;
