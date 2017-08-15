@@ -4,7 +4,30 @@
     android:layout_height="match_parent">
 
     <include
-        layout="@layout/header_wode"
+        android:id="@+id/details_include"
+        layout="@layout/header_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/px22"
+            android:text="本月"
+            android:textSize="@dimen/px28"
+            android:layout_marginLeft="@dimen/px30"
+            />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/record_recycler"
+            android:layout_marginTop="@dimen/px10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
 </LinearLayout>
