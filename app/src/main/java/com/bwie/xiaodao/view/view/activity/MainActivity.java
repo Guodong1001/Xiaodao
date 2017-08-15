@@ -11,7 +11,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.bwie.xiaodao.R;
-import com.bwie.xiaodao.view.utlis.NetUtil;
 import com.bwie.xiaodao.view.view.fragment.FanliFragment;
 import com.bwie.xiaodao.view.view.fragment.FujinFragment;
 import com.bwie.xiaodao.view.view.fragment.HomeFragment;
@@ -44,7 +43,6 @@ public class MainActivity extends BaseActivity {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 RadioButton rb = (RadioButton) group.findViewById(checkedId);
                 int i = Integer.parseInt(rb.getTag().toString());
-
                 hideFragment(i);
             }
         });
