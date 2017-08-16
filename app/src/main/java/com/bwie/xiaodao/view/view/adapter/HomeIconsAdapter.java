@@ -15,7 +15,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * 类描述：分类图标的适配器
@@ -42,7 +41,7 @@ public class HomeIconsAdapter extends RecyclerView.Adapter<HomeIconsAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         Glide.with(mContext)
                 .load(mIconsList.get(position).getPicture())
-                .bitmapTransform(new CropCircleTransformation(mContext))
+//                 .bitmapTransform(new CropCircleTransformation(mContext))
                 .into(holder.image);
         holder.mTextView.setText(mIconsList.get(position).getCategoryName());
     }
