@@ -51,9 +51,10 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'jp.wasabeef:glide-transformations:2.0.2'
-    // If you want to use the GPU Filters
     compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
     compile 'com.github.Othershe:CalendarView:1.0.1'
+//    compile 'com.github.bumptech.glide:glide:4.0.0'
+    compile 'com.github.bumptech.glide:glide:4.0.0'
     compile 'com.yinglan.scrolllayout:scrolllayout:1.0.2'
-
+    compile 'org.greenrobot:eventbus:3.0.0'
 }
