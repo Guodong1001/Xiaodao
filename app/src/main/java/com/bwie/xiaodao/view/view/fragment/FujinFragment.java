@@ -70,7 +70,7 @@ public class FujinFragment extends Fragment{
         mLocationClient = new LocationClient(getActivity().getApplicationContext());
         //注册监听函数
         mLocationClient.registerLocationListener(myListener);
-
+//kk
         //配置定位参数
         initLocation();
         //开始定位
