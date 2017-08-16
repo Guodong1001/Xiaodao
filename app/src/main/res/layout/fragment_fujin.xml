@@ -1,30 +1,44 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="3000dp"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context=".view.view.fragment.FujinFragment">
-
-    <ScrollView
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="3000dp"
+        android:background="#ffffff"
+        android:fitsSystemWindows="true"
+        >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            >
             <!--百度地图-->
+            <com.yinglan.scrolllayout.ScrollLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px260"
+                app:isSupportExit="true"
+                app:maxOffset="260dp"
+                app:minOffset="50dp"
+                >
+
             <com.baidu.mapapi.map.MapView
                 android:id="@+id/bmapView"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/px260"
                 android:clickable="true" />
+            </com.yinglan.scrolllayout.ScrollLayout>
             <!--附近-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/px140"
-                android:orientation="horizontal">
-
+                android:orientation="horizontal"
+                >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -74,7 +88,7 @@
                 <ImageView
                     android:id="@+id/fujin_gengduo"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/px88"
+                    android:layout_height="@dimen/px30"
                     android:layout_gravity="center"
                     android:layout_weight="5"
                     android:src="@drawable/gengduo" />
@@ -99,7 +113,7 @@
                         android:id="@+id/fujin_image_keai"
                         android:layout_width="@dimen/px218"
                         android:layout_height="@dimen/px228"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/timg"
                         />
                     <TextView
                         android:id="@+id/fujin_tex_keai"
@@ -131,7 +145,7 @@
                         android:id="@+id/fujin_image_balashi"
                         android:layout_width="@dimen/px218"
                         android:layout_height="@dimen/px228"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/a"
                         />
                     <TextView
                         android:id="@+id/fujin_tex_balashi"
@@ -163,7 +177,7 @@
                         android:id="@+id/fujin_image_jinfushan"
                         android:layout_width="@dimen/px218"
                         android:layout_height="@dimen/px228"
-                        android:src="@mipmap/ic_launcher"
+                        android:src="@drawable/b"
                         />
                     <TextView
                         android:id="@+id/fujin_tex_jinfushan"
@@ -185,11 +199,14 @@
                         />
                 </LinearLayout>
             </LinearLayout>
-            <FrameLayout
-                android:id="@+id/fujin_frame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-             />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
             <RadioGroup
                 android:id="@+id/fujin_rg"
                 android:layout_width="match_parent"
@@ -207,6 +224,7 @@
                     android:textColor="#c20000"
                     android:button="@null"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:tag="0"
                     />
                 <RadioButton
@@ -218,6 +236,7 @@
                     android:button="@null"
                     android:gravity="center"
                     android:tag="1"
+                    android:layout_weight="1"
                     />
                 <RadioButton
                     android:id="@+id/rb_shenghuo"
@@ -228,6 +247,7 @@
                     android:button="@null"
                     android:gravity="center"
                     android:tag="2"
+                    android:layout_weight="1"
                     />
                 <RadioButton
                     android:id="@+id/rb_jiudian"
@@ -238,6 +258,7 @@
                     android:button="@null"
                     android:gravity="center"
                     android:tag="3"
+                    android:layout_weight="1"
                     />
                 <RadioButton
                     android:id="@+id/rb_all"
@@ -248,14 +269,14 @@
                     android:button="@null"
                     android:gravity="center"
                     android:tag="4"
+                    android:layout_weight="1"
                     />
             </RadioGroup>
-            <android.support.v4.view.ViewPager
-                android:id="@+id/fujin_vp"
+            <FrameLayout
+                android:id="@+id/fujin_frame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </android.support.v4.view.ViewPager>
+            </FrameLayout>
         </LinearLayout>
-    </ScrollView>
-
-</RelativeLayout>
+    </android.support.design.widget.AppBarLayout>
+</android.support.design.widget.CoordinatorLayout>
