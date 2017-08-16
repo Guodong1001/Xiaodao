@@ -11,6 +11,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +27,9 @@ import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.model.bean.HomeGoodsShowBean;
+import com.bwie.xiaodao.view.model.bean.HomeNearBean;
 import com.bwie.xiaodao.view.view.activity.home.CityActivity;
+import com.bwie.xiaodao.view.view.adapter.HomeFujinRvAdapter;
 import com.bwie.xiaodao.view.view.customs.GlideImageLoader;
 import com.bwie.xiaodao.view.view.fragment.home.CategoryIconOne;
 import com.bwie.xiaodao.view.view.fragment.home.CategoryIconTwo;
@@ -103,10 +107,15 @@ public class HomeFragment extends Fragment {
     RadioButton mHomeRbAll;
     @BindView(R.id.home_rg)
     RadioGroup mHomeRg;
+    @BindView(R.id.home_fujin_rv)
+    RecyclerView mHomeFujinRecyclerView;
     Unbinder unbinder;
     private View view;
     //banner的list集合
     private List<String> mBannerList;
+    //设置附近旺铺的数据
+    private List<HomeNearBean> mNearList;
+
     /**
      * 设置选项卡的总数
      */
@@ -118,6 +127,7 @@ public class HomeFragment extends Fragment {
     private static final int REQUEST_CODE = 200;
     //分类展示的list
     private List<HomeGoodsShowBean> mShowBeanList;
+    private HomeFujinRvAdapter mFujinRvAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -132,10 +142,24 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         addShowBean();
+        addFujinData();
         addShowFragment();
         initBannerImg();
         initview();
         event();
+    }
+
+    private void addFujinData() {
+        mNearList = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            HomeNearBean nearBean = new HomeNearBean("http://dadao-file.oss-cn-beijing.aliyuncs.com/dadao/1502700958933.jpg", "海友良品酒店", "[安贞门]");
+            mNearList.add(nearBean);
+        }
+        //给附近旺铺设置数据
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        mHomeFujinRecyclerView.setLayoutManager(manager);
+        mFujinRvAdapter = new HomeFujinRvAdapter(getContext(), mNearList);
+        mHomeFujinRecyclerView.setAdapter(mFujinRvAdapter);
     }
 
     private void addShowBean() {
@@ -149,6 +173,7 @@ public class HomeFragment extends Fragment {
         FragmentTransaction ft = fm.beginTransaction();
         for (int i = 0; i < mShowFragments.length; i++) {
             mShowFragments[i] = new HomeClassShowFragments();
+            mShowFragments[i].setTag(i);
             ft.add(R.id.home_class_show_framelayout, mShowFragments[i]);
             if (i != 0) {
                 ft.hide(mShowFragments[i]);
@@ -156,6 +181,8 @@ public class HomeFragment extends Fragment {
         }
         ft.commit();
     }
+
+
 
     private void initBannerImg() {
 
@@ -196,8 +223,27 @@ public class HomeFragment extends Fragment {
                 return TAB_COUNT;
             }
         });
+        mHomeClassViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == 1){
+
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
 //        //默认设置当前页是第一页
-//        mHomeClassViewpager.setCurrentItem(0);
+        mHomeClassViewpager.setCurrentItem(0);
     }
 
     @Override
@@ -226,7 +272,16 @@ public class HomeFragment extends Fragment {
                 break;
             case R.id.home_rg:
                 break;
+            case R.id.home_richscan:
+                //扫描二维码
+                saoyisao();
+                break;
         }
+    }
+
+    private void saoyisao() {
+
+
     }
 
     private void switchCity() {
@@ -274,8 +329,6 @@ public class HomeFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
                 int i = Integer.parseInt(radioButton.getTag().toString());
-//                RadioButton rb = (RadioButton) group.findViewById(checkedId);
-//                int i = Integer.parseInt(rb.getTag().toString());
                 for (int j = 0; j < group.getChildCount(); j++) {
                     //找到radiogroup里的子控件
                     RadioButton rb = (RadioButton) mHomeRg.getChildAt(j);

@@ -8,4 +8,6 @@ package com.bwie.xiaodao.view.utlis.inet;
 public interface INet<T> {
     void onSuccess(T t,int tag);
     void onError(String error);
+
+
 }
