@@ -88,7 +88,6 @@
     <dimen name="px77">38.5dp</dimen>
     <dimen name="px125">62.5dp</dimen>
     <dimen name="px284">142dp</dimen>
-    <dimen name="px690">345dp</dimen>
     <dimen name="px694">347dp</dimen>
     <dimen name="px653">326.5dp</dimen>
 </resources>
