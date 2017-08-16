@@ -77,9 +77,10 @@ public class RecordConsumptionActivity extends BaseActivity{
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(RecordConsumptionActivity.this, "出来啊", Toast.LENGTH_SHORT).show();
                 View view = View.inflate(RecordConsumptionActivity.this, R.layout.record_popview, null);
                 PopupWindow popupWindow = new PopupWindow(view, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                popupWindow.setWidth(284);
+                popupWindow.setHeight(224);
                 popupWindow.setTouchable(true);
                 popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 popupWindow.setFocusable(true);
