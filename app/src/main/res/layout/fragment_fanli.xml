@@ -79,6 +79,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/fanli_layout_pay"
             android:layout_width="match_parent"
             android:layout_height="@dimen/px88"
             android:layout_marginBottom="@dimen/px20"
@@ -96,12 +97,13 @@
                 android:textSize="@dimen/px_t24"/>
 
             <TextView
+                android:id="@+id/fanli_txt_weixin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@mipmap/ic_launcher"
                 android:gravity="center_vertical"
                 android:text="微信"
-                android:textColor="#666666"
+                android:textColor="#7EC7FF"
                 android:textSize="@dimen/px_t24"/>
 
             <TextView
@@ -115,12 +117,13 @@
                 android:textSize="@dimen/px_t24"/>
 
             <TextView
+                android:id="@+id/fanli_txt_alipay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@mipmap/ic_launcher"
                 android:gravity="center_vertical"
                 android:text="支付宝"
-                android:textColor="#666666"
+                android:textColor="#7EC7FF"
                 android:textSize="@dimen/px_t24"/>
 
             <RelativeLayout

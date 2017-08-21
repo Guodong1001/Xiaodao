@@ -19,6 +19,7 @@ import com.bwie.xiaodao.view.bean.CountCashBack;
 import com.bwie.xiaodao.view.utlis.NetUtil;
 import com.bwie.xiaodao.view.utlis.UrlUtil;
 import com.bwie.xiaodao.view.utlis.inet.INet;
+import com.bwie.xiaodao.view.view.activity.mine.CardPackagePageActivity;
 import com.bwie.xiaodao.view.view.activity.rebate.CalendarActivity;
 import com.bwie.xiaodao.view.view.activity.rebate.IllustrateActivity;
 import com.bwie.xiaodao.view.view.activity.rebate.RecordsQueryActivity;
@@ -100,8 +101,8 @@ public class FanliFragment extends Fragment implements INet {
     }
 
     private void loadData() {
-        final Map<String,Object> map = new HashMap<>();
-        NetUtil.getInstance().postDataFromServer(UrlUtil.STATISTICAL_INFORMATION_URL,map,this, CountCashBack.class, BaseApplication.getInstence().getToken(),1);
+        final Map<String, Object> map = new HashMap<>();
+        NetUtil.getInstance().postDataFromServer(UrlUtil.STATISTICAL_INFORMATION_URL, map, this, CountCashBack.class, BaseApplication.getInstence().getToken(), 1);
 
     }
 
@@ -118,7 +119,7 @@ public class FanliFragment extends Fragment implements INet {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), IllustrateActivity.class);
-                intent.putExtra("index",position);
+                intent.putExtra("index", position);
                 startActivity(intent);
             }
         });
@@ -130,7 +131,7 @@ public class FanliFragment extends Fragment implements INet {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.fanli_txt_query, R.id.fanli_txt_show_more})
+    @OnClick({R.id.fanli_txt_query, R.id.fanli_txt_show_more, R.id.fanli_layout_pay})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.fanli_txt_query:
@@ -147,39 +148,47 @@ public class FanliFragment extends Fragment implements INet {
                     mAdapterLvFanli.notifyDataSetChanged();
                 }
                 break;
+            case R.id.fanli_layout_pay:
+                Intent intent = new Intent(getContext(), CardPackagePageActivity.class);
+                intent.putExtra("title","卡包");
+                startActivityForResult(intent,0);
+                break;
+
         }
     }
-    public static List<CashbackPlan.ObjectBean> getData(){
+
+    public static List<CashbackPlan.ObjectBean> getData() {
         return mList;
     }
+
     @OnClick(R.id.fanli_goto_calendar)
     public void onViewClicked() {
         startActivity(new Intent(getActivity(), CalendarActivity.class));
     }
 
     @Override
-    public void onSuccess(Object o,int tag) {
-        if (tag==1){
+    public void onSuccess(Object o, int tag) {
+        if (tag == 1) {
             final CountCashBack countCashBack = (CountCashBack) o;
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    NetUtil.getInstance().postDataFromServer(UrlUtil.REBATE_PROGRAM_URL,new HashMap<>(),FanliFragment.this, CashbackPlan.class, BaseApplication.getInstence().getToken(),2);
+                    NetUtil.getInstance().postDataFromServer(UrlUtil.REBATE_PROGRAM_URL, new HashMap<>(), FanliFragment.this, CashbackPlan.class, BaseApplication.getInstence().getToken(), 2);
                     float f = countCashBack.getObject().getCountReally();
                     mFanliTxtMoney.setText(String.format("%.2f", f));
-                    mFanliTxtStrokeCount.setText(countCashBack.getObject().getWaitCashback()+"");
+                    mFanliTxtStrokeCount.setText(countCashBack.getObject().getWaitCashback() + "");
                 }
             });
-        }else if (tag == 2){
+        } else if (tag == 2) {
             final CashbackPlan cashbackPlan = (CashbackPlan) o;
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     mList.addAll(cashbackPlan.getObject());
                     mFanliTxtPlanCount.setText("返利计划（共" + mList.size() + "档）");
-                    if (mList.size()<=2){
+                    if (mList.size() <= 2) {
                         mFanliTxtShowMore.setClickable(false);
-                    }else{
+                    } else {
                         mFanliTxtShowMore.setClickable(true);
                     }
                     mAdapterLvFanli.notifyDataSetChanged();
@@ -193,4 +202,5 @@ public class FanliFragment extends Fragment implements INet {
     public void onError(String error) {
 
     }
+
 }
