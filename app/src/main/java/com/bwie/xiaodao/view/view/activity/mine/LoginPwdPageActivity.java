@@ -1,6 +1,7 @@
 package com.bwie.xiaodao.view.view.activity.mine;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -171,7 +172,7 @@ public class LoginPwdPageActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onSuccess(LoginPasswordBean loginPasswordBean, int tag) {
-        if (loginPasswordBean == null) {
+        if (loginPasswordBean.getObject() == null) {
             LoginPrompt.setVisibility(View.VISIBLE);
             login.setEnabled(false);
             LoginPrompt.setText("用户名密码错误");

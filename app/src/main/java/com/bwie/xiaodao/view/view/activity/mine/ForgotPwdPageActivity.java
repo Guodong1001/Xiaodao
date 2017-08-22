@@ -5,6 +5,8 @@ import android.widget.TextView;
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.view.activity.BaseActivity;
 
+import java.math.BigDecimal;
+
 /**
  * Created by 李冯壮 on 2017/8/11.
  */

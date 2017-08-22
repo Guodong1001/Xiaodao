@@ -33,8 +33,8 @@ import java.util.List;
 public class CardPackagePageActivity extends BaseActivity {
 
     private static final String TAG = "TAG";
-    private TextView title, addBankCard, payPwd01, payPwd02, payPwd03, payPwd04, payPwd05, payPwd06;
-    private LinearLayout wxBinging, zfbBinding;
+    private TextView title, payPwd01, payPwd02, payPwd03, payPwd04, payPwd05, payPwd06;
+    private LinearLayout wxBinging, zfbBinding,addBankCard;
     private RecyclerView bankCardList;
     private List<BankCardBean> list;
     private BandCardListAdapter adapter;
@@ -81,7 +81,7 @@ public class CardPackagePageActivity extends BaseActivity {
         wxBinging = (LinearLayout) findViewById(R.id.binding_weixin_payment);
         zfbBinding = (LinearLayout) findViewById(R.id.binding_zhifubao_payment);
         bankCardList = (RecyclerView) findViewById(R.id.bank_card_list);
-        addBankCard = (TextView) findViewById(R.id.add_bank_card);
+        addBankCard = (LinearLayout) findViewById(R.id.add_bank_card);
         texts = new TextView[6];
 
         //跳转过来将标题改为目前页面名字
@@ -153,6 +153,13 @@ public class CardPackagePageActivity extends BaseActivity {
             }
         });
         bankCardList.setAdapter(adapter);
+
+        addBankCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
