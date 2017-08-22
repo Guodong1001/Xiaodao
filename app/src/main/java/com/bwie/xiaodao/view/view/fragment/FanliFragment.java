@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
@@ -74,9 +75,14 @@ public class FanliFragment extends Fragment implements INet {
     Unbinder unbinder;
     @BindView(R.id.fanli_txt_show_more)
     TextView mFanliTxtShowMore;
+    @BindView(R.id.fanli_layout_pay)
+    LinearLayout mFanliLayoutPay;
+    @BindView(R.id.fanli_layout_rebate_money)
+    LinearLayout mFanliLayoutRebateMoney;
     private View view;
     private static List<CashbackPlan.ObjectBean> mList;
     private AdapterLvFanli mAdapterLvFanli;
+    private boolean mIsLogin;
 
     public FanliFragment() {
         // Required empty public constructor
@@ -96,23 +102,33 @@ public class FanliFragment extends Fragment implements INet {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initData();
-        loadData();
         initView();
     }
 
-    private void loadData() {
-        final Map<String, Object> map = new HashMap<>();
-        NetUtil.getInstance().postDataFromServer(UrlUtil.STATISTICAL_INFORMATION_URL, map, this, CountCashBack.class, BaseApplication.getInstence().getToken(), 1);
-
-    }
 
     private void initData() {
+        mIsLogin = BaseApplication.getInstence().isLogin();
         mList = new ArrayList<>();
+
     }
 
     private void initView() {
-
-        mFanliTxtPlanCount.setText("返利计划（共" + mList.size() + "档）");
+        if (mIsLogin) {
+            loadData();
+            mFanliLayoutPay.setClickable(true);
+            mFanliLayoutRebateMoney.setVisibility(View.VISIBLE);
+        } else {
+            mFanliLayoutPay.setClickable(false);
+            mFanliLayoutRebateMoney.setVisibility(View.INVISIBLE);
+        }
+        if (mList.size() <= 2) {
+            mFanliTxtPlanCount.setVisibility(View.GONE);
+            mFanliTxtShowMore.setVisibility(View.GONE);
+        } else {
+            mFanliTxtPlanCount.setVisibility(View.VISIBLE);
+            mFanliTxtShowMore.setVisibility(View.VISIBLE);
+            mFanliTxtPlanCount.setText("返利计划（共" + mList.size() + "档）");
+        }
         mAdapterLvFanli = new AdapterLvFanli(getContext(), mList);
         mFanliLvDetails.setAdapter(mAdapterLvFanli);
         mFanliLvDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -129,6 +145,12 @@ public class FanliFragment extends Fragment implements INet {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    private void loadData() {
+        final Map<String, Object> map = new HashMap<>();
+        NetUtil.getInstance().postDataFromServer(UrlUtil.STATISTICAL_INFORMATION_URL, map, this, CountCashBack.class, BaseApplication.getInstence().getToken(), 1);
+
     }
 
     @OnClick({R.id.fanli_txt_query, R.id.fanli_txt_show_more, R.id.fanli_layout_pay})
@@ -150,8 +172,8 @@ public class FanliFragment extends Fragment implements INet {
                 break;
             case R.id.fanli_layout_pay:
                 Intent intent = new Intent(getContext(), CardPackagePageActivity.class);
-                intent.putExtra("title","卡包");
-                startActivityForResult(intent,0);
+                intent.putExtra("title", "卡包");
+                startActivityForResult(intent, 0);
                 break;
 
         }

@@ -38,7 +38,7 @@
                 android:layout_alignStart="@+id/textView"
                 android:layout_below="@+id/textView"
                 android:layout_marginTop="@dimen/px44"
-                android:text="2199.00"
+                android:text="0.00"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/px_t80"/>
 
@@ -61,7 +61,7 @@
                 android:layout_alignBottom="@+id/textView3"
                 android:layout_marginStart="@dimen/px60"
                 android:layout_toEndOf="@+id/textView3"
-                android:text="5"
+                android:text="0"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/px_t36"/>
 
@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/px34"
                 android:layout_marginTop="@dimen/px30"
-                android:text="返利计划（共9档）"
+                android:text="返利计划（共0档）"
                 android:textColor="#666666"
                 android:textSize="@dimen/px_t28"/>
 
@@ -200,53 +200,58 @@
                 android:id="@+id/fanli_txt_rebate_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/px10"
-                android:layout_marginTop="@dimen/px38"
-                android:layout_toEndOf="@+id/fanli_img_calendar"
-                android:text="近7天有2笔返利"
+                android:text="近7天无事上奏"
                 android:textColor="#666666"
-                android:textSize="@dimen/px_t24"/>
-
-            <TextView
-                android:id="@+id/fanli_txt_date"
+                android:textSize="@dimen/px_t24"
+                android:layout_alignTop="@+id/fanli_img_calendar"
+                android:layout_toEndOf="@+id/fanli_img_calendar"/>
+            <LinearLayout
+                android:id="@+id/fanli_layout_rebate_money"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/fanli_txt_rebate_7"
                 android:layout_below="@+id/fanli_txt_rebate_7"
-                android:text="5月25日（明天）"
-                android:textColor="#999999"
-                android:textSize="@dimen/px_t24"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/fanli_txt_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5月25日（明天）"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/px_t24"/>
 
-            <TextView
-                android:id="@+id/rebate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/fanli_txt_date"
-                android:layout_toEndOf="@+id/fanli_txt_date"
-                android:text="返利"
-                android:textColor="#999999"
-                android:textSize="@dimen/px_t24"/>
+                <TextView
+                    android:id="@+id/rebate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/fanli_txt_date"
+                    android:layout_toEndOf="@+id/fanli_txt_date"
+                    android:text="返利"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/px_t24"/>
 
-            <TextView
-                android:id="@+id/fanli_txt_money_amounts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/fanli_txt_date"
-                android:layout_toEndOf="@+id/rebate"
-                android:text=" 230 "
-                android:textColor="#666666"
-                android:textSize="@dimen/px_t28"
-                />
+                <TextView
+                    android:id="@+id/fanli_txt_money_amounts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/fanli_txt_date"
+                    android:layout_toEndOf="@+id/rebate"
+                    android:text=" 230 "
+                    android:textColor="#666666"
+                    android:textSize="@dimen/px_t28"
+                    />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/fanli_txt_date"
-                android:layout_toEndOf="@+id/fanli_txt_money_amounts"
-                android:text="元"
-                android:textColor="#999999"
-                android:textSize="@dimen/px_t24"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/fanli_txt_date"
+                    android:layout_toEndOf="@+id/fanli_txt_money_amounts"
+                    android:text="元"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/px_t24"/>
+            </LinearLayout>
+
+
 
             <ImageView
                 android:id="@+id/fanli_img_goto_calendar"

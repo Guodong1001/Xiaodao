@@ -1,19 +1,15 @@
 package com.bwie.xiaodao.view.view.activity.mine;
 
 import android.text.Editable;
-import android.text.InputType;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.model.bean.LoginPasswordBean;
@@ -22,9 +18,7 @@ import com.bwie.xiaodao.view.utlis.NetUtil;
 import com.bwie.xiaodao.view.utlis.inet.INet;
 import com.bwie.xiaodao.view.view.activity.BaseActivity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -152,7 +146,7 @@ public class LoginPwdPageActivity extends BaseActivity implements View.OnClickLi
             case R.id.login :
                 map.put("merchant","0");
                 //请求数据
-                NetUtil.getInstance().postDataFromServer("http://123.57.33.185:8088/user/login",map,this,LoginPasswordBean.class,null,0);
+                NetUtil.getInstance().postDataFromServer("http://123.57.33.185:8088/user/login",map,this,LoginPasswordBean.class,getToken(),0);
 
                 break;
         }
