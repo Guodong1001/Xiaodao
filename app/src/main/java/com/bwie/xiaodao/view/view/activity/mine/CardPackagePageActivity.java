@@ -21,11 +21,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.Application.BaseApplication;
 import com.bwie.xiaodao.view.bean.BankCardBean;
+import com.bwie.xiaodao.view.model.bean.BankCardMessageBean;
+import com.bwie.xiaodao.view.model.bean.LoginPasswordBean;
+import com.bwie.xiaodao.view.presenter.MinePresenter;
 import com.bwie.xiaodao.view.view.activity.BaseActivity;
 import com.bwie.xiaodao.view.view.adapter.BandCardListAdapter;
 import com.bwie.xiaodao.view.view.adapter.NumberKeyBoardAdapter;
 import com.bwie.xiaodao.view.view.iview.OnClickListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +71,10 @@ public class CardPackagePageActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        //初始化eventbus
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         list = new ArrayList<>();
         strList = new ArrayList<>();
         strList.add("1");
@@ -108,7 +120,6 @@ public class CardPackagePageActivity extends BaseActivity {
                 texts[4] = payPwd05;
                 texts[5] = payPwd06;
                 closePopupwindow = (ImageView) pop.findViewById(R.id.close_popupwindows);
-
                 bumberKeyBoard = (RecyclerView) pop.findViewById(R.id.number_keyboard);
                 bumberKeyBoard.setLayoutManager(new GridLayoutManager(CardPackagePageActivity.this, 3, GridLayoutManager.VERTICAL, false));
                 bumberKeyBoard.addItemDecoration(new DividerItemDecoration(CardPackagePageActivity.this, DividerItemDecoration.VERTICAL));
@@ -157,7 +168,7 @@ public class CardPackagePageActivity extends BaseActivity {
         addBankCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MinePresenter.getInstance().intentTo(CardPackagePageActivity.this, AddBankCardPageActivity.class,"添加银行卡");
             }
         });
     }
@@ -166,5 +177,18 @@ public class CardPackagePageActivity extends BaseActivity {
     public void createEvent() {
 
     }
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(BankCardMessageBean event) {
+//        String bankCardAccount = event.getBankCardNumber().substring(12, 15);
+//        list.add(new BankCardBean(R.mipmap.ic_launcher_round,event.getOpenBankKind(),bankCardAccount));
+//        Log.e(TAG, "onMessageEvent: "+list.size() );
+//        boardAdapter.notifyDataSetChanged();
+    }
 }
