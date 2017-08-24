@@ -36,7 +36,7 @@
                 android:layout_weight="1"
                 android:text="798咖啡"
                 android:textColor="#333333"
-                android:textSize="@dimen/px_t24" />
+                android:textSize="@dimen/px_t28" />
 
             <LinearLayout
                 android:layout_width="match_parent"

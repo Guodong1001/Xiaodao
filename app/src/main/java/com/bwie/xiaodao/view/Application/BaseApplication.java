@@ -15,8 +15,18 @@ import org.xutils.x;
 
 public class BaseApplication extends Application {
     private static BaseApplication mApplication;
-    private String token;
+    private String token,userName,userPhone;
+    private boolean isLogin;
     private SharedPreferences mSp;
+
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public void setLogin(boolean login) {
+        isLogin = login;
+        mSp.edit().putBoolean("isLogin",login).commit();
+    }
 
     public String getToken() {
         return token;
@@ -30,6 +40,24 @@ public class BaseApplication extends Application {
         return mApplication;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+        mSp.edit().putString("userName",userName).commit();
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+        mSp.edit().putString("userPhone",userPhone).commit();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,5 +66,6 @@ public class BaseApplication extends Application {
         x.Ext.setDebug(BuildConfig.DEBUG);
         mSp = getSharedPreferences("config", MODE_PRIVATE);
         token = mSp.getString("token","");
+        isLogin = mSp.getBoolean("isLogin",false);
     }
 }

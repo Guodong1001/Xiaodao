@@ -25,7 +25,6 @@
             android:background="@drawable/balance_radio_group"
             android:button="@null"
             android:gravity="center"
-            android:checked="true"
             android:text="全部"
             android:textColor="@drawable/balance_radio_text" />
 

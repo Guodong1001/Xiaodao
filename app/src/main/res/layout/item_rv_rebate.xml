@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/px170"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px40"
+        android:background="#C20000"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/fanli_lv_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/fanli_lv_item_title"
+            android:layout_alignBottom="@+id/fanli_lv_item_title"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:text="20170621 12:34"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/px_t22"/>
+
+        <TextView
+            android:id="@+id/fanli_lv_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/px30"
+            android:text="A2017023"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/px_t22"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px130"
+        android:background="#DDDDDD"
+        android:paddingBottom="@dimen/px1"
+        android:paddingLeft="@dimen/px1"
+        android:paddingRight="@dimen/px1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
+
+            <LinearLayout
+                android:id="@+id/rebate_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/px30">
+
+                <TextView
+                    android:id="@+id/item_rv_rebated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="已返利："
+                    android:textColor="#333333"
+
+                    android:textSize="@dimen/px_t28"/>
+
+                <TextView
+                    android:id="@+id/rebate_rv_item_txt_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50.00"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/px_t36"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/yuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="元"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/px_t28"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/item_rv_rebate_reality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="实到："
+                    android:textColor="#333333"
+                    android:textSize="@dimen/px_t28"/>
+
+                <TextView
+                    android:id="@+id/rebate_rv_item_txt_money_reality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50.00"
+                    android:textColor="#C20000"
+                    android:textSize="@dimen/px_t36"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/yuan1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/px30"
+                    android:text="元"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/px_t28"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/pay_taxes_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/rebate_layout"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                    android:id="@+id/item_rv_rate_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/px10"
+                    android:text="代缴税："
+                    android:textColor="#999999"
+                    android:textSize="@dimen/px_t22"/>
+
+                <TextView
+                    android:id="@+id/rebate_rv_item_txt_money_payment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50.00"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/px_t22"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/yuan3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="元"
+                    android:textColor="#999999"
+                    android:textSize="@dimen/px_t22"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
