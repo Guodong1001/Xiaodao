@@ -37,6 +37,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -176,6 +178,16 @@ public class FanliFragment extends Fragment implements INet {
                 startActivityForResult(intent, 0);
                 break;
 
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==0&&resultCode==RESULT_OK){
+            if (data!=null){
+
+            }
         }
     }
 
