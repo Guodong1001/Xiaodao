@@ -1,5 +1,7 @@
 package com.bwie.xiaodao.view.Moldle;
 
+import java.io.Serializable;
+
 /**
  * 类描述：
  * 创建人：xiaoqian
@@ -7,7 +9,7 @@ package com.bwie.xiaodao.view.Moldle;
  */
 
 
-public class Food {
+public class Food implements Serializable{
     private int image;
     private String name;
     private int money;
