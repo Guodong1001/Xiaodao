@@ -57,9 +57,15 @@ public class CategoryIconOne extends Fragment implements INet<HomeIconsBean> {
         super.onActivityCreated(savedInstanceState);
         //初始化recyclerview
         initView();
+
+        initOtherAction();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         //获取数据
         initData();
-        initOtherAction();
     }
 
     private void initOtherAction() {
@@ -106,7 +112,8 @@ public class CategoryIconOne extends Fragment implements INet<HomeIconsBean> {
     }
 
     @Override
-    public void onSuccess(final HomeIconsBean homeIconsBean,int tag) {
+    public void onSuccess(final HomeIconsBean homeIconsBean, int tag) {
+
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -117,6 +124,7 @@ public class CategoryIconOne extends Fragment implements INet<HomeIconsBean> {
                 mAdapter.notifyDataSetChanged();
             }
         });
+
 
     }
 

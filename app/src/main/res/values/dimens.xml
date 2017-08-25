@@ -46,6 +46,9 @@
     <dimen name="px56">28dp</dimen>
     <dimen name="px446">223dp</dimen>
     <dimen name="px228">114dp</dimen>
+    <dimen name="px270">135dp</dimen>
+    <dimen name="px212">106dp</dimen>
+
     <dimen name="px_t23">11.5sp</dimen>
 
     <dimen name="px28">14dp</dimen>

@@ -90,8 +90,11 @@ public class HomeClassShowFragments extends Fragment implements INet<GoodsShowBe
 
     @Override
     public void onSuccess(GoodsShowBean goodsShowBean, int tag) {
-        mList.add(goodsShowBean.getObject());
-        adapter.notifyDataSetChanged();
+        if(tag == 0){
+            mList.add(goodsShowBean.getObject());
+            adapter.notifyDataSetChanged();
+        }
+
 
     }
 

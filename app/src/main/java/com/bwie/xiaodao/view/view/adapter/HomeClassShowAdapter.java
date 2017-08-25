@@ -9,14 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.model.bean.GoodsShowBean;
-import com.bwie.xiaodao.view.utlis.DpUtils;
 
 import java.util.List;
-
-import jp.wasabeef.glide.transformations.MaskTransformation;
 
 /**
  * 类描述：
@@ -46,14 +42,15 @@ public class HomeClassShowAdapter extends RecyclerView.Adapter<HomeClassShowAdap
     public void onBindViewHolder(MyHolder holder, int position) {
         GoodsShowBean.ObjectBean bean = mList.get(position);
 
-        int width = DpUtils.dip2px(mContext, 150.0f);
-        int height = DpUtils.dip2px(mContext, 100.0f);
+//        int width = DpUtils.dip2px(mContext, 150.0f);
+//        int height = DpUtils.dip2px(mContext, 100.0f);
         Glide.with(mContext)
                 .load(bean.getPicture())
-                .override(width, height)
-                .bitmapTransform(new CenterCrop(mContext),
-                        new MaskTransformation(mContext, R.drawable.rounded_rectangle))
                 .into(holder.goodsImg);
+//                .override(width, height)
+//                .bitmapTransform(new CenterCrop(mContext),
+//                        new MaskTransformation(mContext, R.drawable.rounded_rectangle))
+//                .into(holder.goodsImg);
 //        Glide.with(mContext)
 //                .load(bean.getPicture())
 //                .bitmapTransform(new RoundedCornersTransformation(mContext, 30, 0,

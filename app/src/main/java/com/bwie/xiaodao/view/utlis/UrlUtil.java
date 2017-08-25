@@ -23,6 +23,12 @@ public class UrlUtil {
     public static final String GOODS_SHOW_URL = BASE_URL+"/findShopById"; //城市切换
 
 
+    public static final String BANNER_URL = BASE_URL+"/listRecommendPositions"; //首页轮播图
+
+
+
+
+
 
 
 

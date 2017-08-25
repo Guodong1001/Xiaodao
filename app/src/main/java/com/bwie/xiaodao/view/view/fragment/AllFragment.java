@@ -20,6 +20,8 @@ public class AllFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view1=View.inflate(getActivity(), R.layout.fujin_all,null);
+
+
         return view1;
     }
 }

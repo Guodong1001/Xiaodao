@@ -37,13 +37,16 @@ public class CityActivity extends AppCompatActivity implements INet<CityBean> {
     ImageView mBack;
     @BindView(R.id.titles)
     TextView mTitles;
+    @BindView(R.id.tv_title)
+    TextView mTvTitle;
     private ListView sortListView;
     private SideBar sideBar;
-    private TextView dialog, mTvTitle;
+    private TextView dialog;
     private SortAdapter adapter;
     private EditTextWithDel mEtCityName;
     private List<CitySortModel> mSourceDateList;
     private List<CityBean.ObjectBean> cityList;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,20 +55,30 @@ public class CityActivity extends AppCompatActivity implements INet<CityBean> {
         setContentView(R.layout.activity_city);
         ButterKnife.bind(this);
         mTitles.setText("切换城市");
+        initData();
         initDataFromServer();
         initViews();
     }
 
+    private void initData() {
+        intent = getIntent();
+        String thisCity = intent.getStringExtra("thisCity");
+        mTvTitle.setText("当前位置：" + thisCity);
+    }
+
     private void initDataFromServer() {
         //获取到的城市
-        NetUtil.getInstance().postDataFromServer(UrlUtil.CITY_URL, null, this, CityBean.class,"",0);
+        NetUtil.getInstance().postDataFromServer(UrlUtil.CITY_URL, null, this, CityBean.class, "", 0);
     }
+
+
+
+
 
     private void initViews() {
         mEtCityName = (EditTextWithDel) findViewById(R.id.et_search);
         sideBar = (SideBar) findViewById(R.id.sidrbar);
         dialog = (TextView) findViewById(R.id.dialog);
-        mTvTitle = (TextView) findViewById(R.id.tv_title);
         sortListView = (ListView) findViewById(R.id.country_lvcountry);
         initDatas();
         initEvents();
@@ -106,9 +119,9 @@ public class CityActivity extends AppCompatActivity implements INet<CityBean> {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Intent intent = getIntent();
-                intent.putExtra("city",((CitySortModel) adapter.getItem(position)).getName());
-                setResult(100,intent);
+//                intent = getIntent();
+                intent.putExtra("city", ((CitySortModel) adapter.getItem(position)).getName());
+                setResult(100, intent);
                 mTvTitle.setText("当前位置：" + ((CitySortModel) adapter.getItem(position)).getName());
                 Toast.makeText(getApplication(), ((CitySortModel) adapter.getItem(position)).getName(), Toast.LENGTH_SHORT).show();
                 finish();
@@ -199,7 +212,7 @@ public class CityActivity extends AppCompatActivity implements INet<CityBean> {
 
 
     @Override
-    public void onSuccess(CityBean cityBean,int tag) {
+    public void onSuccess(CityBean cityBean, int tag) {
         cityList = new ArrayList<>();
         mSourceDateList = new ArrayList<>();
         cityList.addAll(cityBean.getObject());
