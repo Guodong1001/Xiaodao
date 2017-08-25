@@ -64,6 +64,7 @@ public class SecuritySettingPageActivity extends BaseActivity implements View.On
                 MinePresenter.getInstance().intentTo(SecuritySettingPageActivity.this,ForgotPwdPageActivity.class,"忘记密码");
                 break;
             case R.id.security_setting_reset_pay_pwd:
+                MinePresenter.getInstance().intentTo(SecuritySettingPageActivity.this,SetPayPwdPageActivity.class,"设置支付密码");
                 break;
             case R.id.security_setting_reset_gesture_pwd:
                 break;

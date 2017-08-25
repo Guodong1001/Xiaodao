@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/px30"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/input_pay_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/px30"
+        android:text="请输入支付密码"
+        android:textSize="@dimen/px_t28" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/px30">
+
+        <EditText
+            android:id="@+id/pay_pwd_01"
+            android:layout_width="@dimen/px0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/pay_pwd_backgroud_shape"
+            android:gravity="center"
+            android:inputType="textPassword"
+            android:textSize="@dimen/px_t80" />
+
+        <EditText
+            android:id="@+id/pay_pwd_02"
+            android:layout_width="@dimen/px0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/pay_pwd_backgroud_shape"
+            android:gravity="center"
+            android:inputType="textPassword"
+            android:textSize="@dimen/px_t80" />
+
+        <EditText
+            android:id="@+id/pay_pwd_03"
+            android:layout_width="@dimen/px0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/pay_pwd_backgroud_shape"
+            android:gravity="center"
+            android:inputType="textPassword"
+            android:textSize="@dimen/px_t80" />
+
+        <EditText
+            android:id="@+id/pay_pwd_04"
+            android:layout_width="@dimen/px0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/pay_pwd_backgroud_shape"
+            android:gravity="center"
+            android:inputType="textPassword"
+            android:textSize="@dimen/px_t80" />
+
+        <EditText
+            android:id="@+id/pay_pwd_05"
+            android:layout_width="@dimen/px0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/pay_pwd_backgroud_shape"
+            android:gravity="center"
+            android:inputType="textPassword"
+            android:textSize="@dimen/px_t80" />
+
+        <EditText
+            android:id="@+id/pay_pwd_06"
+            android:layout_width="@dimen/px0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/pay_pwd_backgroud_shape"
+            android:gravity="center"
+            android:inputType="textPassword"
+            android:textSize="@dimen/px_t80" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/next_pay_pwd"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="下一步"/>
+</LinearLayout>
