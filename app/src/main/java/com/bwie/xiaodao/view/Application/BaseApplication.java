@@ -67,5 +67,7 @@ public class BaseApplication extends Application {
         mSp = getSharedPreferences("config", MODE_PRIVATE);
         token = mSp.getString("token","");
         isLogin = mSp.getBoolean("isLogin",false);
+        userName = mSp.getString("userName","");
+        userPhone = mSp.getString("userPhone","");
     }
 }

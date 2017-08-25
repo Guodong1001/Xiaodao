@@ -184,12 +184,7 @@ public class NetUtil<T> {
                 Gson gson = new Gson();
                 T t = gson.fromJson(result, tClass);
                 iNet.onSuccess(t,0);
-//                Message msg = hanlder.obtainMessage();
-//                msg.what = 0;
-//                msg.obj = t;
-//                hanlder.sendMessage(msg);
             }
         });
     }
 }
-

@@ -99,6 +99,9 @@ public class WodeFragment extends Fragment implements View.OnClickListener {
         if(login){
             adminLogin.setVisibility(View.VISIBLE);
             adminNotLogin.setVisibility(View.GONE);
+            userName.setText(BaseApplication.getInstence().getUserName());
+            String userPhone = BaseApplication.getInstence().getUserPhone();
+            UserPhone.setText(userPhone.replace(userPhone.substring(3, 7), "****"));
         }else {
             adminLogin.setVisibility(View.GONE);
             adminNotLogin.setVisibility(View.VISIBLE);

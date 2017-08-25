@@ -68,6 +68,7 @@
         </activity>
         <activity android:name=".view.view.activity.home.CityActivity">
         </activity>
+        <activity android:name=".view.view.activity.mine.AddBankCardPageActivity"/>
     </application>
 
 </manifest>
