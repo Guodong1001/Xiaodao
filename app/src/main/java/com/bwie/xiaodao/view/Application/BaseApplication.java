@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.support.compat.BuildConfig;
 
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+
 import org.xutils.x;
 
 /**
@@ -69,5 +71,6 @@ public class BaseApplication extends Application {
         isLogin = mSp.getBoolean("isLogin",false);
         userName = mSp.getString("userName","");
         userPhone = mSp.getString("userPhone","");
+        ZXingLibrary.initDisplayOpinion(this);
     }
 }

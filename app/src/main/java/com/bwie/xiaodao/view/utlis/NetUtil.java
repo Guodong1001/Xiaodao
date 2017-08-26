@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.bwie.xiaodao.view.utlis.inet.INet;
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
 import java.util.Map;
@@ -187,4 +186,7 @@ public class NetUtil<T> {
             }
         });
     }
+
+
+
 }

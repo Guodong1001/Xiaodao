@@ -41,6 +41,8 @@ public class AllFragment extends android.support.v4.app.Fragment {
         gridView.setAdapter(gridbase);
         GridBase gridbase2=new GridBase(getActivity(),arrlist2);
         gridview2.setAdapter(gridbase2);
+
+
         return view1;
     }
 
