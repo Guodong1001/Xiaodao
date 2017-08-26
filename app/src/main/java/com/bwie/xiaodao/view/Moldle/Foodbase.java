@@ -2,6 +2,7 @@ package com.bwie.xiaodao.view.Moldle;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -101,9 +102,13 @@ public class Foodbase extends BaseAdapter {
                 holder.textView5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Food food=new Food();
+                        String name = holder.textView1.getText().toString();
+                        String address = holder.textView4.getText().toString();
                         Intent intent=new Intent(context, AdreessMap.class);
-                        intent.putExtra("food",food);
+                        Bundle bunder=new Bundle();
+                        bunder.putString("name",name);
+                        bunder.putString("adress",address);
+                        intent.putExtras(bunder);
                         context.startActivity(intent);
                     }
                 });
@@ -117,7 +122,13 @@ public class Foodbase extends BaseAdapter {
                 holder.textView5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        String name = holder.textView1.getText().toString();
+                        String address = holder.textView4.getText().toString();
                         Intent intent=new Intent(context, AdreessMap.class);
+                        Bundle bunder=new Bundle();
+                        bunder.putString("name",name);
+                        bunder.putString("adress",address);
+                        intent.putExtras(bunder);
                         context.startActivity(intent);
                     }
                 });

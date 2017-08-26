@@ -1,9 +1,11 @@
 package com.bwie.xiaodao.view.view.activity.rebate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -23,7 +25,6 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.bwie.xiaodao.R;
-import com.bwie.xiaodao.view.Moldle.Food;
 
 import java.util.List;
 
@@ -39,13 +40,22 @@ public class AdreessMap extends AppCompatActivity {
     // 定位相关
     LocationClient mLocClient;
     private TextView textView;
+    private TextView adreess;
+    private ImageView image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adreess_map);
         textView= (TextView) findViewById(R.id.food);
-        Food food= (Food) getIntent().getSerializableExtra("food");
-        //textView.setText(food.getName());
+        adreess= (TextView) findViewById(R.id.food_address);
+        image= (ImageView) findViewById(R.id.image);
+        Intent intent=getIntent();
+        Bundle bundle = intent.getExtras();
+        String name = bundle.getString("name");
+        String adress = bundle.getString("adress");
+        textView.setText(name);
+        adreess.setText(adress);
+        image.setImageResource(R.drawable.liu1);
         mMapView = (MapView) findViewById(R.id.bmapView);
         mBaiduMap = mMapView.getMap();
         //普通地图

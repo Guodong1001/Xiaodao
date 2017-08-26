@@ -1,12 +1,18 @@
 package com.bwie.xiaodao.view.view.fragment;
 
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,8 +80,11 @@ public class FujinFragment extends Fragment{
         //配置定位参数
         initLocation();
         //开始定位
-        mLocationClient.start();
+        //mLocationClient.start();
+        startLocation();
+
         addFragment();
+
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -85,7 +94,38 @@ public class FujinFragment extends Fragment{
                 hideFragment(i);
             }
         });
+
         return view;
+    }
+    private void startLocation() {
+        if(Build.VERSION.SDK_INT>=23){int
+                checkPermission = ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION);
+
+            if
+                    (checkPermission != PackageManager.PERMISSION_GRANTED) { ActivityCompat.requestPermissions(getActivity(),new
+                    String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);return;
+            } else
+            { mLocationClient.start(); }
+        }else{
+            mLocationClient.start();
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 1:
+                if  (grantResults[0]
+                        == PackageManager.PERMISSION_GRANTED){
+                    mLocationClient.start();
+                }else {
+                    Log.d("TTTT","啊偶，被拒绝了，少年不哭，站起来撸");
+                }
+                break;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void setUserMapCenter() {
