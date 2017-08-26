@@ -91,4 +91,5 @@
     <dimen name="px694">347dp</dimen>
     <dimen name="px653">326.5dp</dimen>
     <dimen name="px328">164dp</dimen>
+    <dimen name="px78">39dp</dimen>
 </resources>
