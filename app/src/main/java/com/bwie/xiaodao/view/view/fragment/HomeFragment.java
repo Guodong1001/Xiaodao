@@ -348,6 +348,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void popupSaoyisao() {
+        //6.0动态权限
         AndPermission.with(getContext())
                 .requestCode(100)
                 .permission(Manifest.permission.CAMERA)
@@ -446,6 +447,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == REQUEST_CODE && data != null) {
             if(resultCode == 100){
                 String city = data.getStringExtra("city");
