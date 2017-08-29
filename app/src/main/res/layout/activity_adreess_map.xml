@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bwie.xiaodao.view.view.activity.rebate.AdreessMap">
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_weight="7"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#dbdbd6"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        >
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/px134"
+            android:layout_height="@dimen/px134"
+            android:src="@drawable/liu1"
+            />
+        <LinearLayout
+            android:layout_width="@dimen/px134"
+            android:layout_height="@dimen/px134"
+            android:orientation="vertical"
+            ></LinearLayout>
+    <TextView
+        android:id="@+id/food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#080807"
+        android:textSize="@dimen/px24"
+
+        />
+    <TextView
+        android:id="@+id/food_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

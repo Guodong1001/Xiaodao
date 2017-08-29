@@ -1,31 +1,19 @@
-package com.bwie.xiaodao.view.view.fragment;
+package com.bwie.xiaodao.view.view.activity.rebate;
 
-
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RadioButton;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.Poi;
-import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
@@ -40,14 +28,8 @@ import com.bwie.xiaodao.R;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class FujinFragment extends Fragment{
+public class AdreessMap extends AppCompatActivity {
     private RadioGroup mRadioGroup;
-    private FragmentManager fm;
-    private Fragment[] fragments = new Fragment[5];
-    private View view;
     private MapView mMapView;
     private BaiduMap mBaiduMap;
     public LocationClient mLocationClient = null;
@@ -57,13 +39,24 @@ public class FujinFragment extends Fragment{
     private double lon;
     // 定位相关
     LocationClient mLocClient;
+    private TextView textView;
+    private TextView adreess;
+    private ImageView image;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        SDKInitializer.initialize(getActivity().getApplicationContext());
-        view = View.inflate(getActivity(), R.layout.fragment_fujin, null);
-        //获取地图控件引用
-        mMapView = (MapView)view. findViewById(R.id.bmapView);
-        mRadioGroup = (RadioGroup) view.findViewById(R.id.fujin_rg);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_adreess_map);
+        textView= (TextView) findViewById(R.id.food);
+        adreess= (TextView) findViewById(R.id.food_address);
+        image= (ImageView) findViewById(R.id.image);
+        Intent intent=getIntent();
+        Bundle bundle = intent.getExtras();
+        String name = bundle.getString("name");
+        String adress = bundle.getString("adress");
+        textView.setText(name);
+        adreess.setText(adress);
+        image.setImageResource(R.drawable.liu1);
+        mMapView = (MapView) findViewById(R.id.bmapView);
         mBaiduMap = mMapView.getMap();
         //普通地图
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
@@ -73,60 +66,15 @@ public class FujinFragment extends Fragment{
 //        initLocation();
 //        addGPS(view);
         //声明LocationClient类
-        mLocationClient = new LocationClient(getActivity().getApplicationContext());
+        mLocationClient = new LocationClient(getApplicationContext());
         //注册监听函数
         mLocationClient.registerLocationListener(myListener);
 //kk
         //配置定位参数
         initLocation();
         //开始定位
-        //mLocationClient.start();
-        startLocation();
+        mLocationClient.start();
 
-        addFragment();
-
-        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                RadioButton rb = (RadioButton) group.findViewById(checkedId);
-                int i = Integer.parseInt(rb.getTag().toString());
-                //判断如果点击的按钮下标为3时  再判断是否添加过当前fragment
-                hideFragment(i);
-            }
-        });
-
-        return view;
-    }
-    private void startLocation() {
-        if(Build.VERSION.SDK_INT>=23){int
-                checkPermission = ContextCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.ACCESS_COARSE_LOCATION);
-
-            if
-                    (checkPermission != PackageManager.PERMISSION_GRANTED) { ActivityCompat.requestPermissions(getActivity(),new
-                    String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);return;
-            } else
-            { mLocationClient.start(); }
-        }else{
-            mLocationClient.start();
-            //aaa
-
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
-            case 1:
-                if  (grantResults[0]
-                        == PackageManager.PERMISSION_GRANTED){
-                    mLocationClient.start();
-                }else {
-                    Log.d("TTTT","啊偶，被拒绝了，少年不哭，站起来撸");
-                }
-                break;
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void setUserMapCenter() {
@@ -234,8 +182,8 @@ public class FujinFragment extends Fragment{
                 setMarker();
                 setUserMapCenter();
             }
-           // Log.v("pcw","lat : " + lat+" lon : " + lon);
-         //   Log.i("BaiduLocationApiDem", sb.toString());
+            // Log.v("pcw","lat : " + lat+" lon : " + lon);
+            //   Log.i("BaiduLocationApiDem", sb.toString());
         }
     }
     public void addGPS(View view){
@@ -243,7 +191,7 @@ public class FujinFragment extends Fragment{
     }
     private void initLocation() {
         // 定位初始化
-        mLocClient = new LocationClient(getActivity());
+        mLocClient = new LocationClient(this);
         mLocClient.registerLocationListener(myListener);
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
@@ -281,45 +229,6 @@ public class FujinFragment extends Fragment{
         mLocationClient.setLocOption(option);
 
     }
-    private void addFragment() {
-        fragments[0] = new FoodFragment();
-        fragments[1] = new XiuxianFragment();
-        fragments[2] = new ShenghuoFragment();
-        fragments[3] = new JiudianFragment();
-        fragments[4] = new AllFragment();
-        fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fujin_frame, fragments[0], "0");
-        ft.commit();
+
     }
-    private void hideFragment(int i) {
-        FragmentTransaction ft = fm.beginTransaction();
-        //如果fragment没有添加过就添加进去
-        if (!fragments[i].isAdded()) {
-            ft.add(R.id.fujin_frame, fragments[i], "" + i);
-        }
-        for (int j = 0; j < fragments.length; j++) {
-            //找到radiogroup里的子控件
-            RadioButton rb = (RadioButton) mRadioGroup.getChildAt(j);
-            //给这个子控件的文字设置背景颜色    黑色  （没有选择的时候）
-            rb.setTextColor(Color.BLACK);
-            rb.setBackground(null);
-            //通过循环隐藏所有的fragment
-            ft.hide(fragments[j]);
-            //如果当前radiobutton是选中状态就把文字颜色设置成红色的
-            if (rb.isChecked()) {
-                rb.setTextColor(Color.RED);
-                rb.setBackground(getResources().getDrawable(R.drawable.meishikuang));
-            }
-            //如果点击的为用户，那么就传值到用户的fragment
-        }
-        //显示当前点击按钮相对应的fragment
-        ft.show(fragments[i]);
-        ft.commit();
-    }
-}
-
-
-
-
 
