@@ -109,6 +109,7 @@ public class FujinFragment extends Fragment{
             { mLocationClient.start(); }
         }else{
             mLocationClient.start();
+            //aa
 
         }
     }
