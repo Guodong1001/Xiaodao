@@ -21,7 +21,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -72,7 +71,7 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.home_city)
     Button mHomeCity;
     @BindView(R.id.home_sousuo)
-    EditText mHomeSousuo;
+    TextView mHomeSousuo;
     @BindView(R.id.home_message)
     ImageView mHomeMessage;
     @BindView(R.id.home_richscan)
@@ -341,10 +340,14 @@ public class HomeFragment extends Fragment {
         popupFukuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                fukuan();
             }
         });
         mPopupWindow.showAsDropDown(mHomeRichscan);
+    }
+
+    private void fukuan() {
+        
     }
 
     private void popupSaoyisao() {
