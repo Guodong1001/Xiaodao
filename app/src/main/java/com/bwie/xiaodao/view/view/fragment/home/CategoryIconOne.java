@@ -73,7 +73,14 @@ public class CategoryIconOne extends Fragment implements INet<HomeIconsBean> {
         ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                Snackbar.make(v, "click position of " + position, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "click position of " + position, Snackbar.LENGTH_LONG)
+                        .setAction("UnTO", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        })
+                        .show();
             }
         });
         ItemClickSupport.addTo(mRecyclerView).setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
