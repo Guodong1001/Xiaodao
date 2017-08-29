@@ -317,16 +317,16 @@
 
         <Button
             android:id="@+id/home_city"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/px120"
             android:layout_height="@dimen/px38"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/px30"
             android:background="@drawable/beijingyuanjiao"
             android:drawableRight="@drawable/xiala"
-            android:text="北京"
+            android:text="北京市"
             android:textSize="@dimen/px_t28"/>
 
-        <EditText
+        <TextView
             android:id="@+id/home_sousuo"
             android:layout_width="@dimen/px0"
             android:layout_height="wrap_content"
@@ -334,9 +334,10 @@
             android:layout_marginLeft="@dimen/px57"
             android:layout_marginRight="@dimen/px40"
             android:layout_weight="1"
+            android:gravity="center_horizontal|fill_vertical"
+            android:clickable="false"
             android:background="@drawable/sousuojisousokuang"
             android:hint="麻辣小龙虾"
-            android:paddingLeft="53dp"
             android:textSize="12sp"
             />
 

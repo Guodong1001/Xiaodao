@@ -32,7 +32,7 @@
 
             <TextView
                 android:id="@+id/item_goods_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="798 咖啡"
                 android:textColor="#333333"
@@ -41,7 +41,7 @@
 
             <TextView
                 android:id="@+id/item_goods_price"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/px0"
                 android:layout_marginTop="@dimen/px10"
                 android:layout_weight="1"
@@ -63,7 +63,7 @@
 
         <TextView
             android:id="@+id/item_goods_distance"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/px18"
