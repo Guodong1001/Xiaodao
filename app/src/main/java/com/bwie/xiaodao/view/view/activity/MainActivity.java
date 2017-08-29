@@ -17,6 +17,7 @@ import com.bwie.xiaodao.view.view.fragment.HomeFragment;
 import com.bwie.xiaodao.view.view.fragment.WodeFragment;
 
 public class MainActivity extends BaseActivity {
+    private static final String TAG = "MainActivity";
     private RadioGroup mRadioGroup;
     private FragmentManager fm;
     private Fragment[] fragments = new Fragment[4];
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity {
 
     }
     @Override
-    public void initView() {
+    public synchronized void initView() {
         mRadioGroup = (RadioGroup) findViewById(R.id.connect_group);
         //RadioButton的点击事件   切换fragment
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -118,5 +119,7 @@ public class MainActivity extends BaseActivity {
                 break;
         }
         return super.onKeyUp(keyCode, event);
+
     }
+
 }

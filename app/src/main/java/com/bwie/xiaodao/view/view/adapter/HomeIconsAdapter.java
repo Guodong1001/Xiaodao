@@ -42,6 +42,7 @@ public class HomeIconsAdapter extends RecyclerView.Adapter<HomeIconsAdapter.View
         Glide.with(mContext)
                 .load(mIconsList.get(position).getPicture())
 //                .bitmapTransform(new CropCircleTransformation(mContext))
+//                 .bitmapTransform(new CropCircleTransformation(mContext))
                 .into(holder.image);
         holder.mTextView.setText(mIconsList.get(position).getCategoryName());
     }

@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.content.Intent;
+import android.view.View;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
@@ -90,6 +92,15 @@ public class CardPackagePageActivity extends BaseActivity {
 
         //跳转过来将标题改为目前页面名字
         title.setText(getIntent().getStringExtra("title"));
+
+
+    }
+
+    @Override
+    public void back(View v) {
+        Intent intent = getIntent();
+        setResult(RESULT_OK,intent);
+        super.back(v);
         list.add(new BankCardBean(R.mipmap.ic_launcher_round, "中国银行", "6222128457215542454"));
         list.add(new BankCardBean(R.mipmap.ic_launcher_round, "招商银行", "6222128457287542210"));
         list.add(new BankCardBean(R.mipmap.ic_launcher_round, "工商银行", "6222128457295417532"));

@@ -3,19 +3,15 @@ package com.bwie.xiaodao.view.view.activity.mine;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.Editable;
-import android.text.InputType;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.Application.BaseApplication;
@@ -29,7 +25,6 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -166,6 +161,8 @@ public class LoginPwdPageActivity extends BaseActivity implements View.OnClickLi
                 Intent intent = new Intent(LoginPwdPageActivity.this, ForgotPwdPageActivity.class);
                 intent.putExtra("title", "忘记密码");
                 startActivity(intent);
+                NetUtil.getInstance().postDataFromServer("http://123.57.33.185:8088/user/login",map,this,LoginPasswordBean.class,getToken(),0);
+
                 break;
         }
     }

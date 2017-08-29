@@ -19,6 +19,7 @@ import com.bwie.xiaodao.view.utlis.NetUtil;
 import com.bwie.xiaodao.view.utlis.UrlUtil;
 import com.bwie.xiaodao.view.utlis.inet.INet;
 import com.bwie.xiaodao.view.view.adapter.QueryRvAdapterByRebate;
+import com.bwie.xiaodao.view.view.adapter.QueryRvAdapterByRecord;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +45,7 @@ public class QueryFragment extends Fragment implements INet {
     private View mView;
     private QueryRvAdapterByRebate mByRebate;
     private HashMap<String, Object> mMap;
+    private QueryRvAdapterByRecord mByRecord;
 
     public QueryFragment() {
         // Required empty public constructor
@@ -72,6 +74,8 @@ public class QueryFragment extends Fragment implements INet {
             case 0:
                 mQueryTxt.setText("" + tag);
                 mByRebate = new QueryRvAdapterByRebate();
+                mByRecord = new QueryRvAdapterByRecord(getActivity(), mRecordQuerys, tag);
+                mQueryRvContent.setAdapter(mByRecord);
                 NetUtil.getInstance().postDataFromServer(UrlUtil.CREDITS_LOG_URL, mMap, this, RecordQuery.class, BaseApplication.getInstence().getToken(), 1);
                 break;
             case 1:
@@ -103,6 +107,7 @@ public class QueryFragment extends Fragment implements INet {
                     @Override
                     public void run() {
 //                mRecordQuerys.addAll(recordQuery.getObject().getEntitys());
+                        mByRecord.notifyDataSetChanged();
                         NetUtil.getInstance().postDataFromServer(UrlUtil.REBATE_RECORD_QUERY_URL + "1", mMap, QueryFragment.this, RebateQuery.class, BaseApplication.getInstence().getToken(), 2);
                     }
                 });
