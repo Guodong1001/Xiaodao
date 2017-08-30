@@ -100,7 +100,7 @@
                 android:id="@+id/fanli_txt_weixin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@mipmap/ic_launcher"
+                android:drawableStart="@drawable/weixin"
                 android:gravity="center_vertical"
                 android:text="微信"
                 android:textColor="#7EC7FF"
@@ -120,7 +120,7 @@
                 android:id="@+id/fanli_txt_alipay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@mipmap/ic_launcher"
+                android:drawableStart="@drawable/alipay"
                 android:gravity="center_vertical"
                 android:text="支付宝"
                 android:textColor="#7EC7FF"
@@ -194,7 +194,7 @@
                 android:layout_marginEnd="@dimen/px70"
                 android:layout_marginStart="@dimen/px30"
                 android:layout_marginTop="@dimen/px33"
-                app:srcCompat="@mipmap/ic_launcher_round"/>
+                app:srcCompat="@drawable/calendar"/>
 
             <TextView
                 android:id="@+id/fanli_txt_rebate_7"
