@@ -38,6 +38,8 @@ public class CardPackagePageActivity extends BaseActivity {
     @Override
     public void back(View v) {
         Intent intent = getIntent();
+        intent.putExtra("weixin",false);
+        intent.putExtra("alipay",false);
         setResult(RESULT_OK,intent);
         super.back(v);
     }

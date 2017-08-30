@@ -2,6 +2,7 @@ package com.bwie.xiaodao.view.view.fragment;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -81,6 +82,10 @@ public class FanliFragment extends Fragment implements INet {
     LinearLayout mFanliLayoutPay;
     @BindView(R.id.fanli_layout_rebate_money)
     LinearLayout mFanliLayoutRebateMoney;
+    @BindView(R.id.fanli_txt_weixin)
+    TextView mFanliTxtWeixin;
+    @BindView(R.id.fanli_txt_alipay)
+    TextView mFanliTxtAlipay;
     private View view;
     private static List<CashbackPlan.ObjectBean> mList;
     private AdapterLvFanli mAdapterLvFanli;
@@ -184,9 +189,24 @@ public class FanliFragment extends Fragment implements INet {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==0&&resultCode==RESULT_OK){
-            if (data!=null){
-
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+            if (data != null) {
+                boolean weixin = data.getBooleanExtra("weixin", false);
+                boolean alipay = data.getBooleanExtra("alipay", false);
+                if (weixin){
+                    mFanliTxtWeixinBind.setText("已绑定");
+                    mFanliTxtWeixin.setTextColor(Color.parseColor("#666666"));
+                }else {
+                    mFanliTxtWeixinBind.setText("请绑定");
+                    mFanliTxtWeixin.setTextColor(Color.parseColor("#7EC7FF"));
+                }
+                if (alipay){
+                    mFanliTxtAlipayBind.setText("已绑定");
+                    mFanliTxtAlipay.setTextColor(Color.parseColor("#666666"));
+                }else {
+                    mFanliTxtAlipayBind.setText("请绑定");
+                    mFanliTxtAlipay.setTextColor(Color.parseColor("#7EC7FF"));
+                }
             }
         }
     }
