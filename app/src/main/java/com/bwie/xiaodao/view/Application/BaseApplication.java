@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.support.compat.BuildConfig;
 
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+
 import org.xutils.x;
 
 /**
@@ -15,7 +17,7 @@ import org.xutils.x;
 
 public class BaseApplication extends Application {
     private static BaseApplication mApplication;
-    private String token;
+    private String token,userName,userPhone;
     private boolean isLogin;
     private SharedPreferences mSp;
 
@@ -40,6 +42,24 @@ public class BaseApplication extends Application {
         return mApplication;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+        mSp.edit().putString("userName",userName).commit();
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+        mSp.edit().putString("userPhone",userPhone).commit();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -49,5 +69,8 @@ public class BaseApplication extends Application {
         mSp = getSharedPreferences("config", MODE_PRIVATE);
         token = mSp.getString("token","");
         isLogin = mSp.getBoolean("isLogin",false);
+        userName = mSp.getString("userName","");
+        userPhone = mSp.getString("userPhone","");
+        ZXingLibrary.initDisplayOpinion(this);
     }
 }

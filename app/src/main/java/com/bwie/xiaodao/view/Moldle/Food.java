@@ -7,7 +7,7 @@ package com.bwie.xiaodao.view.Moldle;
  */
 
 
-public class Food {
+public class Food{
     private int image;
     private String name;
     private int money;

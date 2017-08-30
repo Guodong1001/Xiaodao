@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.bwie.xiaodao.view.utlis.inet.INet;
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
 import java.util.Map;
@@ -184,12 +183,10 @@ public class NetUtil<T> {
                 Gson gson = new Gson();
                 T t = gson.fromJson(result, tClass);
                 iNet.onSuccess(t,0);
-//                Message msg = hanlder.obtainMessage();
-//                msg.what = 0;
-//                msg.obj = t;
-//                hanlder.sendMessage(msg);
             }
         });
     }
-}
 
+
+
+}

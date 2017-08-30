@@ -57,9 +57,15 @@ public class CategoryIconOne extends Fragment implements INet<HomeIconsBean> {
         super.onActivityCreated(savedInstanceState);
         //初始化recyclerview
         initView();
+
+        initOtherAction();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         //获取数据
         initData();
-        initOtherAction();
     }
 
     private void initOtherAction() {
@@ -67,7 +73,14 @@ public class CategoryIconOne extends Fragment implements INet<HomeIconsBean> {
         ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                Snackbar.make(v, "click position of " + position, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "click position of " + position, Snackbar.LENGTH_LONG)
+                        .setAction("UnTO", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        })
+                        .show();
             }
         });
         ItemClickSupport.addTo(mRecyclerView).setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
@@ -106,7 +119,8 @@ public class CategoryIconOne extends Fragment implements INet<HomeIconsBean> {
     }
 
     @Override
-    public void onSuccess(final HomeIconsBean homeIconsBean,int tag) {
+    public void onSuccess(final HomeIconsBean homeIconsBean, int tag) {
+
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -117,6 +131,7 @@ public class CategoryIconOne extends Fragment implements INet<HomeIconsBean> {
                 mAdapter.notifyDataSetChanged();
             }
         });
+
 
     }
 

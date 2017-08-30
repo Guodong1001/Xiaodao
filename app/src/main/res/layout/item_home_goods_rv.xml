@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content"
+              android:background="#ffffff"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +32,7 @@
 
             <TextView
                 android:id="@+id/item_goods_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="798 咖啡"
                 android:textColor="#333333"
@@ -39,7 +41,7 @@
 
             <TextView
                 android:id="@+id/item_goods_price"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/px0"
                 android:layout_marginTop="@dimen/px10"
                 android:layout_weight="1"
@@ -61,14 +63,48 @@
 
         <TextView
             android:id="@+id/item_goods_distance"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/px18"
             android:layout_marginRight="@dimen/px30"
             android:textSize="@dimen/px_t24"/>
-
-
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px2"
+        android:layout_marginLeft="@dimen/px60"
+        android:layout_marginRight="@dimen/px60"
+        android:textColor="#333333"
+        />
+
+    <TextView
+        android:id="@+id/item_goods_preferential_red"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px60"
+        android:layout_marginLeft="@dimen/px150"
+        android:drawableLeft="@drawable/preferential_red"
+        android:text="每满100元减12元"
+        android:drawablePadding="@dimen/px50"
+        android:textColor="#999999"
+        android:textSize="@dimen/px_t24"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/item_goods_preferential_blue"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px60"
+        android:layout_marginLeft="@dimen/px150"
+        android:drawableLeft="@drawable/preferential_blue"
+        android:text="每满100元减12元"
+        android:drawablePadding="@dimen/px50"
+        android:textColor="#999999"
+        android:textSize="@dimen/px_t24"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

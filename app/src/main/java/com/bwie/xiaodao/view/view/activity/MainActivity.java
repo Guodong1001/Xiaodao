@@ -65,6 +65,12 @@ public class MainActivity extends BaseActivity {
         fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(R.id.content_frame, fragments[0], "0");
+        ft.add(R.id.content_frame, fragments[1], "1");
+        ft.add(R.id.content_frame, fragments[2], "2");
+        ft.add(R.id.content_frame, fragments[3], "3");
+        ft.hide(fragments[1]);
+        ft.hide(fragments[2]);
+        ft.hide(fragments[3]);
         ft.commit();
     }
 

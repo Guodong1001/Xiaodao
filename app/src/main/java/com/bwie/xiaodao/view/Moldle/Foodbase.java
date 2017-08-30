@@ -1,6 +1,8 @@
 package com.bwie.xiaodao.view.Moldle;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -8,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
+import com.bwie.xiaodao.view.view.activity.rebate.AdreessMap;
 
 import java.util.List;
 
@@ -95,6 +98,20 @@ public class Foodbase extends BaseAdapter {
                 holder.textView4.setText(foodlist.get(position).getIntegralr());
                 holder.textView5.setText(foodlist.get(position).getDistance());
                 holder.youhui.setText(foodlist.get(position).getYouhui());
+
+                holder.textView5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = holder.textView1.getText().toString();
+                        String address = holder.textView4.getText().toString();
+                        Intent intent=new Intent(context, AdreessMap.class);
+                        Bundle bunder=new Bundle();
+                        bunder.putString("name",name);
+                        bunder.putString("adress",address);
+                        intent.putExtras(bunder);
+                        context.startActivity(intent);
+                    }
+                });
                 break;
             case No_has_discount:
                 holder.imageView.setImageResource(foodlist.get(position).getImage());
@@ -102,6 +119,19 @@ public class Foodbase extends BaseAdapter {
                 holder.textView2.setText(foodlist.get(position).getMoney()+"");
                 holder.textView4.setText(foodlist.get(position).getIntegralr());
                 holder.textView5.setText(foodlist.get(position).getDistance());
+                holder.textView5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = holder.textView1.getText().toString();
+                        String address = holder.textView4.getText().toString();
+                        Intent intent=new Intent(context, AdreessMap.class);
+                        Bundle bunder=new Bundle();
+                        bunder.putString("name",name);
+                        bunder.putString("adress",address);
+                        intent.putExtras(bunder);
+                        context.startActivity(intent);
+                    }
+                });
                 break;
         }
         return view;
@@ -110,5 +140,6 @@ public class Foodbase extends BaseAdapter {
     class ViewHolder {
         ImageView imageView;
         TextView textView1, textView2, textView4, textView5, youhui;
+
     }
 }

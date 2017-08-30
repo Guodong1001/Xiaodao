@@ -58,10 +58,18 @@ public class CategoryIconTwo extends Fragment implements INet<HomeIconsBean> {
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 5, GridLayoutManager.VERTICAL, false);
         //初始化配置
         initView(manager);
+
+        initOtherAction();
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         //获取网络数据
         initData();
-        initOtherAction();
     }
+
 
     private void initOtherAction() {
         //recyclerview条目点击及长按事件
@@ -97,17 +105,20 @@ public class CategoryIconTwo extends Fragment implements INet<HomeIconsBean> {
 
 
     @Override
-    public void onSuccess(final HomeIconsBean homeIconsBean,int tag) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mIconsList.clear();
-                Log.i(TAG, "onSucces***************s: " + homeIconsBean.toString());
-                mIconsList.addAll(homeIconsBean.getObject().getList());
-                Log.e(TAG, "onSuccess**************: " + mIconsList.size());
-                mAdapter.notifyDataSetChanged();
-            }
-        });
+    public void onSuccess(final HomeIconsBean homeIconsBean, int tag) {
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mIconsList.clear();
+                    Log.i(TAG, "onSucces***************s: " + homeIconsBean.toString());
+                    mIconsList.addAll(homeIconsBean.getObject().getList());
+                    Log.e(TAG, "onSuccess**************: " + mIconsList.size());
+                    mAdapter.notifyDataSetChanged();
+                }
+            });
+
+
 
     }
 
