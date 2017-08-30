@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bwie.xiaodao.R;
-import com.bwie.xiaodao.view.model.bean.GoodsShowBean;
+import com.bwie.xiaodao.view.Moldle.NearShops;
 import com.bwie.xiaodao.view.utlis.NetUtil;
 import com.bwie.xiaodao.view.utlis.inet.INet;
 import com.bwie.xiaodao.view.view.adapter.HomeClassShowAdapter;
@@ -26,18 +26,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-import static com.bwie.xiaodao.view.utlis.UrlUtil.GOODS_SHOW_URL;
+import static com.bwie.xiaodao.view.utlis.UrlUtil.NEAR_SHOPS;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeClassShowFragments extends Fragment implements INet<GoodsShowBean> {
+public class HomeClassShowFragments extends Fragment implements INet<NearShops> {
 
     @BindView(R.id.class_shou_rv)
     RecyclerView mClassShouRv;
     Unbinder unbinder;
     private HomeClassShowAdapter adapter;
-    private List<GoodsShowBean.ObjectBean> mList;
+    private List<NearShops.ObjectBean.ListBean> mList;
     private int tag;
 
     @Override
@@ -77,9 +77,12 @@ public class HomeClassShowFragments extends Fragment implements INet<GoodsShowBe
     }
 
     private void initDataFromServer() {
-        Map<String,Integer> map = new HashMap<>();
-        map.put("shopId",8);
-        NetUtil.getInstance().postDataFromServer(GOODS_SHOW_URL,map,this,GoodsShowBean.class,"",0);
+        Map<String,String> map = new HashMap<>();
+        map.put("longitude","116.4192930000");
+        map.put("latitude","39.9768360000");
+        map.put("categoryId","1");
+        map.put("categoryType","1");
+        NetUtil.getInstance().postDataFromServer(NEAR_SHOPS,map,this,NearShops.class,"",0);
     }
 
     @Override
@@ -89,13 +92,11 @@ public class HomeClassShowFragments extends Fragment implements INet<GoodsShowBe
     }
 
     @Override
-    public void onSuccess(GoodsShowBean goodsShowBean, int tag) {
+    public void onSuccess(NearShops nearShops, int tag) {
         if(tag == 0){
-            mList.add(goodsShowBean.getObject());
+            mList.addAll(nearShops.getObject().getList());
             adapter.notifyDataSetChanged();
         }
-
-
     }
 
     @Override

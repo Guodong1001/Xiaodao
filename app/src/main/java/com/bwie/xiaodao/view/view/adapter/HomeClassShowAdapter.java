@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bwie.xiaodao.R;
-import com.bwie.xiaodao.view.model.bean.GoodsShowBean;
+import com.bwie.xiaodao.view.Moldle.NearShops;
 
 import java.util.List;
 
@@ -22,10 +22,9 @@ import java.util.List;
 public class HomeClassShowAdapter extends RecyclerView.Adapter<HomeClassShowAdapter.MyHolder> implements View.OnClickListener {
 
     private Context mContext;
-    private List<GoodsShowBean.ObjectBean> mList;
+    private List<NearShops.ObjectBean.ListBean> mList;
     private OnItemClickListener mOnItemClickListener = null;
-
-    public HomeClassShowAdapter(Context context, List<GoodsShowBean.ObjectBean> list) {
+    public HomeClassShowAdapter(Context context, List<NearShops.ObjectBean.ListBean> list) {
         mContext = context;
         mList = list;
     }
@@ -40,29 +39,14 @@ public class HomeClassShowAdapter extends RecyclerView.Adapter<HomeClassShowAdap
 
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
-        GoodsShowBean.ObjectBean bean = mList.get(position);
 
-//        int width = DpUtils.dip2px(mContext, 150.0f);
-//        int height = DpUtils.dip2px(mContext, 100.0f);
         Glide.with(mContext)
-                .load(bean.getPicture())
-//                .override(width, height)
-//                .bitmapTransform(new CenterCrop(mContext),
-//                        new MaskTransformation(mContext, R.drawable.rounded_rectangle))
+                .load(mList.get(position).getPicture())
                 .into(holder.goodsImg);
-//                .override(width, height)
-//                .bitmapTransform(new CenterCrop(mContext),
-//                        new MaskTransformation(mContext, R.drawable.rounded_rectangle))
-//                .into(holder.goodsImg);
-//        Glide.with(mContext)
-//                .load(bean.getPicture())
-//                .bitmapTransform(new RoundedCornersTransformation(mContext, 30, 0,
-//                        RoundedCornersTransformation.CornerType.BOTTOM))
-//                .into(holder.goodsImg);
-        holder.goodsName.setText(bean.getShopName());
-        holder.goodsPrice.setText("￥" + bean.getPerCapitaConsumption() + "/人");
-        holder.goodsIntegral.setText("积分率" + bean.getIntegralRate() + "%");
-        holder.goodsDistance.setText(bean.getAddress());
+        holder.goodsName.setText(mList.get(position).getShopName());
+        holder.goodsPrice.setText("￥" + mList.get(position).getPerCapitaConsumption() + "/人");
+        holder.goodsIntegral.setText("积分率" + mList.get(position).getIntegralRate() + "%");
+        holder.goodsDistance.setText(mList.get(position).getDistance());
         holder.itemView.setTag(position);
     }
 

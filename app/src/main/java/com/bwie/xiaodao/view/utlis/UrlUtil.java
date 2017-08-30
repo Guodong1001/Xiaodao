@@ -26,6 +26,9 @@ public class UrlUtil {
     public static final String BANNER_URL = BASE_URL+"/listRecommendPositions"; //首页轮播图
 
 
+    public static final String NEAR_SHOPS = BASE_URL+"/near/shops"; //首页附近商铺
+
+
 
 
 

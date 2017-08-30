@@ -183,19 +183,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void addShowFragment() {
-        fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        for (int i = 0; i < mShowFragments.length; i++) {
-            mShowFragments[i] = new HomeClassShowFragments();
-            mShowFragments[i].setTag(i);
-            ft.add(R.id.home_class_show_framelayout, mShowFragments[i]);
-            if (i != 0) {
-                ft.hide(mShowFragments[i]);
-            }
-        }
-        ft.commit();
-    }
 
 
 
@@ -403,6 +390,11 @@ public class HomeFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 RadioButton radioButton = (RadioButton) group.findViewById(checkedId);
                 int i = Integer.parseInt(radioButton.getTag().toString());
+                if(mShowFragments[i] == null){
+                    mShowFragments[i] = new HomeClassShowFragments();
+                    mShowFragments[i].setTag(i);
+                }
+
                 for (int j = 0; j < group.getChildCount(); j++) {
                     //找到radiogroup里的子控件
                     RadioButton rb = (RadioButton) mHomeRg.getChildAt(j);
@@ -418,6 +410,27 @@ public class HomeFragment extends Fragment {
         });
     }
 
+
+    private void addShowFragment() {
+        fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+//        for (int i = 0; i < mShowFragments.length; i++) {
+//            mShowFragments[i] = new HomeClassShowFragments();
+//            mShowFragments[i].setTag(i);
+//        }
+//        ft.add(R.id.home_class_show_framelayout, mShowFragments[0]);
+//        ft.commit();
+        for (int i = 0; i < mShowFragments.length; i++) {
+            mShowFragments[i] = new HomeClassShowFragments();
+            mShowFragments[i].setTag(i);
+            if (i != 0) {
+                ft.hide(mShowFragments[i]);
+            }
+        }
+        ft.add(R.id.home_class_show_framelayout, mShowFragments[0]);
+        ft.commit();
+    }
+
     /**
      * 判断fragment是否添加过并且隐藏不需要显示的
      *
@@ -427,7 +440,7 @@ public class HomeFragment extends Fragment {
         FragmentTransaction ft = fm.beginTransaction();
         //如果fragment没有添加过就添加进去
         if (!mShowFragments[i].isAdded()) {
-            ft.add(R.id.content_frame, mShowFragments[i], "" + i);
+            ft.add(R.id.home_class_show_framelayout, mShowFragments[i], "" + i);
         }
         for (int j = 0; j < mShowFragments.length; j++) {
             //找到radiogroup里的子控件
@@ -440,7 +453,6 @@ public class HomeFragment extends Fragment {
             if (rb.isChecked()) {
                 rb.setTextColor(Color.RED);
             }
-            //如果点击的为用户，那么就传值到用户的fragment
         }
         //显示当前点击按钮相对应的fragment
         ft.show(mShowFragments[i]);
