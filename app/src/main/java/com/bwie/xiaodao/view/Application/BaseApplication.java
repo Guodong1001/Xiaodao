@@ -19,6 +19,27 @@ public class BaseApplication extends Application {
     private static BaseApplication mApplication;
     private String token,userName,userPhone;
     private boolean isLogin;
+    private boolean isBindWeiXin;
+    private boolean isBindAlipay;
+
+    public boolean isBindWeiXin() {
+        return isBindWeiXin;
+    }
+
+    public void setBindWeiXin(boolean bindWeiXin) {
+        isBindWeiXin = bindWeiXin;
+        mSp.edit().putBoolean("weixin",bindWeiXin).commit();
+    }
+
+    public boolean isBindAlipay() {
+        return isBindAlipay;
+    }
+
+    public void setBindAlipay(boolean bindAlipay) {
+        isBindAlipay = bindAlipay;
+        mSp.edit().putBoolean("alipay",bindAlipay).commit();
+    }
+
     private SharedPreferences mSp;
 
     public boolean isLogin() {
@@ -69,6 +90,8 @@ public class BaseApplication extends Application {
         mSp = getSharedPreferences("config", MODE_PRIVATE);
         token = mSp.getString("token","");
         isLogin = mSp.getBoolean("isLogin",false);
+        isBindWeiXin = mSp.getBoolean("weixin",false);
+        isBindAlipay = mSp.getBoolean("alipay",false);
         userName = mSp.getString("userName","");
         userPhone = mSp.getString("userPhone","");
         ZXingLibrary.initDisplayOpinion(this);

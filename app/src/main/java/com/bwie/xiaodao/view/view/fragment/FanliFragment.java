@@ -38,8 +38,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-import static android.app.Activity.RESULT_OK;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -90,6 +88,8 @@ public class FanliFragment extends Fragment implements INet {
     private static List<CashbackPlan.ObjectBean> mList;
     private AdapterLvFanli mAdapterLvFanli;
     private boolean mIsLogin;
+    private boolean mWeiXin;
+    private boolean mBindAlipay;
 
     public FanliFragment() {
         // Required empty public constructor
@@ -109,16 +109,37 @@ public class FanliFragment extends Fragment implements INet {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initData();
-        initView();
+
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mIsLogin = BaseApplication.getInstence().isLogin();
+        mWeiXin = BaseApplication.getInstence().isBindWeiXin();
+        mBindAlipay = BaseApplication.getInstence().isBindAlipay();
+        initView();
+        if (mWeiXin){
+            mFanliTxtWeixinBind.setText("已绑定");
+            mFanliTxtWeixin.setTextColor(Color.parseColor("#666666"));
+        }else {
+            mFanliTxtWeixinBind.setText("请绑定");
+            mFanliTxtWeixin.setTextColor(Color.parseColor("#7EC7FF"));
+        }
+        if (mBindAlipay){
+            mFanliTxtAlipayBind.setText("已绑定");
+            mFanliTxtAlipay.setTextColor(Color.parseColor("#666666"));
+        }else {
+            mFanliTxtAlipayBind.setText("请绑定");
+            mFanliTxtAlipay.setTextColor(Color.parseColor("#7EC7FF"));
+        }
+    }
 
     private void initData() {
-        mIsLogin = BaseApplication.getInstence().isLogin();
+
         mList = new ArrayList<>();
 
     }
-
     private void initView() {
         if (mIsLogin) {
             loadData();
@@ -180,34 +201,9 @@ public class FanliFragment extends Fragment implements INet {
             case R.id.fanli_layout_pay:
                 Intent intent = new Intent(getContext(), CardPackagePageActivity.class);
                 intent.putExtra("title", "卡包");
-                startActivityForResult(intent, 0);
+                startActivity(intent);
                 break;
 
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0 && resultCode == RESULT_OK) {
-            if (data != null) {
-                boolean weixin = data.getBooleanExtra("weixin", false);
-                boolean alipay = data.getBooleanExtra("alipay", false);
-                if (weixin){
-                    mFanliTxtWeixinBind.setText("已绑定");
-                    mFanliTxtWeixin.setTextColor(Color.parseColor("#666666"));
-                }else {
-                    mFanliTxtWeixinBind.setText("请绑定");
-                    mFanliTxtWeixin.setTextColor(Color.parseColor("#7EC7FF"));
-                }
-                if (alipay){
-                    mFanliTxtAlipayBind.setText("已绑定");
-                    mFanliTxtAlipay.setTextColor(Color.parseColor("#666666"));
-                }else {
-                    mFanliTxtAlipayBind.setText("请绑定");
-                    mFanliTxtAlipay.setTextColor(Color.parseColor("#7EC7FF"));
-                }
-            }
         }
     }
 

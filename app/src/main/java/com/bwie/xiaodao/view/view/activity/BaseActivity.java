@@ -15,6 +15,10 @@ import com.bwie.xiaodao.view.Application.BaseApplication;
 public abstract class BaseActivity extends AppCompatActivity {
     private boolean isLogin;
     private String token;
+    private boolean isBindWeiXin;
+    private boolean isBindAlipay;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +40,23 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void setLogin(boolean login) {
         isLogin = login;
         BaseApplication.getInstence().setLogin(login);
+    }
+    public boolean isBindWeiXin() {
+        return isBindWeiXin;
+    }
+
+    public void setBindWeiXin(boolean bindWeiXin) {
+        isBindWeiXin = bindWeiXin;
+        BaseApplication.getInstence().setBindWeiXin(bindWeiXin);
+    }
+
+    public boolean isBindAlipay() {
+        return isBindAlipay;
+    }
+
+    public void setBindAlipay(boolean bindAlipay) {
+        isBindAlipay = bindAlipay;
+        BaseApplication.getInstence().setBindAlipay(bindAlipay);
     }
     public String getToken() {
         return token;
