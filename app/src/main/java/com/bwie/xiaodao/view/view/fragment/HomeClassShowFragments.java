@@ -1,6 +1,7 @@
 package com.bwie.xiaodao.view.view.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,8 +13,11 @@ import android.view.ViewGroup;
 
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.Moldle.NearShops;
+import com.bwie.xiaodao.view.model.bean.GoodsShowBean;
+import com.bwie.xiaodao.view.presenter.MinePresenter;
 import com.bwie.xiaodao.view.utlis.NetUtil;
 import com.bwie.xiaodao.view.utlis.inet.INet;
+import com.bwie.xiaodao.view.view.activity.home.GoodsDetailPage;
 import com.bwie.xiaodao.view.view.adapter.HomeClassShowAdapter;
 
 import java.util.ArrayList;
@@ -68,6 +72,23 @@ public class HomeClassShowFragments extends Fragment implements INet<NearShops> 
 
         LinearLayoutManager manager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         mClassShouRv.setLayoutManager(manager);
+        if(tag == 5){
+            GridLayoutManager manager = new GridLayoutManager(getContext(),GridLayoutManager.DEFAULT_SPAN_COUNT);
+            mClassShouRv.setLayoutManager(manager);
+        }else{
+            LinearLayoutManager manager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+            mClassShouRv.setLayoutManager(manager);
+        }
+        //点击跳转到商品详情页面
+        adapter.setOnItemClickListener(new HomeClassShowAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getActivity(), GoodsDetailPage.class);
+                intent.putExtra("title","商品详情");
+//                intent.putExtra("","");
+                getActivity().startActivity(intent);
+            }
+        });
         mClassShouRv.setAdapter(adapter);
     }
 

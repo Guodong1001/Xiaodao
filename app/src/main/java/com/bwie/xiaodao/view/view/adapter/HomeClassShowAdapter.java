@@ -39,6 +39,7 @@ public class HomeClassShowAdapter extends RecyclerView.Adapter<HomeClassShowAdap
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_home_goods_rv, parent, false);
+        //点击跳转到详情页
         view.setOnClickListener(this);
         return new MyHolder(view);
     }

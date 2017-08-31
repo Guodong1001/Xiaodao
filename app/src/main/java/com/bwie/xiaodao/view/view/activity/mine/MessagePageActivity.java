@@ -1,13 +1,16 @@
 package com.bwie.xiaodao.view.view.activity.mine;
 
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.view.activity.BaseActivity;
+import com.bwie.xiaodao.view.view.custom.MyListView;
 
 public class MessagePageActivity extends BaseActivity {
 
     private TextView title;
+    private MyListView rebateView,withdrawView,integralView;
 
     @Override
     public int setMyContentView() {

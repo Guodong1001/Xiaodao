@@ -183,6 +183,20 @@ public class HomeFragment extends Fragment {
 
     }
 
+    private void addShowFragment() {
+        fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        for (int i = 0; i < mShowFragments.length; i++) {
+            mShowFragments[i] = new HomeClassShowFragments();
+            mShowFragments[i].setTag(i);
+            ft.add(R.id.home_class_show_framelayout, mShowFragments[i]);
+            if (i != 0) {
+                ft.hide(mShowFragments[i]);
+            }
+        }
+        ft.commit();
+
+    }
 
 
 
@@ -334,7 +348,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void fukuan() {
-        
+
     }
 
     private void popupSaoyisao() {
