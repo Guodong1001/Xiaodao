@@ -30,19 +30,20 @@ public class BandCardListAdapter extends RecyclerView.Adapter<BandCardListAdapte
         this.list = list;
     }
 
-    public void setOnClickListener(OnClickListener.onClickListener onClickListener){
+    public void setOnClickListener(OnClickListener.onClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
+
     @Override
     public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new viewHolder(LayoutInflater.from(context).inflate(R.layout.add_bank_card,parent,false));
+        return new viewHolder(LayoutInflater.from(context).inflate(R.layout.add_bank_card, parent, false));
     }
 
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
         holder.itemView.setTag(position);
         Glide.with(context).load(list.get(position).getBankCardLogo()).into(holder.bankCardLogo);
-        holder.bankCardAccount.setText(list.get(position).getBankCardName()+"（"+list.get(position).getBankCardAccount().substring(15, 19)+"）");
+        holder.bankCardAccount.setText(list.get(position).getBankCardName() + "（" + list.get(position).getBankCardAccount().substring(15, 19) + "）");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

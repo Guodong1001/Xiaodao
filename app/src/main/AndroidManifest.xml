@@ -71,6 +71,7 @@
         </activity>
         <activity android:name=".view.view.activity.mine.AddBankCardPageActivity"/>
         <activity android:name=".view.view.activity.mine.SetPayPwdPageActivity"/>
+        <activity android:name=".view.view.activity.home.GoodsDetailPage" />
     </application>
 
 </manifest>

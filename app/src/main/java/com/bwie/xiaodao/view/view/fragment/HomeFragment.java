@@ -196,6 +196,7 @@ public class HomeFragment extends Fragment {
             }
         }
         ft.commit();
+
     }
 
 
