@@ -4,7 +4,6 @@ package com.bwie.xiaodao.view.view.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -66,13 +65,9 @@ public class HomeClassShowFragments extends Fragment implements INet<NearShops> 
     private void initView() {
         mList = new ArrayList<>();
         adapter = new HomeClassShowAdapter(getContext(),mList);
-        if(tag == 5){
-            GridLayoutManager manager = new GridLayoutManager(getContext(),GridLayoutManager.DEFAULT_SPAN_COUNT);
-            mClassShouRv.setLayoutManager(manager);
-        }else{
-            LinearLayoutManager manager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
-            mClassShouRv.setLayoutManager(manager);
-        }
+
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+        mClassShouRv.setLayoutManager(manager);
         mClassShouRv.setAdapter(adapter);
     }
 

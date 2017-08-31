@@ -1,7 +1,11 @@
 package com.bwie.xiaodao.view.view.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.Moldle.NearShops;
 
@@ -40,12 +46,22 @@ public class HomeClassShowAdapter extends RecyclerView.Adapter<HomeClassShowAdap
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
 
-        Glide.with(mContext)
-                .load(mList.get(position).getPicture())
+//        Glide.with(mContext)
+//                .load(mList.get(position).getPicture())
+//                .into(holder.goodsImg);
+
+        Glide.with(mContext).load(mList.get(position).getPicture())
+                .apply(RequestOptions.bitmapTransform(new RoundedCorners(20)))
                 .into(holder.goodsImg);
+
         holder.goodsName.setText(mList.get(position).getShopName());
         holder.goodsPrice.setText("￥" + mList.get(position).getPerCapitaConsumption() + "/人");
-        holder.goodsIntegral.setText("积分率" + mList.get(position).getIntegralRate() + "%");
+
+        SpannableString spannableString = new SpannableString("积分率" + mList.get(position).getIntegralRate() + "%");
+        ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.parseColor("#ff0000"));
+        spannableString.setSpan(colorSpan, 3, spannableString.length(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+
+        holder.goodsIntegral.setText(spannableString);
         holder.goodsDistance.setText(mList.get(position).getDistance());
         holder.itemView.setTag(position);
     }
