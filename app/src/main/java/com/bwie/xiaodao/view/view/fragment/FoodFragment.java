@@ -10,9 +10,16 @@ import android.widget.ListView;
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.Moldle.Food;
 import com.bwie.xiaodao.view.Moldle.Foodbase;
+import com.bwie.xiaodao.view.utlis.NetUtil;
+import com.bwie.xiaodao.view.utlis.inet.INet;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static com.bwie.xiaodao.view.utlis.UrlUtil.FUJIN_SHENGHUO_URL;
+
 
 /**
  * 类描述：
@@ -21,11 +28,11 @@ import java.util.List;
  */
 
 
-public class FoodFragment extends android.support.v4.app.Fragment {
+public class FoodFragment extends android.support.v4.app.Fragment implements INet<Food>{
     private ListView listView;
     private List<Food> arrlist;
     private View view5;
-
+    private Foodbase foodbase1;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view5 = View.inflate(getActivity(), R.layout.fujin_food, null);
         return view5;
@@ -35,23 +42,29 @@ public class FoodFragment extends android.support.v4.app.Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         listView = (ListView) view5.findViewById(R.id.fujin_lv);
-        initfood();
-        Foodbase bases = new Foodbase(getActivity(), arrlist);
-        listView.setAdapter(bases);
-        bases.notifyDataSetChanged();
-    }
-    private void initfood() {
-        arrlist = new ArrayList<>();
-        Food food1 = new Food(R.drawable.z, "798咖啡", 45, 15 + "%", false, "安贞距您<100>米");
-        Food food2 = new Food(R.drawable.f, "小可爱西点（安贞门店）", 50, 25 + "%", "安贞距您<300>米", true, "每满100元减20元");
-        Food food3 = new Food(R.drawable.d, "味多美（安贞华联店）", 31, 20 + "%", false, "安贞距您<200>米");
-        Food food4 = new Food(R.drawable.e, "巴贝拉意式餐厅（天通苑）", 66, 15 + "%", "安贞距您<1000>米", true, "每满100元减8元");
-        Food food5 = new Food(R.drawable.j, "百乐门", 40, 15 + "%", false, "安贞距您<100>米");
-        arrlist.add(food1);
-        arrlist.add(food2);
-        arrlist.add(food3);
-        arrlist.add(food4);
-        arrlist.add(food5);
+        arrlist=new ArrayList<>();
+        foodbase1 = new Foodbase(getActivity(),arrlist);
+        listView.setAdapter(foodbase1);
+        initDataFromServer();
+
     }
 
+    private void initDataFromServer() {
+        Map<String,Integer> map=new HashMap<>();
+        map.put("shopId",9);
+        NetUtil.getInstance().postDataFromServer(FUJIN_SHENGHUO_URL,map,this,Food.class,"",12);
+    }
+
+
+    @Override
+    public void onSuccess(Food food, int tag) {
+        arrlist.add(food);
+        foodbase1.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void onError(String error) {
+
+    }
 }

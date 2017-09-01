@@ -102,8 +102,8 @@ public class FujinFragment extends Fragment{
                 checkPermission = ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_COARSE_LOCATION);
 
-            if
-                    (checkPermission != PackageManager.PERMISSION_GRANTED) { ActivityCompat.requestPermissions(getActivity(),new
+            if (checkPermission != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(),new
                     String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);return;
             } else
             { mLocationClient.start(); }

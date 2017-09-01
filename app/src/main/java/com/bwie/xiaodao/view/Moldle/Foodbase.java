@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.bwie.xiaodao.R;
 import com.bwie.xiaodao.view.view.activity.rebate.AdreessMap;
 
@@ -23,82 +24,44 @@ import java.util.List;
 
 public class Foodbase extends BaseAdapter {
     private Context context;
-    private List<Food> foodlist;
+    private List<Food> arrlist;
     private View view;
     private ViewHolder holder;
-    private static final int has_discount = 0;
-    private static final int No_has_discount = 1;
-    public Foodbase(Context context, List<Food> foodlist) {
+    public Foodbase(Context context, List<Food> arrlist) {
         this.context = context;
-        this.foodlist = foodlist;
+        this.arrlist = arrlist;
     }
-
     @Override
     public int getCount() {
-        return foodlist.size();
+        return arrlist.size();
     }
-
     @Override
     public Object getItem(int position) {
-        return foodlist.get(position);
+        return arrlist.get(position);
     }
-
     @Override
     public long getItemId(int position) {
         return position;
     }
-
-    @Override
-    public int getViewTypeCount() {
-        return 2;
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        boolean ishas = foodlist.get(position).isDiscount();
-        if (ishas) {
-            return has_discount;
-        }else {
-            return No_has_discount;
-        }
-    }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        int type = getItemViewType(position);
         if (convertView == null) {
             holder = new ViewHolder();
-            switch (type){
-                case has_discount:
                     view = View.inflate(context, R.layout.meishi_basees, null);
                     holder.imageView = (ImageView) view.findViewById(R.id.meishi_image);
                     holder.textView1 = (TextView) view.findViewById(R.id.meishi_tex1);
                     holder.textView2 = (TextView) view.findViewById(R.id.meishi_text2);
                     holder.textView4 = (TextView) view.findViewById(R.id.meishi_text4);
                     holder.textView5 = (TextView) view.findViewById(R.id.meishi_text5);
-                    holder.youhui = (TextView) view.findViewById(R.id.youhui);
-                    break;
-                case No_has_discount:
-                    view = View.inflate(context, R.layout.meishi_nobase, null);
-                    holder.imageView = (ImageView) view.findViewById(R.id.meishi_image);
-                    holder.textView1 = (TextView) view.findViewById(R.id.meishi_tex1);
-                    holder.textView2 = (TextView) view.findViewById(R.id.meishi_text2);
-                    holder.textView4 = (TextView) view.findViewById(R.id.meishi_text4);
-                    holder.textView5 = (TextView) view.findViewById(R.id.meishi_text5);
-                    break;
-            }
-            view.setTag(holder);
+                    view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        switch (type){
-            case has_discount:
-                holder.imageView.setImageResource(foodlist.get(position).getImage());
-                holder.textView1.setText(foodlist.get(position).getName());
-                holder.textView2.setText(foodlist.get(position).getMoney()+"");
-                holder.textView4.setText(foodlist.get(position).getIntegralr());
-                holder.textView5.setText(foodlist.get(position).getDistance());
-                holder.youhui.setText(foodlist.get(position).getYouhui());
-
+                Glide.with(context).load(arrlist.get(position).getObject().getPicture()).into(holder.imageView);
+                holder.textView1.setText(arrlist.get(position).getObject().getShopName());
+                holder.textView2.setText(arrlist.get(position).getObject().getIntegralRate()+"");
+                holder.textView4.setText(arrlist.get(position).getObject().getPerCapitaConsumption()+"");
+                holder.textView5.setText(arrlist.get(position).getObject().getAddress());
                 holder.textView5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -112,34 +75,12 @@ public class Foodbase extends BaseAdapter {
                         context.startActivity(intent);
                     }
                 });
-                break;
-            case No_has_discount:
-                holder.imageView.setImageResource(foodlist.get(position).getImage());
-                holder.textView1.setText(foodlist.get(position).getName());
-                holder.textView2.setText(foodlist.get(position).getMoney()+"");
-                holder.textView4.setText(foodlist.get(position).getIntegralr());
-                holder.textView5.setText(foodlist.get(position).getDistance());
-                holder.textView5.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String name = holder.textView1.getText().toString();
-                        String address = holder.textView4.getText().toString();
-                        Intent intent=new Intent(context, AdreessMap.class);
-                        Bundle bunder=new Bundle();
-                        bunder.putString("name",name);
-                        bunder.putString("adress",address);
-                        intent.putExtras(bunder);
-                        context.startActivity(intent);
-                    }
-                });
-                break;
-        }
         return view;
     }
 
     class ViewHolder {
         ImageView imageView;
-        TextView textView1, textView2, textView4, textView5, youhui;
+        TextView textView1, textView2, textView4, textView5;
 
     }
 }

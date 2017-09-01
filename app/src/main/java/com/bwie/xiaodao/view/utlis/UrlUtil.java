@@ -16,6 +16,7 @@ public class UrlUtil {
 
     public static final String CREDITS_LOG_URL = BASE_URL+"/user/intergral/records";//积分记录
 
+    public static final String FUJIN_SHENGHUO_URL = BASE_URL+"/findShopById";//积分记录
 
     public static final String CITY_URL = BASE_URL+"/findAllCityList";
 

@@ -84,7 +84,7 @@ public class CategoryIconOne extends Fragment implements INet<HomeIconsBean> {
         Map<String, Object> map = new HashMap<>();
         map.put("pageSize", 10);
         map.put("pageNum ", 1);
-        NetUtil.getInstance().postDataFromServer(ConstantUtil.LINK_MOBILE_HOME_ICONS, map, this, HomeIconsBean.class);
+        NetUtil.getInstance().postDataFromServer(ConstantUtil.LINK_MOBILE_HOME_ICONS, map,this, HomeIconsBean.class,"",11);
     }
 
     private void initView() {
@@ -107,16 +107,19 @@ public class CategoryIconOne extends Fragment implements INet<HomeIconsBean> {
 
     @Override
     public void onSuccess(final HomeIconsBean homeIconsBean,int tag) {
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Log.i(TAG, "onSuccess:------------ " + homeIconsBean.toString());
-                mIconsList.clear();
-                mIconsList.addAll(homeIconsBean.getObject().getList());
-                Log.e(TAG, "onSuccess:-------------- " + mIconsList.size());
-                mAdapter.notifyDataSetChanged();
-            }
-        });
+        if(tag==11){
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i(TAG, "onSuccess:------------ " + homeIconsBean.toString());
+                    mIconsList.clear();
+                    mIconsList.addAll(homeIconsBean.getObject().getList());
+                    Log.e(TAG, "onSuccess:-------------- " + mIconsList.size());
+                    mAdapter.notifyDataSetChanged();
+                }
+            });
+        }
+
 
     }
 
