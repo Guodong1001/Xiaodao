@@ -36,6 +36,8 @@ public class FoodFragment extends android.support.v4.app.Fragment implements INe
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view5 = View.inflate(getActivity(), R.layout.fujin_food, null);
         return view5;
+
+        //a
     }
 
     @Override
