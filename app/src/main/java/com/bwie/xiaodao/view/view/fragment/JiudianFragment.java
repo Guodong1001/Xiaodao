@@ -35,6 +35,7 @@ public class JiudianFragment extends android.support.v4.app.Fragment implements 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view2 = View.inflate(getActivity(), R.layout.fujin_jiudian, null);
         return view2;
+        //a
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
